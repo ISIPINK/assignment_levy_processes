@@ -1,0 +1,144 @@
+\documentclass[a4paper,11pt]{article}
+
+\setlength{\textwidth}{15.0cm}
+\setlength{\textheight}{24.0cm}
+\setlength{\topmargin}{0cm}
+\setlength{\headsep}{0cm}
+\setlength{\headheight}{0cm}
+\pagestyle{plain}
+
+\usepackage{amsmath, amsfonts, mathtools, amsthm, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+
+\renewcommand{\thesection}{(\arabic{section})}
+\setlength{\parindent}{0pt}
+\title{Answers: Lévy-Khintchine formula}
+
+\begin{document}
+
+\maketitle
+\date{}
+
+\section{}
+WTS: $D$ is the unit ball and
+
+\begin{equation} \label{eq: levy measure conditions}
+    \nu\big( \{0 \} \big)=0 \ a n d \ \int_{\mathbb{R}^{d}} ( | x |^{2} \wedge1 \big) \nu\big( d x \big) < \infty,
+\end{equation}
+set
+\begin{equation}
+    f(t,x) =  ( \operatorname{e x p} ( i \langle t, x \rangle)-1-i \langle t, x \rangle I_{D} ( x ) )
+    .
+\end{equation}
+
+then following function is continuous:
+
+\begin{equation}
+    t \mapsto\int_{\mathbb{R}^{d}} f(t,x)\nu( d x )
+    .
+\end{equation}
+
+\begin{proof}
+    Take $t_{k} \rightarrow t \implies \sup_{k>0}(t_{k})<\infty, \sup_{k>0}(|t_{k}|^{2})<\infty $
+    (if the supremum is $\infty$ there exist a subsequence that converges to $\infty$ which is a contradiction) and
+
+    \begin{align}
+        |f(t_{k},x)| & \le \frac{1}{2} |t_{k}|^{2} |x|^{2} I_{D}(x) + 2 I_{D^{c}}(x)                                              \\
+                     & \le \frac{1}{2} \sup_{k}\left(|t_{k}|^{2}  \right)  |x|^{2} I_{D}(x) + 2 I_{D^{c}}(x) \label{eq:dominator}
+        .
+    \end{align}
+    so $f(t_{k},x)$ is dominated (\ref{eq:dominator}) which is $\nu$-integrable because of (\ref{eq: levy measure conditions}).
+    Now by the dominated convergence theorem we have
+
+    \begin{align}
+         & \lim_{k \rightarrow \infty} {\int_{\mathbb{R}^{d}} f(t_{k},x)\nu( d x )}   \\
+         & =  \int_{\mathbb{R}^{d}} \lim_{k \rightarrow \infty}{f(t_{k},x)\nu( d x )} \\
+         & =  \int_{\mathbb{R}^{d}} {f(t,x)\nu( d x )}
+        .
+    \end{align}
+
+\end{proof}
+
+\section{}
+WTS: compound Poisson process has a Lévy-Khintchine representation.
+\begin{proof}
+    To see this rewrite the characteristic function of a compound Poisson process $X$:
+    \begin{align}
+        \phi_{X}(t) & = \exp \left(  \lambda\int_{\mathbb{R}^{d}} ( \exp ( i \langle t, x \rangle)) Q ( d x )-1  \right)                                                                       \\
+                    & = \exp \left(  \lambda\int_{\mathbb{R}^{d}} ( \exp ( i \langle t, x \rangle)-1) Q ( d x )  \right)                                                                       \\
+                    & = \exp \left(  \int_{\mathbb{R}^{d}} ( \exp ( i \langle t, x \rangle)-1) \lambda Q ( d x )  \right)                                                                      \\
+                    & = \exp \left(  \int_{\mathbb{R}^{d}} ( \exp ( i \langle t, x \rangle)-1- i \langle t, x \rangle I_{D}(x) + i \langle t, x \rangle I_{D}(x) )  \lambda Q ( d x )  \right) \\
+                    & = \exp \left(  \int_{\mathbb{R}^{d}} ( \exp ( i \langle t, x \rangle)-1- i \langle t, x \rangle  I_{D}(x)) \lambda Q ( d x )
+        +  i \langle t, \int_{D}x\lambda Q ( d x ) \rangle      \right)
+    \end{align}
+\end{proof}
+
+\section{}
+Question: What can you say about the infinitely divisible distribution if $\nu$ the Lévy measure is finite? \\
+Answer: The infinitely divisible distribution is the sum of a independent normal distribution and a compound Poisson distribution.
+\begin{align}
+     & \exp \left[-\frac{1} {2} \langle t, A t \rangle+i \langle\gamma, t \rangle+\int_{\mathbb{R}^{d}} \left( \exp ( i \langle t, x \rangle)-1-i \langle t, x \rangle I_{D} ( x ) \right) \nu( d x ) \right] \\
+     & =\exp \left[-\frac{1} {2} \langle t, A t \rangle+i \langle\gamma, t \rangle+\int_{\mathbb{R}^{d}} \left( \exp ( i \langle t, x \rangle)-1 \right)\nu( d x )
+        -\int_{\mathbb{R}^{d}}
+    \left(i \langle t, x \rangle I_{D} ( x ) \right) \nu( d x ) \right]                                                                                                                                       \\
+     & =\exp \left[-\frac{1} {2} \langle t, A t \rangle+i \langle\gamma -\int_{D}x \nu(dx) , t \rangle \right]
+    \exp \left[ \int_{\mathbb{R}^{d}} \left( \exp ( i \langle t, x \rangle)-1 \right)\nu( d x ) \right]                                                                                                       \\
+     & =\exp \left[-\frac{1} {2} \langle t, A t \rangle+i \langle\gamma -\int_{D}x \nu(dx) , t \rangle \right]
+    \exp \left[ \int_{\mathbb{R}^{d}} \left( \exp ( i \langle t, x \rangle)-1 \right)\nu( \mathbb{R}^{d}) \frac{\nu( d x  )}{\nu(\mathbb{R}^{d})} \right]
+    .
+\end{align}
+The terms of the product are easily recognized as the characteristic
+functions of a normal distribution and a compound Poisson distribution.
+
+\section{}
+WTS:
+\begin{equation}
+    s_{k}>0\rightarrow \infty \implies
+    - \frac{1} {2} \langle t, A t \rangle+i \langle\gamma, t \rangle s_k^{-1}+\int_{\mathbb{R}^{d}} \frac{\exp ( i s_k \langle t, x \rangle)-1-i s_k \langle t, x \rangle I_{D} ( x )} {s_k^{2}} \nu( d x )
+    \rightarrow  \frac{- \langle t, A t \rangle}{2}
+    .
+\end{equation}
+
+\begin{proof}
+    Assume $s_{k}\rightarrow \infty$ set
+    \begin{equation}
+        f(t,x) =  ( \exp ( i \langle t, x \rangle)-1-i \langle t, x \rangle I_{D} ( x ) ),
+    \end{equation}
+    then all we have to show is that (the second term goes to zero)
+    \begin{equation}
+        \int_{\mathbb{R}^{d}} f(s_{k}t,x) \nu( d x ) \rightarrow 0
+        .
+    \end{equation}
+    Use the same dominator (\ref{eq:dominator}):
+    \begin{align}
+        \left|\frac{f(s_{k}t,x)}{s_{k}^{2}}\right| & \le \frac{\frac{1}{2} |s_{k} t|^{2} |x|^{2} I_{D}(x) + 2 I_{D^{c}}(x)}{ s_{k}^{2}}  \\
+                                                   & \le \frac{1}{2} |t|^{2} |x|^{2} I_{D}(x) + \frac{2I_{D^{c}(x)}}{\inf_{k} s_{k}^{2}}
+        .
+    \end{align}
+    If $\inf_{k} s_{k}^{2}= 0$ then because $s_k^{2}>0$ there exist a subsequence that
+    converges to $0$ which is a contradiction with $s_{k}>0 \rightarrow \infty$.
+    Again we can apply the dominated convergence theorem:
+
+    \begin{align}
+         & \lim_{k \to \infty} \left|\int_{\mathbb{R}^{d}} \frac{\exp ( i s_k \langle t, x \rangle)-1-i s_k \langle t, x \rangle I_{D} ( x )} {s_k^{2}} \nu( d x ) \right|                  \\
+         & \le\lim_{k \to \infty} \int_{\mathbb{R}^{d}} \left|\frac{\exp ( i s_k \langle t, x \rangle)-1-i s_k \langle t, x \rangle I_{D} ( x )} {s_k^{2}}\right|  \nu( d x )               \\
+         & \le \int_{\mathbb{R}^{d}}\lim_{k \to \infty} \left|\frac{\exp ( i s_k \langle t, x \rangle)-1-i s_k \langle t, x \rangle I_{D} ( x )} {s_k^{2}}\right|  \nu( d x )               \\
+         & \le \int_{\mathbb{R}^{d}}\lim_{k \to \infty} \frac{\left|\exp ( i s_k \langle t, x \rangle)-1-i s_k \langle t, x \rangle I_{D} ( x )\right|} {s_k^{2}}  \nu( d x )               \\
+         & \le \int_{\mathbb{R}^{d}}\lim_{k \to \infty} \frac{\left|\exp ( i s_k \langle t, x \rangle)-1\right|+ \left|i s_k \langle t, x \rangle I_{D} ( x )\right|} {s_k^{2}}  \nu( d x ) \\
+         & \le \int_{\mathbb{R}^{d}}\lim_{k \to \infty} \frac{2+ \left|i s_k \langle t, x \rangle I_{D} ( x )\right|} {s_k^{2}}  \nu( d x )                                                 \\
+         & \rightarrow 0
+    \end{align}
+
+
+\end{proof}
+
+
+
+
+
+
+
+\end{document}
