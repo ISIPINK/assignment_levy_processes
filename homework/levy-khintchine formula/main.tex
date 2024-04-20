@@ -151,10 +151,23 @@ then
 \section{}
 WTS: $\int_{[-h,h]^{d}} \psi_{n}(t) dt  \in  \mathbb{R}$ without calculating it.
 \begin{proof}
-    Didn't manage to prove it without calculating it. But here is an idea we know
+    Didn't manage to prove it without calculating it. But here is an idea: we know
     because of the Lévy-Khintchine formula (which we can't get without the calculation) it is
     easily seen that $\psi(t)$ is conjugate to $\psi(-t)$,  $|\psi|=1 $ and we are integrating/ summing over
-    a even domain ($t \in D \implies -t \in D$) the complex parts cancel out.
+    a even domain ($t \in D \implies -t \in D$) so the complex parts cancel out.
 \end{proof}
+
+\section{}
+Question: Why can we apply Fubini's theorem in line 1 page 23. \\
+Answer: Because the conditions are satisfied this is already well explained in the notes.
+
+\section{}
+Question: Why is line 15 on page 13 easy to see? \\
+Answer: It is a product of multiple sinc functions which are individually bounded between $-1$ and $1$ 
+and reach their maximum at $0$ which is $1$. So the product is continuous also bounded between $-1$ and $1$
+and only reaches $1$ in $0$. 
+
+\section{}
+
 
 \end{document}
