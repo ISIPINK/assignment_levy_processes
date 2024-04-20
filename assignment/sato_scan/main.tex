@@ -1,4 +1,4 @@
-\documentclass[a4paper,12pt]{article}
+\documentclass[a4paper,11pt]{article}
 
 \setlength{\textwidth}{15.0cm}
 \setlength{\textheight}{24.0cm}
@@ -8,15 +8,13 @@
 \pagestyle{plain}
 
 \usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{amssymb}
-\usepackage[version=4]{mhchem}
-\usepackage{stmaryrd}
-\usepackage{bbold}
+\usepackage{amsmath, amsfonts, mathtools, amsthm, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
 
-\title{25. Moments }
+\title{25. Moments}
 
 \author{}
 \date{}
@@ -24,216 +22,268 @@
 
 \begin{document}
 \maketitle
-See Exercises 29.4-29.6 for further information.
 
-Proof of theorem. Use the translation invariance of the Lebesgue measure. Then
+We define the $g$-moment of a random variable and discuss finiteness of the $g$-moment of $X_{t}$ for a Lévy process
+$\left\{X_{t}\right\}$. \\
 
-$$
-    \begin{aligned}
-        \int P\left[x+X_{t} \in B\right] \mathrm{d} x & =\int \mathrm{d} x \int 1_{B}(x+y) \mu^{t}(\mathrm{~d} y)=\int \mu^{t}(\mathrm{~d} y) \operatorname{Leb}(B-y) \\
-                                                      & =\int \mu^{t}(\mathrm{~d} y) \operatorname{Leb}(B)=\operatorname{Leb}(B)
-    \end{aligned}
-$$
+DEFINITION 25.1. Let $g(x)$ be a nonnegative measurable function on $\mathbb{R}^{d}$. We call
+$\int g(x) \mu(\mathrm{d} x)$ the $g$-moment of a measure $\mu$ on $\mathbb{R}^{d}$. We call $E[g(X)]$ the $g$-moment of
+a random variable $X$ on $\mathbb{R}^{d}$. \\
 
-This is (24.16) for the Lebesgue measure.
-
-We define the $g$-moment of a random variable and discuss finiteness of the $g$-moment of $X_{t}$ for a Lévy process $\left\{X_{t}\right\}$.
-
-DEFINITION 25.1. Let $g(x)$ be a nonnegative measurable function on $\mathbb{R}^{d}$. We call $\int g(x) \mu(\mathrm{d} x)$ the $g$-moment of a measure $\mu$ on $\mathbb{R}^{d}$. We call $E[g(X)]$ the $g$-moment of a random variable $X$ on $\mathbb{R}^{d}$.
-
-DEFINITION 25.2. A function $g(x)$ on $\mathbb{R}^{d}$ is called submultiplicative if it is nonnegative and there is a constant $a>0$ such that
-
+DEFINITION 25.2. A function $g(x)$ on $\mathbb{R}^{d}$ is called submultiplicative if it is nonnegative
+and there is a constant $a>0$ such that
 
 \begin{equation*}
     g(x+y) \leq a g(x) g(y) \text { for } x, y \in \mathbb{R}^{d} \tag{25.1}
 \end{equation*}
 
+\noindent A function bounded on every compact set is called locally bounded. \\
 
-A function bounded on every compact set is called locally bounded.
+THEOREM 25.3 ( $g$-Moment). Let $g$ be a submultiplicative, locally bounded, measurable
+function on $\mathbb{R}^{d}$. Then, finiteness of the $g$-moment is not a time dependent
+distributional property in the class of Lévy processes. Let $\left\{X_{t}\right\}$ be a Lévy process
+on $\mathbb{R}^{d}$ with Lévy measure $\nu$. Then, $X_{t}$ has finite $g$-moment for every $t>0$ if
+and only if $[\nu]_{\{|x|>1\}}$ has finite $g$-moment. \\
 
-THEOREM 25.3 ( $g$-Moment). Let $g$ be a submultiplicative, locally bounded, measurable function on $\mathbb{R}^{d}$. Then, finiteness of the $g$-moment is not a time dependent distributional property in the class of Lévy processes. Let $\left\{X_{t}\right\}$ be a Lévy process on $\mathbb{R}^{d}$ with Lévy measure $\nu$. Then, $X_{t}$ has finite $g$-moment for every $t>0$ if and only if $[\nu]_{[|x|>1\}}$ has finite $g$-moment.
+The following facts indicate the wide applicability of the theorem. \\
 
-                The following facts indicate the wide applicability of the theorem.
-
-                ProPOSITION 25.4. (i) The product of two submultiplicative functions is submultiplicative.
-
-                (ii) If $g(x)$ is submultiplicative on $\mathbb{R}^{d}$, then so is $g(c x+\gamma)^{\alpha}$ with $c \in \mathbb{R}$, $\gamma \in \mathbb{R}^{d}$, and $\alpha>0$.
-
-                (iii) Let $0<\beta \leq 1$. Then the following functions are submultiplicative:
-
-                $$
-                    \begin{gathered}
-                        |x| \vee 1,\left|x_{j}\right| \vee 1, x_{j} \vee 1, \exp \left(|x|^{\beta}\right), \exp \left(\left|x_{j}\right|^{\beta}\right) \\
-                        \exp \left(\left(x_{j} \vee 0\right)^{\beta}\right), \log (|x| \vee e), \log \left(\left|x_{j}\right| \vee e\right), \log \left(x_{j} \vee \mathrm{e}\right) \\
-                        \log \log \left(|x| \vee e^{e}\right), \log \log \left(\left|x_{j}\right| \vee e^{e}\right), \log \log \left(x_{j} \vee e^{e}\right)
-                    \end{gathered}
-                $$
-
-                Here $x_{j}$ is the $j$ th component of $x$.
-
-                Proof. (i) Immediate from the definition.
-
-                (ii) Let $g_{1}(x)=g(c x), g_{2}(x)=g(x+\gamma)$, and $g_{3}(x)=g(x)^{\alpha}$. Then it follows from (25.1) that $g_{1}(x+y) \leq a g_{1}(x) g_{1}(y), g_{2}(x+y) \leq a^{2} g(-\gamma) g_{2}(x) g_{2}(y)$, and $g_{3}(x+y) \leq a^{\alpha} g_{3}(x) g_{3}(y)$.
-
-                (iii) Let $h(u)$ be a positive increasing function on $\mathbb{R}$ such that, for some $b \geq 0, h(u)$ is flat on $(-\infty, b]$ and $\log h(u)$ is concave on $[b, \infty)$. Then $h(u)$ is submultiplicative on $\mathbb{R}$. In fact, for $u, v \geq b$, the function $f(u)=\log h(u)$ satisfies
+PROPOSITION 25.4. \\
+(i) The product of two submultiplicative functions is submultiplicative. \\
+(ii) If $g(x)$ is submultiplicative on $\mathbb{R}^{d}$, then so is $g(c x+\gamma)^{\alpha}$
+with $c \in \mathbb{R}$, $\gamma \in \mathbb{R}^{d}$, and $\alpha>0$. \\
+(iii) Let $0<\beta \leq 1$. Then the following functions are submultiplicative:
 
 $$
-    \begin{aligned}
-         & f(u+b)-f(u) \leq f(2 b)-f(b) \\
-         & f(u+v)-f(v) \leq f(u+b)-f(b)
-    \end{aligned}
+    \begin{gathered}
+        |x| \vee 1,\left|x_{j}\right| \vee 1, x_{j} \vee 1, \exp \left(|x|^{\beta}\right), \exp \left(\left|x_{j}\right|^{\beta}\right) \\
+        \exp \left(\left(x_{j} \vee 0\right)^{\beta}\right), \log (|x| \vee e), \log \left(\left|x_{j}\right| \vee e\right), \log \left(x_{j} \vee \mathrm{e}\right) \\
+        \log \log \left(|x| \vee e^{e}\right), \log \log \left(\left|x_{j}\right| \vee e^{e}\right), \log \log \left(x_{j} \vee e^{e}\right)
+    \end{gathered}
 $$
 
-and hence
+Here $x_{j}$ is the $j$ th component of $x$.
 
-$$
-    f(u+v) \leq f(u+b)-f(b)+f(v) \leq f(2 b)-2 f(b)+f(u)+f(v)
-$$
+\begin{proof}
 
-which shows
+    (i) Immediate from the definition. \\
+    (ii) Let $g_{1}(x)=g(c x), g_{2}(x)=g(x+\gamma)$, and $g_{3}(x)=g(x)^{\alpha}$.
+    Then it follows from (25.1) that $g_{1}(x+y) \leq a g_{1}(x) g_{1}(y), g_{2}(x+y) \leq
+        a^{2} g(-\gamma) g_{2}(x) g_{2}(y)$, and $g_{3}(x+y) \leq a^{\alpha} g_{3}(x) g_{3}(y)$. \\
+    (iii) Let $h(u)$ be a positive increasing function on $\mathbb{R}$ such that, for some
+    $b \geq 0, h(u)$ is flat on $(-\infty, b]$ and $\log h(u)$ is concave on $[b, \infty)$. Then
+    $h(u)$ is submultiplicative on $\mathbb{R}$. In fact, for $u, v \geq b$, the function $f(u)=\log h(u)$ satisfies
+
+    $$
+        \begin{aligned}
+             & f(u+b)-f(u) \leq f(2 b)-f(b) \\
+             & f(u+v)-f(v) \leq f(u+b)-f(b)
+        \end{aligned}
+    $$
+
+    and hence
+
+    $$
+        f(u+v) \leq f(u+b)-f(b)+f(v) \leq f(2 b)-2 f(b)+f(u)+f(v)
+    $$
+
+    which shows
 
 
-\begin{equation*}
-    h(u+v) \leq \text { const } h(u) h(v) \tag{25.2}
-\end{equation*}
+    \begin{equation*}
+        h(u+v) \leq \text { const } h(u) h(v) \tag{25.2}
+    \end{equation*}
 
 
-It follows that (25.2) holds for all $u, v \in \mathbb{R}$. The functions $u \vee 1, \exp \left((u \vee 0)^{\beta}\right)$, $\log (u \vee \mathrm{e})$, and $\log \log \left(u \vee \mathrm{e}^{\mathrm{e}}\right)$ fulfil the conditions on $h(u)$. By (25.2) and by the increasingness of $h$, the functions $h(|x|), h\left(\left|x_{j}\right|\right)$, and $h\left(x_{j}\right)$ are submultiplicative on $\mathbb{R}^{d}$.
+    It follows that (25.2) holds for all $u, v \in \mathbb{R}$. The functions
+    $u \vee 1, \exp \left((u \vee 0)^{\beta}\right)$, $\log (u \vee \mathrm{e})$, and
+    $\log \log \left(u \vee \mathrm{e}^{\mathrm{e}}\right)$ fulfil the conditions on
+    $h(u)$. By (25.2) and by the increasingness of $h$, the functions $h(|x|), h\left(\left|x_{j}\right|\right)$, and
+    $h\left(x_{j}\right)$ are submultiplicative on $\mathbb{R}^{d}$.
+
+\end{proof}
 
 We prove Theorem 25.3 after three lemmas.
 
 LEMMA 25.5. If $g(x)$ is submultiplicative and locally bounded, then
 
-
 \begin{equation*}
     g(x) \leq b e^{c|x|} \tag{25.3}
 \end{equation*}
-
-
 with some $b>0$ and $c>0$.
 
-Proof. Choose $b$ in such a way that $\sup _{|x| \leq 1} g(x) \leq b$ and $a b>1$. If $n-1<|x| \leq n$, then
+\begin{proof}
+    Choose $b$ in such a way that $\sup _{|x| \leq 1} g(x) \leq b$ and $a b>1$. If $n-1<|x| \leq n$,
+    then
+    $$
+        g(x) \leq a^{n-1} g\left(\frac{1}{n} x\right)^{n} \leq a^{n-1} b^{n} \leq b(a b)^{|x|}
+    $$
+    which shows (25.3).
+\end{proof}
 
-$$
-    g(x) \leq a^{n-1} g\left(\frac{1}{n} x\right)^{n} \leq a^{n-1} b^{n} \leq b(a b)^{|x|}
-$$
+LEMMA 25.6. Let $\mu$ be an infinitely divisible distribution on $\mathbb{R}$ with Lévy measure $\nu$
+supported on a bounded set. Then $\widehat{\mu}(z)$ can be extended to an entire function on $\mathbb{C}$.
 
-which shows (25.3).
-
-LEMMA 25.6. Let $\mu$ be an infinitely divisible distribution on $\mathbb{R}$ with Lévy measure $\nu$ supported on a bounded set. Then $\widehat{\mu}(z)$ can be extended to an entire function on $\mathbb{C}$.
-
-Proof. There is a finite $a>0$ such that $S_{\nu} \subset[-a, a]$. The Lévy representation of $\widehat{\mu}(z)$ is written as
-
-$$
-    \widehat{\mu}(z)=\exp \left[-\frac{1}{2} A z^{2}+\int_{[-a, a]}\left(\mathrm{e}^{\mathrm{i} z x}-1-\mathrm{i} z x\right) \nu(\mathrm{d} x)+\mathrm{i} \gamma^{\prime} z\right]
-$$
-
-with some $\gamma^{\prime} \in \mathbb{R}$. The right-hand side is meaningful even if $z$ is complex. Denote this function by $\Phi(z)$. Then $\Phi(z)$ is an entire function, since we can exchange the order of integration and differentiation.
-
-LEMMA 25.7. If $\mu$ is a probability measure on $\mathbb{R}$ and $\widehat{\mu}(z)$ is extendible to an entire function on $\mathbb{C}$, then $\mu$ has finite exponential moments, that is, it has finite $e^{c|x|}$-moment for every $c>0$.
-
-Proof. It follows from Proposition 2.5(x) that $\alpha_{n}=\int x^{n} \mu(\mathrm{d} x)$ and $\beta_{n}=\int|x|^{n} \mu(\mathrm{d} x)$ are finite for any $n \geq 1$. Since $\frac{\mathrm{d}^{n} \widehat{\mu}}{\mathrm{d} z^{n}}(0)=\mathrm{i}^{n} \alpha_{n}$, we have
-
-$$
-    \widehat{\mu}(z)=\sum_{n=0}^{\infty} \frac{1}{n !} \mathrm{i}^{n} \alpha_{n} z^{n}
-$$
-
-the radius of convergence of the right-hand side being infinite. Notice that $\beta_{2 k}=\alpha_{2 k}$ and $\beta_{2 k+1} \leq \frac{1}{2}\left(\alpha_{2 k+2}+\alpha_{2 k}\right)$, since $|x|^{2 k+1} \leq \frac{1}{2}\left(x^{2 k+2}+x^{2 k}\right)$. It follows that
-
-$$
-    \int \mathrm{e}^{|x|} \mu(\mathrm{d} x)=\sum_{n=0}^{\infty} \frac{1}{n !} \beta_{n} c^{n}<\infty
-$$
-
-completing the proof.
-
-Proof of Theorem 25.3. Let $\nu_{0}=[\nu]_{\{|x| \leq 1\}}$ and $\nu_{1}=[\nu]_{\{|x|>1\}}$. Construct independent Lévy processes $\left\{X_{t}^{0}\right\}$ and $\left\{X_{t}^{1}\right\}$ on $\mathbb{R}^{d}$ such that $\left\{X_{t}\right\} \stackrel{\mathrm{d}}{=}\left\{X_{t}^{0}+\right.$ $\left.X_{t}^{1}\right\}$ and $\left\{X_{t}^{1}\right\}$ is compound Poisson with Lévy measure $\nu_{1}$. Let $\mu_{0}$ and $\mu_{1}$ be the distributions of $X_{1}^{0}$ and $X_{1}^{1}$, respectively.
-
-Suppose that $X_{t}$ has finite $g$-moment for some $t>0$. It follows from
-
-$$
-    E\left[g\left(X_{t}\right)\right]=\iint g(x+y) \mu_{0}^{t}(\mathrm{~d} x) \mu_{1}^{t}(\mathrm{~d} y)
-$$
-
-that $\int g(x+y) \mu_{1}{ }^{t}(\mathrm{~d} y)<\infty$ for some $x$. This means
-
-$$
-    \sum_{n=0}^{\infty} \frac{t^{n}}{n !} \int g(x+y) \nu_{1}^{n}(\mathrm{~d} y)<\infty
-$$
-
-Since $g(y) \leq a g(-x) g(x+y) \leq a b e^{c|x|} g(x+y)$ by Lemma 25.5, we get
+\begin{proof}
+    There is a finite $a>0$ such that $S_{\nu} \subset[-a, a]$. The Lévy representation of $\widehat{\mu}(z)$ is written as
+    $$
+        \widehat{\mu}(z)=\exp \left[-\frac{1}{2} A z^{2}+\int_{[-a, a]}\left(\mathrm{e}^{\mathrm{i} z x}-1-\mathrm{i} z x\right) \nu(\mathrm{d} x)+\mathrm{i} \gamma^{\prime} z\right]
+    $$
+    with some $\gamma^{\prime} \in \mathbb{R}$. The right-hand side is meaningful even if $z$ is complex. Denote
+    this function by $\Phi(z)$. Then $\Phi(z)$ is an entire function, since we can exchange the order of
+    integration and differentiation.
+\end{proof}
 
 
-\begin{equation*}
-    \sum_{n=0}^{\infty} \frac{t^{n}}{n !} \int g(y) \nu_{1}^{n}(\mathrm{~d} y)<\infty \tag{25.4}
-\end{equation*}
+LEMMA 25.7. If $\mu$ is a probability measure on $\mathbb{R}$ and $\widehat{\mu}(z)$ is extendible to an entire
+function on $\mathbb{C}$, then $\mu$ has finite exponential moments, that is, it has finite $e^{c|x|}$-moment for every $c>0$.
+
+\begin{proof}
+    It follows from Proposition 2.5(x) that $\alpha_{n}=\int x^{n} \mu(\mathrm{d} x)$ and
+    $\beta_{n}=\int|x|^{n} \mu(\mathrm{d} x)$ are finite for any $n \geq 1$. Since
+    $\frac{\mathrm{d}^{n} \widehat{\mu}}{\mathrm{d} z^{n}}(0)=\mathrm{i}^{n} \alpha_{n}$, we have
+
+    $$
+        \widehat{\mu}(z)=\sum_{n=0}^{\infty} \frac{1}{n !} \mathrm{i}^{n} \alpha_{n} z^{n}
+    $$
+
+    the radius of convergence of the right-hand side being infinite. Notice that $\beta_{2 k}=\alpha_{2 k}$ and
+    $\beta_{2 k+1} \leq \frac{1}{2}\left(\alpha_{2 k+2}+\alpha_{2 k}\right)$, since
+    $|x|^{2 k+1} \leq \frac{1}{2}\left(x^{2 k+2}+x^{2 k}\right)$. It follows that
+
+    $$
+        \int \mathrm{e}^{|x|} \mu(\mathrm{d} x)=\sum_{n=0}^{\infty} \frac{1}{n !} \beta_{n} c^{n}<\infty
+    $$
+    completing the proof.
+
+\end{proof}
+
+\begin{proof}[Proof of Theorem 25.3]
+
+    Let $\nu_{0}=[\nu]_{\{|x| \leq 1\}}$ and $\nu_{1}=[\nu]_{\{|x|>1\}}$. Construct
+    independent Lévy processes $\left\{X_{t}^{0}\right\}$ and $\left\{X_{t}^{1}\right\}$ on $\mathbb{R}^{d}$ such
+    that $\left\{X_{t}\right\} \stackrel{\mathrm{d}}{=}\left\{X_{t}^{0}+\right.$ $\left.X_{t}^{1}\right\}$ and
+    $\left\{X_{t}^{1}\right\}$ is compound Poisson with Lévy measure $\nu_{1}$. Let $\mu_{0}$ and $\mu_{1}$ be
+    the distributions of $X_{1}^{0}$ and $X_{1}^{1}$, respectively.
+
+    Suppose that $X_{t}$ has finite $g$-moment for some $t>0$. It follows from
+
+    $$
+        E\left[g\left(X_{t}\right)\right]=\iint g(x+y) \mu_{0}^{t}(\mathrm{~d} x) \mu_{1}^{t}(\mathrm{~d} y)
+    $$
+
+    that $\int g(x+y) \mu_{1}{ }^{t}(\mathrm{~d} y)<\infty$ for some $x$. This means
+
+    $$
+        \sum_{n=0}^{\infty} \frac{t^{n}}{n !} \int g(x+y) \nu_{1}^{n}(\mathrm{~d} y)<\infty
+    $$
+
+    Since $g(y) \leq a g(-x) g(x+y) \leq a b e^{c|x|} g(x+y)$ by Lemma 25.5, we get
 
 
-Hence $\int g(y) \nu_{1}(\mathrm{~d} y)<\infty$.
+    \begin{equation*}
+        \sum_{n=0}^{\infty} \frac{t^{n}}{n !} \int g(y) \nu_{1}^{n}(\mathrm{~d} y)<\infty \tag{25.4}
+    \end{equation*}
 
-Conversely, suppose that $\int g(y) \nu_{1}(\mathrm{~d} y)<\infty$. Let us prove that $E\left[g\left(X_{t}\right)\right]$ $<\infty$ for every $t$. By the submultiplicativity,
+    Hence $\int g(y) \nu_{1}(\mathrm{~d} y)<\infty$.
 
-$$
-    \begin{aligned}
-        \int g(y) \nu_{1}^{n}(\mathrm{~d} y) & =\int \cdots \int g\left(y_{1}+\cdots+y_{n}\right) \nu_{1}\left(\mathrm{~d} y_{1}\right) \ldots \nu_{1}\left(d y_{n}\right) \\
-                                             & \leq a^{n-1}\left(\int g(y) \nu_{1}(\mathrm{~d} y)\right)^{n}
-    \end{aligned}
-$$
+    Conversely, suppose that $\int g(y) \nu_{1}(\mathrm{~d} y)<\infty$. Let us prove
+    that $E\left[g\left(X_{t}\right)\right]$ $<\infty$ for every $t$. By the submultiplicativity,
 
-Hence we have (25.4) for every $t$. That is, $X_{t}^{1}$ has finite $g$-moment. Since
+    $$
+        \begin{aligned}
+            \int g(y) \nu_{1}^{n}(\mathrm{~d} y) & =\int \cdots \int g\left(y_{1}+\cdots+y_{n}\right) \nu_{1}\left(\mathrm{~d} y_{1}\right) \ldots \nu_{1}\left(d y_{n}\right) \\
+                                                 & \leq a^{n-1}\left(\int g(y) \nu_{1}(\mathrm{~d} y)\right)^{n}
+        \end{aligned}
+    $$
 
-$$
-    E\left[g\left(X_{t}\right)\right] \leq a b E\left[\mathrm{e}^{\mathrm{c}\left|X_{t}^{0}\right|}\right] E\left[g\left(X_{t}^{1}\right)\right]
-$$
+    Hence we have (25.4) for every $t$. That is, $X_{t}^{1}$ has finite $g$-moment. Since
 
-by (25.1) and (25.3), it remains only to show that $E\left[e^{\mathrm{ec} X_{i}^{0}}\right]<\infty$. Let $X_{j}^{0}(t)$, $1 \leq j \leq d$, be the components of $X_{t}^{0}$. Then
+    $$
+        E\left[g\left(X_{t}\right)\right] \leq a b E\left[\mathrm{e}^{\mathrm{c}\left|X_{t}^{0}\right|}\right] E\left[g\left(X_{t}^{1}\right)\right]
+    $$
 
-$$
-    E\left[e^{c\left|X_{i}^{0}\right|}\right] \leq E\left[\exp \left(c \sum_{j=1}^{d}\left|X_{j}^{0}(t)\right|\right)\right] \leq E\left[\prod_{j=1}^{d}\left(e^{c X_{j}^{0}(t)}+e^{-c X_{j}^{0}(t)}\right)\right]
-$$
+    by (25.1) and (25.3), it remains only to show that $E\left[e^{\mathrm{ec} X_{i}^{0}}\right]<\infty$.
+    Let $X_{j}^{0}(t)$, $1 \leq j \leq d$, be the components of $X_{t}^{0}$. Then
 
-which is written as a sum of a finite number of terms of the form $E\left[\exp X_{t}^{\sharp}\right]$ with $X_{t}^{\sharp}$ being a linear combination of $X_{j}^{0}(t), 1 \leq j \leq d$. Since $\left\{X_{t}^{\sharp}\right\}$ is a Lévy process on $\mathbb{R}$ with Lévy measure supported on a bounded set (use Proposition 11.10), $E\left[\exp X_{t}^{\sharp}\right]$ is finite by virtue of Lemmas 25.6 and 25.7. This proves all statements in the theorem.
+    $$
+        E\left[e^{c\left|X_{i}^{0}\right|}\right] \leq E\left[\exp \left(c \sum_{j=1}^{d}\left|X_{j}^{0}(t)\right|\right)\right] \leq E\left[\prod_{j=1}^{d}\left(e^{c X_{j}^{0}(t)}+e^{-c X_{j}^{0}(t)}\right)\right]
+    $$
 
-Corollary 25.8. Let $\alpha>0,0<\beta \leq 1$, and $\gamma \geq 0$. None of the properties $\int|x|^{\alpha} \mu(\mathrm{d} x)<\infty, \int(0 \vee \log |x|)^{\alpha} \mu(\mathrm{d} x)<\infty$, and $\int|x|^{\gamma} e^{\alpha|x|^{\beta}} \mu(\mathrm{d} x)<$ $\infty$ is time dependent in the class of Lévy processes. For a Lévy process on $\mathbb{R}^{d}$ with Lévy measure $\nu$, each of the properties is expressed by the corresponding property of $[\nu]\{|x|>1\}$.
+    which is written as a sum of a finite number of terms of the form $E\left[\exp X_{t}^{\sharp}\right]$
+    with $X_{t}^{\sharp}$ being a linear combination of $X_{j}^{0}(t), 1 \leq j \leq d$. Since $\left\{X_{t}^{\sharp}\right\}$
+    is a Lévy process on $\mathbb{R}$ with Lévy measure supported on a bounded set (use Proposition 11.10),
+    $E\left[\exp X_{t}^{\sharp}\right]$ is finite by virtue of Lemmas 25.6 and 25.7. This proves all statements in the theorem.
 
-This follows from Theorem 25.3 and Proposition 25.4.
+\end{proof}
 
-REMARK 25.9. There is a nonnegative measurable function $g(x)$ satisfying (25.3) such that finiteness of the $g$-moment is a time dependent distributional property in the class of Lévy processes. For example, let $g(x)=\left(1 \wedge|x|^{-\alpha}\right) \mathrm{e}^{|x|}$ with $\alpha>0$. Consider a $\Gamma$-process $\left\{X_{t}\right\}$ with $E X_{1}=1$. Then it is easy to see that $E\left[g\left(X_{t}\right)\right]<\infty$ if and only if $t<\alpha$. This process has $\nu=x^{-1} \mathrm{e}^{-x} 1_{(0, \infty)}(x) \mathrm{d} x$, so that $\nu_{1}$ has finite $g$-moment (Example 8.10).
+Corollary 25.8. Let $\alpha>0,0<\beta \leq 1$, and $\gamma \geq 0$. None of the properties
+$\int|x|^{\alpha} \mu(\mathrm{d} x)<\infty, \int(0 \vee \log |x|)^{\alpha} \mu(\mathrm{d} x)<\infty$, and
+$\int|x|^{\gamma} e^{\alpha|x|^{\beta}} \mu(\mathrm{d} x)<$ $\infty$ is time dependent in the class
+of Lévy processes. For a Lévy process on $\mathbb{R}^{d}$ with Lévy measure $\nu$, each of the properties
+is expressed by the corresponding property of $[\nu]_{\{|x|>1\}}$.
 
-EXAMPLE 25.10. Let $\left\{X_{t}\right\}$ be a non-trivial semi-stable process on $\mathbb{R}^{d}$ with index $\alpha \in(0,2)$. Then, for every $t>0, E\left[\left|X_{t}\right|^{\eta}\right]$ is finite or infinite according as $0<\eta<\alpha$ or $\eta \geq \alpha$, respectively. To see this, notice that the argument in the proofs of Theorem 13.15 and Proposition 14.5 gives
+\begin{proof}
+    This follows from Theorem 25.3 and Proposition 25.4.
+\end{proof}
+
+REMARK 25.9. There is a nonnegative measurable function $g(x)$ satisfying (25.3) such that finiteness of the $g$-moment is a
+time dependent distributional property in the class of Lévy processes. For example, let $g(x)=\left(1 \wedge|x|^{-\alpha}\right)
+    \mathrm{e}^{|x|}$ with $\alpha>0$. Consider a $\Gamma$-process $\left\{X_{t}\right\}$ with $E X_{1}=1$. Then it is easy to see
+that $E\left[g\left(X_{t}\right)\right]<\infty$ if and only if $t<\alpha$. This process has
+$\nu=x^{-1} \mathrm{e}^{-x} 1_{(0, \infty)}(x) \mathrm{d} x$, so that $\nu_{1}$ has finite $g$-moment (Example 8.10). \\
+
+EXAMPLE 25.10. Let $\left\{X_{t}\right\}$ be a non-trivial semi-stable process on $\mathbb{R}^{d}$ with index
+$\alpha \in(0,2)$. Then, for every $t>0, E\left[\left|X_{t}\right|^{\eta}\right]$ is finite or infinite
+according as $0<\eta<\alpha$ or $\eta \geq \alpha$, respectively. To see this, notice that the argument
+in the proofs of Theorem 13.15 and Proposition 14.5 gives
 
 $$
     \int_{S_{n}(b)}|x|^{\eta} \nu(\mathrm{d} x)=b^{n(\eta-\alpha)} \int_{S_{0}(b)}|x|^{\eta} \nu(\mathrm{d} x)
 $$
 
-and hence $\int_{|x|>1}|x|^{\eta} \nu(\mathrm{d} x)<\infty$ if and only if $\eta<\alpha$; apply Corollary 25.8. In particular, for a stable process on $\mathbb{R}$ with parameters $(\alpha, \beta, \tau, c)$ (Definition 14.16), $E\left[X_{t}\right]=\tau t$ if $1<\alpha<2$ (use Proposition 2.5(ix)). The following explicit results are known. If $0<\alpha<1$ and $\left\{X_{t}\right\}$ is a stable subordinator with $E\left[\mathrm{e}^{-u X_{t}}\right]=\mathrm{e}^{-t \epsilon^{\prime} u^{\alpha}}$ (Example 24.12), then, for $-\infty<\eta<\alpha$,
-
+and hence $\int_{|x|>1}|x|^{\eta} \nu(\mathrm{d} x)<\infty$ if and only if $\eta<\alpha$; apply
+Corollary 25.8. In particular, for a stable process on $\mathbb{R}$ with parameters
+$(\alpha, \beta, \tau, c)$ (Definition 14.16), $E\left[X_{t}\right]=\tau t$ if
+$1<\alpha<2$ (use Proposition 2.5(ix)). The following explicit results are known.
+If $0<\alpha<1$ and $\left\{X_{t}\right\}$ is a stable subordinator with
+$E\left[\mathrm{e}^{-u X_{t}}\right]=\mathrm{e}^{-t \epsilon^{\prime} u^{\alpha}}$ (Example 24.12),
+then, for $-\infty<\eta<\alpha$,
 
 \begin{equation*}
     E\left[X_{t}^{\eta}\right]=\left(t c^{\prime}\right)^{\eta / \alpha} \frac{\Gamma\left(1-\frac{\eta}{\alpha}\right)}{\Gamma(1-\eta)} \tag{25.5}
 \end{equation*}
 
 
-which is shown by Wolfe [508] and Shanbhag and Sreehari [419] (Exercise 29.17). If $0<\alpha<2$ and $\left\{X_{t}\right\}$ is symmetric and $\alpha$-stable on $\mathbb{R}$ with $E\left[e^{\mathbf{i} X X_{t}}\right]=e^{-t c|z|^{\alpha}}$ (Theorem 14.14), then, for $-1<\eta<\alpha$,
-
+which is shown by Wolfe [508] and Shanbhag and Sreehari [419] (Exercise 29.17).
+If $0<\alpha<2$ and $\left\{X_{t}\right\}$ is symmetric and $\alpha$-stable on $\mathbb{R}$
+with $E\left[e^{\mathbf{i} X X_{t}}\right]=e^{-t c|z|^{\alpha}}$ (Theorem 14.14), then, for $-1<\eta<\alpha$,
 
 \begin{equation*}
     E\left[\left|X_{t}\right|^{\eta}\right]=(t c)^{\eta / \alpha} \frac{2^{\eta} \Gamma\left(\frac{1+\eta}{2}\right) \Gamma\left(1-\frac{\eta}{\alpha}\right)}{\sqrt{\pi} \Gamma\left(1-\frac{\eta}{2}\right)} \tag{25.6}
 \end{equation*}
 
+as is shown in [419]. \\
 
-as is shown in [419].
+EXAMPLE 25.11. If $\left\{X_{t}\right\}$ is a Lévy process on $\mathbb{R}$ with Lévy
+measure supported on $(-\infty, 0]$, then $E\left[\mathrm{e}^{c X_{t}}\right]<\infty$
+for every $c>0$ and $t>0$. Use Theorem 25.3 for $g(x)=e^{c x}$. For instance, a stable
+process on $\mathbb{R}$ with $1 \leq \alpha<2$ and $\beta=-1$ satisfies this assumption
+although it has support $\mathbb{R}$ for every $t>0$ (Theorem 24.10(i)). \\
 
-EXAMPLE 25.11. If $\left\{X_{t}\right\}$ is a Lévy process on $\mathbb{R}$ with Lévy measure supported on $(-\infty, 0]$, then $E\left[\mathrm{e}^{c X_{t}}\right]<\infty$ for every $c>0$ and $t>0$. Use Theorem 25.3 for $g(x)=e^{c x}$. For instance, a stable process on $\mathbb{R}$ with $1 \leq \alpha<2$ and $\beta=-1$ satisfies this assumption although it has support $\mathbb{R}$ for every $t>0$ (Theorem 24.10(i)).
-
-EXAMPLE 25.12. Let $\left\{X_{t}\right\}$ be a Lévy process on $\mathbb{R}^{d}$ generated by $(A, \nu$, 1). In components, $X_{t}=\left(X_{j}(t)\right), \gamma=\left(\gamma_{j}\right)$, and $A=\left(A_{j k}\right)$. Then $X_{t}$ has finite mean for $t>0$ if and only if $\int_{\{x \mid>1}|x| \nu(\mathrm{d} x)<\infty$. When this condition is met, we can find $m_{j}(t)=E\left[X_{j}(t)\right]$ expressed as
+EXAMPLE 25.12. Let $\left\{X_{t}\right\}$ be a Lévy process on $\mathbb{R}^{d}$ generated
+by $(A, \nu$, 1). In components, $X_{t}=\left(X_{j}(t)\right), \gamma=\left(\gamma_{j}\right)$,
+and $A=\left(A_{j k}\right)$. Then $X_{t}$ has finite mean for $t>0$
+if and only if $\int_{\{|x| >1\}} |x| \nu(\mathrm{d} x)<\infty$.
+When this condition is met, we can find $m_{j}(t)=E\left[X_{j}(t)\right]$ expressed as
 
 
 \begin{equation*}
     m_{j}(t)=t\left(\int_{|x|>1} x_{j} \nu(\mathrm{d} x)+\gamma_{j}\right)=t \gamma_{1, j}, \quad j=1, \ldots, d \tag{25.7}
 \end{equation*}
 
-
-differentiating $\widehat{\mu}(z)$ (Proposition 2.5(ix)). Here $\gamma_{1, j}$ is the $j$ th component of the center $\gamma_{1}$ in (8.8). Similarly, $E\left[\left|X_{t}\right|^{2}\right]<\infty$ for all $t>0$ if and only if $\int_{|x|>1}|x|^{2} \nu(\mathrm{d} x)<\infty$. In this case,
+differentiating $\widehat{\mu}(z)$ (Proposition 2.5(ix)). Here $\gamma_{1, j}$ is the $j$ th
+component of the center $\gamma_{1}$ in (8.8). Similarly, $E\left[\left|X_{t}\right|^{2}\right]<\infty$
+for all $t>0$ if and only if $\int_{|x|>1}|x|^{2} \nu(\mathrm{d} x)<\infty$. In this case,
 
 $$
     v_{j k}(t)=E\left[\left(X_{j}(t)-m_{j}(t)\right)\left(X_{k}(t)-m_{k}(t)\right)\right], \quad j, k=1, \ldots, d
@@ -247,23 +297,29 @@ the $(j, k)$ elements of the covariance matrix of $X(t)$, are expressed as
 \end{equation*}
 
 
-Theorem 25.3 shows that, for a Lévy process $\left\{X_{t}\right\}$ with Lévy measure $\nu$, the tails of $P_{X_{t}}$ and $\nu$ have a kind of similarity. Are they actually equivalent in some class of Lévy processes? This question was answered by Embrecht, Goldie, and Veraverbeke [109] for subordinators. We state their result without proof in two remarks below.
+Theorem 25.3 shows that, for a Lévy process $\left\{X_{t}\right\}$ with Lévy measure $\nu$,
+the tails of $P_{X_{t}}$ and $\nu$ have a kind of similarity. Are they actually equivalent
+in some class of Lévy processes? This question was answered by Embrecht, Goldie, and Veraverbeke [109]
+for subordinators. We state their result without proof in two remarks below. \\
 
-Definition 25.13. A probability measure $\mu$ on $[0, \infty)$ is called subexponenthal if $\mu(x, \infty)>0$ for every $x$ and
-
+Definition 25.13. A probability measure $\mu$ on $[0, \infty)$ is called
+subexponenthal if $\mu(x, \infty)>0$ for every $x$ and
 
 \begin{equation*}
     \lim _{x \rightarrow \infty} \frac{\mu^{n}(x, \infty)}{\mu(x, \infty)}=n \quad \text { for } n=2,3, \ldots \tag{25.9}
 \end{equation*}
 
-
-The class of probability measures satisfying (25.9) above was introduced by Chistyakov [65]. The condition can be weakened. Specifically, if
+The class of probability measures satisfying (25.9) above was introduced by Chistyakov [65].
+The condition can be weakened. Specifically, if
 
 $$
     \lim \sup _{x \rightarrow \infty} \frac{\mu^{2}(x, \infty)}{\mu(x, \infty)} \leq 2
 $$
 
-then $\mu$ is subexponential. The meaning of (25.9) is as follows. Let $\left\{Z_{j}\right\}$ be independent nonnegative random variables each with distribution $\mu$ and let $S_{n}=$ $\sum_{j=1}^{n} Z_{j}$ and $M_{n}=\max _{1 \leq j \leq n} Z_{j}$. Then $\mu$ satisfies (25.9) if and only if
+then $\mu$ is subexponential. The meaning of (25.9) is as follows. Let $\left\{Z_{j}\right\}$
+be independent nonnegative random variables each with distribution $\mu$
+and let $S_{n}=$ $\sum_{j=1}^{n} Z_{j}$ and $M_{n}=\max _{1 \leq j \leq n} Z_{j}$.
+Then $\mu$ satisfies (25.9) if and only if
 
 $$
     P\left[S_{n}>x\right] \sim P\left[M_{n}>x\right], \quad x \rightarrow \infty, \quad \text { for } n=2,3, \ldots
@@ -278,53 +334,74 @@ $$
     \end{aligned}
 $$
 
-REMARK 25.14. A basic result on subexponentiality is as follows. If $\left\{X_{t}\right\}$ be a subordinator with Lévy measure $\nu$, then the following conditions are equivalent [109]:
+REMARK 25.14. A basic result on subexponentiality is as follows. If $\left\{X_{t}\right\}$
+be a subordinator with Lévy measure $\nu$, then the following conditions are equivalent [109]:
 
-(1) $\nu(1, \infty)>0$ and $\frac{1}{\nu(1, \infty)}[\nu]_{(1, \infty)}$ is subexponential;
+(1) $\nu(1, \infty)>0$ and $\frac{1}{\nu(1, \infty)}[\nu]_{(1, \infty)}$ is subexponential; \\
 
-(2) $P_{X_{t}}$ is subexponential for every $t>0$;
+(2) $P_{X_{t}}$ is subexponential for every $t>0$; \\
 
-(3) $P_{X_{t}}$ is subexponential for some $t>0$;
+(3) $P_{X_{t}}$ is subexponential for some $t>0$; \\
 
-(4) $P\left[X_{t}>x\right] \sim t \nu(x, \infty), x \rightarrow \infty$, for every $t>0$;
+(4) $P\left[X_{t}>x\right] \sim t \nu(x, \infty), x \rightarrow \infty$, for every $t>0$; \\
 
-(5) $P\left[X_{t}>x\right] \sim t \nu(x, \infty), x \rightarrow \infty$, for some $t>0$.
+(5) $P\left[X_{t}>x\right] \sim t \nu(x, \infty), x \rightarrow \infty$, for some $t>0$. \\
 
-Some of the consequences of subexponentiality are as follows. Let $\mu$ be a subexponential probability measure on $[0, \infty)$. Then,
+Some of the consequences of subexponentiality are as follows. Let $\mu$ be a subexponential probability measure on $[0, \infty)$.
+Then,\\
 
-(1) for any $y \in \mathbb{R}, \mu(x-y, \infty) / \mu(x, \infty) \rightarrow 1$ as $x \rightarrow \infty$;
+(1) for any $y \in \mathbb{R}, \mu(x-y, \infty) / \mu(x, \infty) \rightarrow 1$ as $x \rightarrow \infty$; \\
 
-(2) for every $\varepsilon>0, \int_{[0, \infty)} \mathrm{e}^{\varepsilon x} \mu(\mathrm{d} x)=\infty$;
+(2) for every $\varepsilon>0, \int_{[0, \infty)} \mathrm{e}^{\varepsilon x} \mu(\mathrm{d} x)=\infty$; \\
 
-(3) if $\mu^{\prime}$ is a probability measure on $[0, \infty)$ satisfying $\lim _{x \rightarrow \infty} \frac{\mu^{\prime}(x, \infty)}{\mu(x, \infty)}=c$ for some $c \in(0, \infty)$, then $\mu^{\prime}$ is subexponential.
+(3) if $\mu^{\prime}$ is a probability measure on $[0, \infty)$ satisfying $\lim _{x \rightarrow \infty}
+    \frac{\mu^{\prime}(x, \infty)}{\mu(x, \infty)}=c$ for some $c \in(0, \infty)$, then $\mu^{\prime}$ is subexponential. \\
 
-A function $L(x)$ is called slowly varying at $\infty$ if $L(x) \neq 0$ and $L(c x) \sim L(x)$, $x \rightarrow \infty$, for any $c>0$. A function $f(x)$ is called regularly varying of index $\eta$ at $\infty$ if $f(x)=x^{\eta} L(x)$ with $L(x)$ slowly varying at $\infty$.
+A function $L(x)$ is called slowly varying at $\infty$ if $L(x) \neq 0$ and $L(c x) \sim L(x)$, $x \rightarrow \infty$,
+for any $c>0$. A function $f(x)$ is called regularly varying of index $\eta$ at $\infty$ if $f(x)=x^{\eta} L(x)$ with $L(x)$
+slowly varying at $\infty$. \\
 
-REMARK 25.15. A sufficient condition for subexponentiality is as follows. If $\mu$ is a probability measure on $[0, \infty)$ such that $\mu(x, \infty)$ is regularly varying of index $-\alpha$ at $\infty$ with some $\alpha \geq 0$, then $\mu$ is subexponential. In the case of an infinitely divisible distribution with Lévy measure $\nu$, we can also apply this to $\frac{1}{\nu(1, \infty)}[\nu]_{(1, \infty)}$. For example, the Pareto distribution (Remark 8.12) and onesided stable distributions (by the form of the Lévy measures in Remark 14.4) are subexponential. As examples not covered by this sufficient condition, the Weibull distribution with parameter $0<\alpha<1$ and the log-normal distribution in Remark 8.12 are subexponential.
+REMARK 25.15. A sufficient condition for subexponentiality is as follows. If $\mu$ is a probability
+measure on $[0, \infty)$ such that $\mu(x, \infty)$ is regularly varying of index $-\alpha$ at $\infty$
+with some $\alpha \geq 0$, then $\mu$ is subexponential. In the case of an infinitely divisible distribution
+with Lévy measure $\nu$, we can also apply this to $\frac{1}{\nu(1, \infty)}[\nu]_{(1, \infty)}$. For example,
+the Pareto distribution (Remark 8.12) and onesided stable distributions (by the form of the Lévy measures in Remark 14.4)
+are subexponential. As examples not covered by this sufficient condition, the Weibull distribution with parameter $0<\alpha<1$
+and the log-normal distribution in Remark 8.12 are subexponential.
 
-For related results and references on subexponentiality, see the recent book [110] of Embrecht, Klüppelberg, and Mikosch.
+For related results and references on subexponentiality, see the recent book [110] of Embrecht, Klüppelberg, and Mikosch.\\
 
-REMARK 25.16. Gribel [156] extends a part of the assertions in Remark 25.14 as follows. Let $h(x)$ be a nonnegative continuous function on $[0, \infty)$ de creasing to 0 as $x \rightarrow \infty$ such that
-
+REMARK 25.16. Gribel [156] extends a part of the assertions in Remark 25.14 as follows. Let $h(x)$ be a
+nonnegative continuous function on $[0, \infty)$ de creasing to 0 as $x \rightarrow \infty$ such that
 
 \begin{equation*}
     -\int_{0}^{x} h(x-y) \mathrm{d} h(y)=O(h(x)), \quad x \rightarrow \infty \tag{25.10}
 \end{equation*}
 
+Let $\mu$ be an infinitely divisible distribution on $\mathbb{R}$ and let $\nu$ be its Lévy measure.
+Then the following hold as $x \rightarrow \infty: \mu(x, \infty)=O(h(x))$ if and only
+if $\nu(x, \infty)=$ $O(h(x)) ; \mu(x, \infty)=o(h(x))$ if and only if $\nu(x, \infty)=o(h(x))$.
+Examples of functions $h(x)$ satisfying the conditions above are $h(x)=(1+x)^{-\alpha}(1+\log (1+$ $x))^{-\beta}$
+with $\alpha>0, \beta \geq 0$ or with $\alpha=0, \beta>0$, and $h(x)=\mathrm{e}^{-c x^{\alpha}}$ with $c>0$, $0<\alpha<1$.
+A sufficient condition for (25.10) is that $\sup _{x} \frac{h(x)}{h(2 x)}<\infty$.
 
-Let $\mu$ be an infinitely divisible distribution on $\mathbb{R}$ and let $\nu$ be its Lévy measure. Then the following hold as $x \rightarrow \infty: \mu(x, \infty)=O(h(x))$ if and only if $\nu(x, \infty)=$ $O(h(x)) ; \mu(x, \infty)=o(h(x))$ if and only if $\nu(x, \infty)=o(h(x))$. Examples of functions $h(x)$ satisfying the conditions above are $h(x)=(1+x)^{-\alpha}(1+\log (1+$ $x))^{-\beta}$ with $\alpha>0, \beta \geq 0$ or with $\alpha=0, \beta>0$, and $h(x)=\mathrm{e}^{-c x^{\alpha}}$ with $c>0$, $0<\alpha<1$. A sufficient condition for (25.10) is that $\sup _{x} \frac{h(x)}{h(2 x)}<\infty$.
+When $g(x)=\mathrm{e}^{\langle c, x\rangle}$, the $g$-moment of a Lévy process is explicitly expressible.
+We define, for $w=\left(w_{j}\right)_{1 \leq j \leq d}$ and $v=\left(v_{j}\right)_{1 \leq j \leq d}$ in $\mathbb{C}^{d}$,
+the inner product $\langle w, v\rangle=\sum_{j=1}^{d} w_{j} v_{j}$ (not the Hermitian
+inner product $\sum_{j=1}^{d} w_{j} \overline{v_{j}}$ ).
+We write $\operatorname{Re} w=\left(\operatorname{Re} w_{j}\right)_{1 \leq j \leq d} \in \mathbb{R}^{d}$. Let $D=\left\{x \in \mathbb{R}^{d}:|x| \leq 1\right\}$. \\
 
-When $g(x)=\mathrm{e}^{\langle c, x\rangle}$, the $g$-moment of a Lévy process is explicitly expressible. We define, for $w=\left(w_{j}\right)_{1 \leq j \leq d}$ and $v=\left(v_{j}\right)_{1 \leq j \leq d}$ in $\mathbb{C}^{d}$, the inner product $\langle w, v\rangle=\sum_{j=1}^{d} w_{j} v_{j}$ (not the Hermitian inner product $\sum_{j=1}^{d} w_{j} \overline{v_{j}}$ ). We write $\operatorname{Re} w=\left(\operatorname{Re} w_{j}\right)_{1 \leq j \leq d} \in \mathbb{R}^{d}$. Let $D=\left\{x \in \mathbb{R}^{d}:|x| \leq 1\right\}$.
-
-THEOREM 25.17 (Exponential moment). Let $\left\{X_{t}\right\}$ be a Lévy process on $\mathbb{R}^{d}$ generated by $(A, \nu, \gamma)$. Let
+THEOREM 25.17 (Exponential moment). Let $\left\{X_{t}\right\}$ be a Lévy process on $\mathbb{R}^{d}$
+generated by $(A, \nu, \gamma)$. Let
 
 $$
     C=\left\{c \in \mathbb{R}^{d}: \int_{|x|>1} \mathrm{e}^{\langle c, x\rangle} \nu(\mathrm{d} x)<\infty\right\}
 $$
 
-(i) The set $C$ is convex and contains the origin.
+(i) The set $C$ is convex and contains the origin. \\
 
-(ii) $c \in C$ if and only if $E \mathrm{e}^{\left\langle c, X_{t}\right\rangle}<\infty$ for some $t>0$ or, equivalently, for every $t>0$.
+(ii) $c \in C$ if and only if $E \mathrm{e}^{\left\langle c, X_{t}\right\rangle}<\infty$ for some $t>0$ or,
+equivalently, for every $t>0$.\\
 
 (iii) If $w \in \mathbb{C}^{d}$ is such that $\operatorname{Re} w \in C$, then
 
@@ -341,88 +418,106 @@ is definable, $E\left|\mathrm{e}^{\left(w, X_{t}\right)}\right|<\infty$, and
     E\left[\mathrm{e}^{\left\langle\boldsymbol{w}, X_{t}\right\rangle}\right]=\mathrm{e}^{t \Psi(w)} \tag{25.12}
 \end{equation*}
 
+\begin{proof}
+    (i) Obviously $C$ contains the origin. If $c_{1}$ and $c_{2}$ are in $C$, then, for any $0<r<1$ and $s=1-r$,
 
-Proof. (i) Obviously $C$ contains the origin. If $c_{1}$ and $c_{2}$ are in $C$, then, for any $0<r<1$ and $s=1-r$,
+    $$
+        \int_{|x|>1} e^{\left\langle r c_{1}+s c_{2}, x\right\rangle} \nu(\mathrm{d} x) \leq\left(\int_{|x|>1} e^{\left\langle c_{1}, x\right\rangle } \nu(\mathrm{d} x)\right)^{\tau}\left(\int_{|x|>1} e^{\left\langle c_{2}, x\right\rangle} \nu(\mathrm{d} x)\right)^{s}<\infty
+    $$
 
-$$
-    \int_{|x|>1} e^{\left\langle r c_{1}+s c_{2}, x\right\rangle} \nu(\mathrm{d} x) \leq\left(\int_{|x|>1} e^{\left\langle c_{1}, x\right)} \nu(\mathrm{d} x)\right)^{\tau}\left(\int_{|x|>1} e^{\left\langle c_{2}, x\right\rangle} \nu(\mathrm{d} x)\right)^{s}<\infty
-$$
+    by Hölder's inequality. Hence $C$ is convex.\\
 
-by Hölder's inequality. Hence $C$ is convex.
+    (ii) The function $g(x)=\mathrm{e}^{(c, x)}$ is clearly submultiplicative. Hence Theorem 25.3 gives the assertion. \\
 
-(ii) The function $g(x)=\mathrm{e}^{(c, x)}$ is clearly submultiplicative. Hence Theorem 25.3 gives the assertion.
+    (iii). Any linear transformation $U$ of $\mathbb{R}^{d}$ to $\mathbb{R}^{d}$ can be uniquely extended to a linear transformation of $\mathbb{C}^{d}$ to $\mathbb{C}^{d}$. Regarding $U$ as a $d \times d$ matrix, it is easy to see that $\langle w, U v\rangle=\left\langle U^{\prime} w, v\right\rangle$ for $w, v \in \mathbb{C}^{d}$, where $U^{\prime}$ is the transpose of $U$. Now let $\operatorname{Re} w \in C$. Then $\int_{|x|>1}\left|\mathrm{e}^{\langle\boldsymbol{w}, x\rangle}\right| \nu(\mathrm{d} x)=\int_{|x|>1} \mathrm{e}^{\langle\operatorname{Re} w, x\rangle} \nu(\mathrm{d} x)<\infty$, which shows that $\Psi(w)$ of (25.11) is definable and finite. Also, $E\left|\mathrm{e}^{\left\langle w, X_{t}\right\rangle}\right|=$ $E e^{\left(R e v, X_{t}\right\rangle}<\infty$ by (ii). Let us show (25.12) in three steps.
 
-(iii). Any linear transformation $U$ of $\mathbb{R}^{d}$ to $\mathbb{R}^{d}$ can be uniquely extended to a linear transformation of $\mathbb{C}^{d}$ to $\mathbb{C}^{d}$. Regarding $U$ as a $d \times d$ matrix, it is easy to see that $\langle w, U v\rangle=\left\langle U^{\prime} w, v\right\rangle$ for $w, v \in \mathbb{C}^{d}$, where $U^{\prime}$ is the transpose of $U$. Now let $\operatorname{Re} w \in C$. Then $\int_{|x|>1}\left|\mathrm{e}^{\langle\boldsymbol{w}, x\rangle}\right| \nu(\mathrm{d} x)=\int_{|x|>1} \mathrm{e}^{\langle\operatorname{Re} w, x\rangle} \nu(\mathrm{d} x)<\infty$, which shows that $\Psi(w)$ of (25.11) is definable and finite. Also, $E\left|\mathrm{e}^{\left\langle w, X_{t}\right\rangle}\right|=$ $E e^{\left(R e v, X_{t}\right\rangle}<\infty$ by (ii). Let us show (25.12) in three steps.
+    Step 1. Let $e_{1}$ be the unit vector with first component 1. Assume that $e_{1} \in C$. Let us prove (25.12) for all $w=\left(w_{j}\right)_{1 \leq j \leq d}$ with $\operatorname{Re} w_{1} \in[0,1]$ and\\
+    $\operatorname{Re} w_{j}=0,2 \leq j \leq d$. Fix $t>0$ and $w_{2}, \ldots, w_{d} \in \mathbb{C}$ with $\operatorname{Re} w_{j}=0$, $2 \leq j \leq d$, and regard $w_{1}$ as variable in $F=\left\{w_{1} \in \mathbb{C}: \operatorname{Re} w_{1} \in[0,1]\right\}$. Consider $f\left(w_{1}\right)=E \mathrm{e}^{\left\langle\boldsymbol{w}, X_{t}\right\rangle}$.
+    Then $f\left(w_{1}\right)$ is continuous on $F$, since
 
-Step 1. Let $e_{1}$ be the unit vector with first component 1. Assume that $e_{1} \in C$. Let us prove (25.12) for all $w=\left(w_{j}\right)_{1 \leq j \leq d}$ with $\operatorname{Re} w_{1} \in[0,1]$ and\\
-$\operatorname{Re} w_{j}=0,2 \leq j \leq d$. Fix $t>0$ and $w_{2}, \ldots, w_{d} \in \mathbb{C}$ with $\operatorname{Re} w_{j}=0$, $2 \leq j \leq d$, and regard $w_{1}$ as variable in $F=\left\{w_{1} \in \mathbb{C}: \operatorname{Re} w_{1} \in[0,1]\right\}$. Consider $f\left(w_{1}\right)=E \mathrm{e}^{\left\langle\boldsymbol{w}, X_{t}\right\rangle}$. Then $f\left(w_{1}\right)$ is continuous on $F$, since
+    $$
+        \left|e^{\langle\boldsymbol{w}, X(t)\rangle}\right|=e^{\left(\operatorname{Re} w_{1}\right) X_{1}(t)} \leq\left(\operatorname{Re} w_{1}\right) e^{X_{1}(t)}+\left(1-\operatorname{Re} w_{1}\right) \leq e^{X_{1}(t)}+1
+    $$
 
-$$
-    \left|e^{\langle\boldsymbol{w}, X(t)\rangle}\right|=e^{\left(\operatorname{Re} w_{1}\right) X_{1}(t)} \leq\left(\operatorname{Re} w_{1}\right) e^{X_{1}(t)}+\left(1-\operatorname{Re} w_{1}\right) \leq e^{X_{1}(t)}+1
-$$
+    by the convexity of $\mathrm{e}^{u X_{1}(t)}$ in $u$, where $X_{1}(t)$ is the first component of $X(t)$.
+    Moreover, $f\left(w_{1}\right)$ is analytic in the interior of $F$, since it is the limit of the analytic
+    functions $E\left[e^{\left\langle\boldsymbol{v}, X_{t}\right\rangle} ;\left|X_{t}\right| \leq n\right]$ as $n \rightarrow \infty$.
+    Similarly, $h\left(w_{1}\right)=$ $\mathrm{e}^{\mathrm{tw}(w)}$ is continuous on $F$ and analytic in the interior of $F$.
+    If $\operatorname{Re} w_{1}=0$, then $f\left(w_{1}\right)=h\left(w_{1}\right)$, which is the Lévy-Khintchine representation
+    of $P_{X_{i}}$. Therefore, as in the proof of Theorem 24.11, the principle of reflection and the uniqueness theorem yield (25.12)
+    when $\operatorname{Re} w_{1} \in[0,1]$.
 
-by the convexity of $\mathrm{e}^{u X_{1}(t)}$ in $u$, where $X_{1}(t)$ is the first component of $X(t)$. Moreover, $f\left(w_{1}\right)$ is analytic in the interior of $F$, since it is the limit of the analytic functions $E\left[e^{\left\langle\boldsymbol{v}, X_{t}\right\rangle} ;\left|X_{t}\right| \leq n\right\}$ as $n \rightarrow \infty$. Similarly, $h\left(w_{1}\right)=$ $\mathrm{e}^{\mathrm{tw}(w)}$ is continuous on $F$ and analytic in the interior of $F$. If $\operatorname{Re} w_{1}=0$, then $f\left(w_{1}\right)=h\left(w_{1}\right)$, which is the Lévy-Khintchine representation of $P_{X_{i}}$. Therefore, as in the proof of Theorem 24.11, the principle of reflection and the uniqueness theorem yield (25.12) when $\operatorname{Re} w_{1} \in[0,1]$.
+    Step 2. Let $U$ be a linear transformation from $\mathbb{R}^{d}$ onto $\mathbb{R}^{d}$. Let $Y_{t}=$ $U X_{t}$.
+    Then $\left\{Y_{t}\right\}$ is a Lévy process with generating triplet $\left(A_{U}, \nu_{U}, \gamma_{U}\right)$
+    by Proposition 11.10. Write
 
-Step 2. Let $U$ be a linear transformation from $\mathbb{R}^{d}$ onto $\mathbb{R}^{d}$. Let $Y_{t}=$ $U X_{t}$. Then $\left\{Y_{t}\right\}$ is a Lévy process with generating triplet $\left(A_{U}, \nu_{U}, \gamma_{U}\right)$ by Proposition 11.10. Write
+    $$
+        C_{U}=\left\{c \in \mathbb{R}^{d}: \int_{|x|>1} e^{\langle c, x\rangle} \nu_{U}(\mathrm{~d} x)<\infty\right\}
+    $$
 
-$$
-    C_{U}=\left\{c \in \mathbb{R}^{d}: \int_{|x|>1} e^{\langle c, x\rangle} \nu_{U}(\mathrm{~d} x)<\infty\right\}
-$$
+    Since $\nu_{U}=\nu U^{-1}$, we have $C_{U}=\left(U^{\prime}\right)^{-1} C$. Given $w \in \mathbb{C}^{d}$
+    satisfying Re $w \in$ $C$, let $v=\left(U^{\prime}\right)^{-1} w$. Then $\operatorname{Re} v \in C_{U}$. Define
 
-Since $\nu_{U}=\nu U^{-1}$, we have $C_{U}=\left(U^{\prime}\right)^{-1} C$. Given $w \in \mathbb{C}^{d}$ satisfying Re $w \in$ $C$, let $v=\left(U^{\prime}\right)^{-1} w$. Then $\operatorname{Re} v \in C_{U}$. Define
+    $$
+        \Psi_{U}(v)=\frac{1}{2}\left\langle v, A_{U} v\right\rangle+\int_{\mathbb{R}^{d}}\left(\mathrm{e}^{\langle v, x\rangle}-1-\langle v, x\rangle 1_{D}(x)\right) \nu_{U}(\mathrm{~d} x)+\left\langle\gamma_{U}, v\right\rangle
+    $$
 
-$$
-    \Psi_{U}(v)=\frac{1}{2}\left\langle v, A_{U} v\right\rangle+\int_{\mathbb{R}^{d}}\left(\mathrm{e}^{\langle v, x\rangle}-1-\langle v, x\rangle 1_{D}(x)\right) \nu_{U}(\mathrm{~d} x)+\left\langle\gamma_{U}, v\right\rangle
-$$
+    We claim that if
 
-We claim that if
+    \begin{equation*}
+        E\left[e^{\left\langle v_{i} Y_{t}\right\rangle}\right]=\mathrm{e}^{t \Psi_{U}(v)} \tag{25.13}
+    \end{equation*}
 
+    then $w$ satisfies (25.12). In fact, $\left\langle v, Y_{t}\right\rangle=\left\langle\left\langle U^{-1}\right\rangle^{\prime} w, Y_{t}\right\rangle=\left\langle w, X_{t}\right\rangle$
+    and
 
-\begin{equation*}
-    E\left[e^{\left\langle v_{i} Y_{t}\right\rangle}\right]=\mathrm{e}^{t \Psi_{U}(v)} \tag{25.13}
-\end{equation*}
+    $$
+        \begin{aligned}
+            \Psi_{U}(v) & =\frac{1}{2}\left\langle U^{\prime} v, A U^{\prime} v\right\rangle+\int\left(\mathrm{e}^{\langle v, U x\rangle}-1-\langle v, U x\rangle 1_{D}(x)\right) v(\mathrm{~d} x)+\langle U \gamma, v\rangle \\
+                        & =\Psi(w)
+        \end{aligned}
+    $$
 
+    by (11.8)-(11.10). That is, (25.13) is identical with (25.12). \\
 
-then $w$ satisfies (25.12). In fact, $\left\langle v, Y_{t}\right\rangle=\left\langle\left\langle U^{-1}\right)^{\prime} w, Y_{t}\right\rangle=\left\langle w, X_{t}\right\rangle$ and
+    Step 3. Given $w \in \mathbb{C}^{d}$ satisfying $\operatorname{Re} w \in C$, we shall
+    show (25.12). If Re $w=0$, there is nothing to prove. Assume Re $w \neq 0$. Choose a
+    linear transformation $U$ from $\mathbb{R}^{d}$ onto $\mathbb{R}^{d}$ such that $\operatorname{Re} w=U^{\prime} e_{1}$.
+    Consider the Lévy process $Y_{t}=U X_{t}$. Since $C_{U}=\left(U^{\prime}\right)^{-1} C$, we have $e_{1} \in C_{U}$.
+    We know, by Step 1, that, if $v \in \mathbb{C}^{d}$ satisfies $\operatorname{Re} v=e_{1}$, then (25.13) holds.
+    Hence, by the result of Step 2, $w$ satisfies (25.12).
 
-$$
-    \begin{aligned}
-        \Psi_{U}(v) & =\frac{1}{2}\left\langle U^{\prime} v, A U^{\prime} v\right\rangle+\int\left(\mathrm{e}^{(v, U x\rangle}-1-\langle v, U x\rangle 1_{D}(x)\right) v(\mathrm{~d} x)+\langle U \gamma, v\rangle \\
-                    & =\Psi(w)
-    \end{aligned}
-$$
+\end{proof}
 
-by (11.8)-(11.10). That is, (25.13) is identical with (25.12).
-
-Step 3. Given $w \in \mathbb{C}^{d}$ satisfying $\operatorname{Re} w \in C$, we shall show (25.12). If Re $w=0$, there is nothing to prove. Assume Re $w \neq 0$. Choose a linear transformation $U$ from $\mathbb{R}^{d}$ onto $\mathbb{R}^{d}$ such that $\operatorname{Re} w=U^{\prime} e_{1}$. Consider the Lévy process $Y_{t}=U X_{t}$. Since $C_{U}=\left(U^{\prime}\right)^{-1} C$, we have $e_{1} \in C_{U}$. We know, by Step 1, that, if $v \in \mathbb{C}^{d}$ satisfies $\operatorname{Re} v=e_{1}$, then (25.13) holds. Hence, by the result of Step 2, $w$ satisfies (25.12).
-
-We close this section with a discussion of the $g$-moments of $\sup _{s \in[0, t]}\left|X_{s}\right|$
+We close this section with a discussion of the $g$-moments of $\sup _{s \in[0, t]}\left|X_{s}\right|$ \\
 
 THEOREM 25.18. Let $\left\{X_{t}\right\}$ be a Lévy process on $\mathbb{R}^{d}$. Define
-
 
 \begin{equation*}
     X_{t}^{*}=\sup _{s \in[0, t]}\left|X_{s}\right| \tag{25.14}
 \end{equation*}
 
+Let $g(r)$ be a nonnegative continuous submultiplicative function on $[0, \infty)$, increasing to $\infty$ as $r \rightarrow \infty$.
+Then the following four statements are equivalent.
 
-Let $g(r)$ be a nonnegative continuous submultiplicative function on $[0, \infty)$, increasing to $\infty$ as $r \rightarrow \infty$. Then the following four statements are equivalent.
+(1) $E\left[g\left(X_{t}^{*}\right)\right]<\infty$ for some $t>0$. \\
 
-(1) $E\left[g\left(X_{t}^{*}\right)\right]<\infty$ for some $t>0$.
+(2) $E\left[g\left(X_{t}^{*}\right)\right]<\infty$ for every $t>0$. \\
 
-(2) $E\left[g\left(X_{t}^{*}\right)\right]<\infty$ for every $t>0$.
+(3) $E\left[g\left(\left|X_{t}\right|\right)\right]<\infty$ for some $t>0$. \\
 
-(3) $E\left[g\left(\left|X_{t}\right|\right)\right]<\infty$ for some $t>0$.
+(4) $E\left[g\left(\left|X_{t}\right|\right)\right]<\infty$ for every $t>0$. \\
 
-(4) $E\left[g\left(\left|X_{t}\right|\right)\right]<\infty$ for every $t>0$.
-
-Proof. Since $g(|x|)$ is submultiplicative on $\mathbb{R}^{d}$, (3) and (4) are equivalent by Theorem 25.3. As $\left|X_{t}\right| \leq X_{t}^{*}$, all we have to show is that, for any fixed $t>0$, $E\left[g\left(\left|X_{t}\right|\right)\right]<\infty$ implies $E\left[g\left(X_{t}^{*}\right)\right]<\infty$. We claim that, for any $a>0$ and $b>0$,
-
+\begin{proof}
+    Since $g(|x|)$ is submultiplicative on $\mathbb{R}^{d}$, (3) and (4) are equivalent by
+    Theorem 25.3. As $\left|X_{t}\right| \leq X_{t}^{*}$, all we have to show is that, for
+    any fixed $t>0$, $E\left[g\left(\left|X_{t}\right|\right)\right]<\infty$ implies
+    $E\left[g\left(X_{t}^{*}\right)\right]<\infty$. We claim that, for any $a>0$ and $b>0$,
+\end{proof}
 
 \begin{equation*}
     P\left[X_{t}^{*}>a+b\right] \leq P\left[\left|X_{t}\right|>a\right] / P\left[X_{t}^{*} \leq b / 2\right] \tag{25.15}
 \end{equation*}
-
 
 Fix $t$ and let $t_{n, j}=j t / 2^{n}$ for $j=1, \ldots, 2^{n}$ and $X_{(n)}^{*}=\max _{1 \leq j \leq 2^{n}}\left|X_{t_{n, j}}\right|$. Choosing $Z_{j}(s)=Z_{j}=X_{t_{n, j}}-X_{t_{n, j-1}}$ in Lemma 20.2 and using Remark 20.3, we have
 
@@ -430,7 +525,11 @@ $$
     P\left[X_{(n)}^{*}>a+b\right] \leq P\left[\left|X_{t}\right|>a\right] / P\left[X_{(n)}^{*} \leq b / 2\right]
 $$
 
-in (20.2). Hence, letting $n \rightarrow \infty$, we get (25.15). Choose $b>0$ such that $P\left[X_{t}^{*} \leq b / 2\right]>0$. Let $\tilde{g}(r)$ be a continuous increasing function on $[0, \infty)$ such that $\bar{g}(0)=0$ and $\tilde{g}(r)=g(r)$ for $r \geq 1$. Apply Lemma 17.6 to $\left.k(r)=1-P|| X_{t} \mid \leq r\right]$ and $l(r)=\tilde{g}(r)$. Then
+in (20.2). Hence, letting $n \rightarrow \infty$, we get (25.15).
+Choose $b>0$ such that $P\left[X_{t}^{*} \leq b / 2\right]>0$.
+Let $\tilde{g}(r)$ be a continuous increasing function on $[0, \infty)$
+                such that $\bar{g}(0)=0$ and $\tilde{g}(r)=g(r)$ for $r \geq 1$.
+                Apply Lemma 17.6 to $\left.k(r)=1-P|| X_{t} \mid \leq r\right]$ and $l(r)=\tilde{g}(r)$. Then
 
 $$
     \int_{0+}^{\infty} P\left[\left|X_{t}\right|>r\right] \mathrm{d} \tilde{g}(r)=\int_{(0, \infty)} \tilde{g}(r) P\left[\left|X_{t}\right| \in \mathrm{d} r\right]=E\left[\widetilde{g}\left(\left|X_{t}\right|\right)\right]
@@ -448,17 +547,23 @@ $$
     \int_{(0, \infty)} \tilde{g}(r) P\left[X_{t}^{*}-b \in \mathrm{d} r\right]=E\left[\tilde{g}\left(X_{t}^{*}-b\right) ; X_{t}^{*}>b\right]
 $$
 
-similarly. Hence, if $E\left[g\left(\left|X_{t}\right|\right)\right]<\infty$, then $E\left[g\left(X_{t}^{*}-b\right) ; X_{t}^{*}>b\right]<\infty$ and, by the submultiplicativity of $g, E\left[g\left(X_{t}^{*}\right)\right]<\infty$.
+similarly. Hence, if $E\left[g\left(\left|X_{t}\right|\right)\right]<\infty$,
+then $E\left[g\left(X_{t}^{*}-b\right) ; X_{t}^{*}>b\right]<\infty$ and,
+by the submultiplicativity of $g, E\left[g\left(X_{t}^{*}\right)\right]<\infty$. \\
 
 Remark 25.19. Let $d=1$. Doob [93], p. 337, shows an explicit bound:
-
 
 \begin{equation*}
     E\left[\left(X_{t}^{*}\right)^{\alpha}\right] \leq 8 E\left[\left|X_{t}\right|^{\alpha}\right] \text { for } \alpha \geq 1 \tag{25.16}
 \end{equation*}
 
 
-provided that $E\left|X_{t}\right|<\infty$ and $E X_{t}=0$. This is true not only for Lévy processes but also for additive processes on $\mathbb{R}$. Define the supremum process $M_{t}=$ sup $_{0 \leq \leq \leq \leq t} X_{s}$. If $\frac{1}{\nu(1, \infty)}[\nu]_{(1, \infty)}$ is subexponential, then $P\left[M_{t}>x\right] / \nu(x, \infty) \rightarrow t$ as $x \rightarrow \infty$. This is due to Berman [18] and Rosinski and Samorodnitsky [382]. Extension of this result in the case where the right tail of $v$ is lighter is studied in Braverman and Samorodnitsky [57] and Braverman [56].
+provided that $E\left|X_{t}\right|<\infty$ and $E X_{t}=0$. This is true not only for Lévy processes but also
+for additive processes on $\mathbb{R}$. Define the supremum process $M_{t}=$ sup $_{0 \leq \leq \leq \leq t} X_{s}$.
+If $\frac{1}{\nu(1, \infty)}[\nu]_{(1, \infty)}$ is subexponential,
+then $P\left[M_{t}>x\right] / \nu(x, \infty) \rightarrow t$ as $x \rightarrow \infty$.
+This is due to Berman [18] and Rosinski and Samorodnitsky [382]. Extension of this result in the case
+where the right tail of $v$ is lighter is studied in Braverman and Samorodnitsky [57] and Braverman [56].
 
 
 \end{document}
