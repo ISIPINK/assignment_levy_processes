@@ -131,14 +131,30 @@ WTS:
          & \le \int_{\mathbb{R}^{d}}\lim_{k \to \infty} \frac{2+ \left|i s_k \langle t, x \rangle I_{D} ( x )\right|} {s_k^{2}}  \nu( d x )                                                 \\
          & \rightarrow 0
     \end{align}
-
-
 \end{proof}
 
+\section{}
+WTS:
+Set:
+\begin{equation}
+    f(t,x) =  ( \exp ( i \langle t, x \rangle)-1-i \langle t, x \rangle I_{D} ( x ) ),
+\end{equation}
+then
+\begin{equation}
+    \int_{|x| \ge \frac{1}{n} } f(s_{k}t,x) \nu( d x )\rightarrow_{n} \int_{\mathbb{R}^{d}} f(s_{k}t,x) \nu( d x )
+    .
+\end{equation}
+\begin{proof}
+    Use the same dominator (\ref{eq:dominator}) and apply dominated convergence theorem.
+\end{proof}
 
-
-
-
-
+\section{}
+WTS: $\int_{[-h,h]^{d}} \psi_{n}(t) dt  \in  \mathbb{R}$ without calculating it.
+\begin{proof}
+    Didn't manage to prove it without calculating it. But here is an idea we know
+    because of the Lévy-Khintchine formula (which we can't get without the calculation) it is
+    easily seen that $\psi(t)$ is conjugate to $\psi(-t)$,  $|\psi|=1 $ and we are integrating/ summing over
+    a even domain ($t \in D \implies -t \in D$) the complex parts cancel out.
+\end{proof}
 
 \end{document}
