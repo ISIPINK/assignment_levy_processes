@@ -163,11 +163,38 @@ Answer: Because the conditions are satisfied this is already well explained in t
 
 \section{}
 Question: Why is line 15 on page 13 easy to see? \\
-Answer: It is a product of multiple sinc functions which are individually bounded between $-1$ and $1$ 
+Answer: It is a product of multiple sinc functions which are individually bounded between $-1$ and $1$
 and reach their maximum at $0$ which is $1$. So the product is continuous also bounded between $-1$ and $1$
-and only reaches $1$ in $0$. 
+and only reaches $1$ in $0$.
 
 \section{}
+WTS: If $\psi$ is continuous at $0$ and $\psi(0) = 0$ then $\forall \epsilon,\exists h_{\epsilon}:$
+
+\begin{equation}
+    - ( 2 h_{\epsilon} )^{-d} \int_{[-h_{\epsilon}, h_{\epsilon} ]^{d}} \psi( t ) d t < \frac{\epsilon}{4}.
+\end{equation}
+
+\begin{proof}
+    Because $\psi$ is continuous at $0$
+    \begin{equation}
+        \forall \epsilon, \exists \delta_{\epsilon}, \forall x \in B(0, \delta_{\epsilon}): |\psi(x)|<\frac{\epsilon}{4}
+        .
+    \end{equation}
+    Choose $h_{\epsilon} = \frac{\delta_{\epsilon}}{\sqrt{d}}$ so that $[-h_{\epsilon},h_{\epsilon}]^{d} \subset B(0, \delta_{\epsilon})  $  then
+    \begin{align}
+         & -( 2 h_{\epsilon} )^{-d} \int_{[-h_{\epsilon}, h_{\epsilon} ]^{d}} \psi( t ) d t                   \\
+         & \le \left|( 2 h_{\epsilon} )^{-d} \int_{[-h_{\epsilon}, h_{\epsilon} ]^{d}} \psi( t ) d t  \right| \\
+         & \le ( 2 h_{\epsilon} )^{-d} \int_{[-h_{\epsilon}, h_{\epsilon} ]^{d}} \left|\psi( t )\right| d t   \\
+         & < ( 2 h_{\epsilon} )^{-d} \int_{[-h_{\epsilon}, h_{\epsilon} ]^{d}} \frac{\epsilon}{4}d t          \\
+         & = \frac{\epsilon}{4}.
+    \end{align}
+\end{proof}
+
+\section{}
+Question:  Formula (2.12). Check why we had to insert the extra term $ \langle t, x \rangle^{2} / 2 $? \\
+Answer: This $ \langle t, x \rangle^{2} / 2 $ term is to make $f_t$ continuous and bounded to then apply weak convergence.
+
+
 
 
 \end{document}
