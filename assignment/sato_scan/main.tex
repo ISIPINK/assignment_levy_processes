@@ -39,7 +39,7 @@ and there is a constant $a>0$ such that
 
 \noindent A function bounded on every compact set is called locally bounded. \\
 
-THEOREM 25.3 ( $g$-Moment). Let $g$ be a submultiplicative, locally bounded, measurable
+THEOREM 25.3 ($g$-Moment). Let $g$ be a submultiplicative, locally bounded, measurable
 function on $\mathbb{R}^{d}$. Then, finiteness of the $g$-moment is not a time dependent
 distributional property in the class of Lévy processes. Let $\left\{X_{t}\right\}$ be a Lévy process
 on $\mathbb{R}^{d}$ with Lévy measure $\nu$. Then, $X_{t}$ has finite $g$-moment for every $t>0$ if
@@ -161,38 +161,38 @@ function on $\mathbb{C}$, then $\mu$ has finite exponential moments, that is, it
 
     Let $\nu_{0}=[\nu]_{\{|x| \leq 1\}}$ and $\nu_{1}=[\nu]_{\{|x|>1\}}$. Construct
     independent Lévy processes $\left\{X_{t}^{0}\right\}$ and $\left\{X_{t}^{1}\right\}$ on $\mathbb{R}^{d}$ such
-    that $\left\{X_{t}\right\} \stackrel{\mathrm{d}}{=}\left\{X_{t}^{0}+\right.$ $\left.X_{t}^{1}\right\}$ and
+    that $\left\{X_{t}\right\} =_{d} \left\{X_{t}^{0}+ X_{t}^{1}\right\}$ and
     $\left\{X_{t}^{1}\right\}$ is compound Poisson with Lévy measure $\nu_{1}$. Let $\mu_{0}$ and $\mu_{1}$ be
     the distributions of $X_{1}^{0}$ and $X_{1}^{1}$, respectively.
 
     Suppose that $X_{t}$ has finite $g$-moment for some $t>0$. It follows from
 
     $$
-        E\left[g\left(X_{t}\right)\right]=\iint g(x+y) \mu_{0}^{t}(\mathrm{~d} x) \mu_{1}^{t}(\mathrm{~d} y)
+        E\left[g\left(X_{t}\right)\right]=\iint g(x+y) \mu_{0}^{t}(dx) \mu_{1}^{t}(dy)
     $$
 
-    that $\int g(x+y) \mu_{1}{ }^{t}(\mathrm{~d} y)<\infty$ for some $x$. This means
+    that $\int g(x+y) \mu_{1}{ }^{t}(dy)<\infty$ for some $x$. This means
 
     $$
-        \sum_{n=0}^{\infty} \frac{t^{n}}{n !} \int g(x+y) \nu_{1}^{n}(\mathrm{~d} y)<\infty
+        \sum_{n=0}^{\infty} \frac{t^{n}}{n !} \int g(x+y) \nu_{1}^{n}(dy)<\infty
     $$
 
     Since $g(y) \leq a g(-x) g(x+y) \leq a b e^{c|x|} g(x+y)$ by Lemma 25.5, we get
 
 
     \begin{equation*}
-        \sum_{n=0}^{\infty} \frac{t^{n}}{n !} \int g(y) \nu_{1}^{n}(\mathrm{~d} y)<\infty \tag{25.4}
+        \sum_{n=0}^{\infty} \frac{t^{n}}{n !} \int g(y) \nu_{1}^{n}(dy)<\infty \tag{25.4}
     \end{equation*}
 
-    Hence $\int g(y) \nu_{1}(\mathrm{~d} y)<\infty$.
+    Hence $\int g(y) \nu_{1}(d y)<\infty$.
 
-    Conversely, suppose that $\int g(y) \nu_{1}(\mathrm{~d} y)<\infty$. Let us prove
+    Conversely, suppose that $\int g(y) \nu_{1}(dy)<\infty$. Let us prove
     that $E\left[g\left(X_{t}\right)\right]$ $<\infty$ for every $t$. By the submultiplicativity,
 
     $$
         \begin{aligned}
-            \int g(y) \nu_{1}^{n}(\mathrm{~d} y) & =\int \cdots \int g\left(y_{1}+\cdots+y_{n}\right) \nu_{1}\left(\mathrm{~d} y_{1}\right) \ldots \nu_{1}\left(d y_{n}\right) \\
-                                                 & \leq a^{n-1}\left(\int g(y) \nu_{1}(\mathrm{~d} y)\right)^{n}
+            \int g(y) \nu_{1}^{n}(dy) & =\int \cdots \int g\left(y_{1}+\cdots+y_{n}\right) \nu_{1}\left(dy_{1}\right) \ldots \nu_{1}\left(d y_{n}\right) \\
+                                      & \leq a^{n-1}\left(\int g(y) \nu_{1}(dy)\right)^{n}
         \end{aligned}
     $$
 
@@ -228,7 +228,7 @@ is expressed by the corresponding property of $[\nu]_{\{|x|>1\}}$.
 
 REMARK 25.9. There is a nonnegative measurable function $g(x)$ satisfying (25.3) such that finiteness of the $g$-moment is a
 time dependent distributional property in the class of Lévy processes. For example, let $g(x)=\left(1 \wedge|x|^{-\alpha}\right)
-    \mathrm{e}^{|x|}$ with $\alpha>0$. Consider a $\Gamma$-process $\left\{X_{t}\right\}$ with $E X_{1}=1$. Then it is easy to see
+    \mathrm{e}^{|x|}$ with $\alpha>0$. Consider a $\Gamma$-process $\left\{X_{t}\right\}$ with $E[X_{1}]=1$. Then it is easy to see
 that $E\left[g\left(X_{t}\right)\right]<\infty$ if and only if $t<\alpha$. This process has
 $\nu=x^{-1} \mathrm{e}^{-x} 1_{(0, \infty)}(x) \mathrm{d} x$, so that $\nu_{1}$ has finite $g$-moment (Example 8.10). \\
 
@@ -303,7 +303,7 @@ in some class of Lévy processes? This question was answered by Embrecht, Goldie
 for subordinators. We state their result without proof in two remarks below. \\
 
 Definition 25.13. A probability measure $\mu$ on $[0, \infty)$ is called
-subexponenthal if $\mu(x, \infty)>0$ for every $x$ and
+subexponential if $\mu(x, \infty)>0$ for every $x$ and
 
 \begin{equation*}
     \lim _{x \rightarrow \infty} \frac{\mu^{n}(x, \infty)}{\mu(x, \infty)}=n \quad \text { for } n=2,3, \ldots \tag{25.9}
