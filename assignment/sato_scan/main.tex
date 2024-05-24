@@ -14,6 +14,7 @@
 \usepackage{transparent}
 \usepackage{xcolor}
 
+
 \title{25. Moments}
 
 \author{}
@@ -38,6 +39,28 @@ and there is a constant $a>0$ such that
 \end{equation*}
 
 \noindent A function bounded on every compact set is called locally bounded. \\
+
+
+\textcolor{blue}{
+    LEMMA 25.i1 Let $g(x)$ be a submultiplicative with constant $a$ then:
+    $$
+        \forall (x_{i})_{i} \subset \mathbb{R}^d:
+        g\left(\sum_{i=1}^{n} x_{i}\right) \le a^{n-1} \prod_{i=1}^{n} g(x_{i})  .
+    $$
+    \begin{proof}
+        This follows by induction on $n$. \\
+        Base case: $n=2$ is true by submultiplicativity. \\
+        Induction hypothesis: assume $2 \le  n \le k$. \\
+        Induction step: $n=k+1$:
+        \begin{align*}
+            \forall (x_{i})_{i}                  & \subset \mathbb{R}^d:                                                                          \\
+            g\left(\sum_{i=1}^{k+1} x_{i}\right) & = g\left(\sum_{i=1}^{k} x_{i} + x_{k+1}\right)                                                 \\
+                                                 & \le a g\left(\sum_{i=1}^{k} x_{i}\right) g(x_{k+1})  \text{ by submultiplicativity}            \\
+                                                 & \le a a^{k-1} \prod_{i=1}^{k}  g\left(x_{i}\right) g(x_{k+1})  \text{ by induction hypothesis} \\
+                                                 & \le a^{k} \prod_{i=1}^{k+1}  g\left(x_{i}\right) .
+        \end{align*}
+    \end{proof}
+}
 
 THEOREM 25.3 ($g$-Moment). Let $g$ be a submultiplicative, locally bounded, measurable
 function on $\mathbb{R}^{d}$. Then, finiteness of the $g$-moment is not a time dependent
@@ -65,11 +88,33 @@ Here $x_{j}$ is the $j$ th component of $x$.
 
 \begin{proof}
 
-    (i) Immediate from the definition. \\
-    (ii) Let $g_{1}(x)=g(c x), g_{2}(x)=g(x+\gamma)$, and $g_{3}(x)=g(x)^{\alpha}$.
-    Then it follows from (25.1) that $g_{1}(x+y) \leq a g_{1}(x) g_{1}(y), g_{2}(x+y) \leq
-        a^{2} g(-\gamma) g_{2}(x) g_{2}(y)$, and $g_{3}(x+y) \leq a^{\alpha} g_{3}(x) g_{3}(y)$. \\
-    (iii) Let $h(u)$ be a positive increasing function on $\mathbb{R}$ such that, for some
+    (i) \textcolor{red}{Immediate from the definition. \\}
+    \textcolor{blue}{
+    Let $g,h:\mathbb{R}^{d}\rightarrow \mathbb{R}$ be submultiplicative functions then:
+    $$
+        \forall x,y \in \mathbb{R}^{d}: g(x+y)h(x+y) \le a_{1} g(x)g(y) a_{2} h(x)h(y) \leq a_{1}a_{2} g(x)h(x)g(y)h(y).
+    $$
+    So $gh:\mathbb{R}^{d}\rightarrow \mathbb{R}$ is submultiplicative.\\
+    }
+
+    (ii)
+    Let $g_{1}(x)=g(c x), g_{2}(x)=g(x+\gamma)$, and $g_{3}(x)=g(x)^{\alpha}$.
+    \textcolor{red}{Then it follows from (25.1) that $g_{1}(x+y) \leq a g_{1}(x) g_{1}(y), g_{2}(x+y) \leq
+            a^{2} g(-\gamma) g_{2}(x) g_{2}(y)$, and $g_{3}(x+y) \leq a^{\alpha} g_{3}(x) g_{3}(y)$. }
+    \textcolor{blue}{
+        \begin{align*}
+            \forall x,y & \in \mathbb{R}^{d}:                                                                                                                 \\
+            g_{1}(x+y)  & = g(c(x+y)) = g(c x + c y) \leq a g(c x) g(c y) = a g_{1}(x) g_{1}(y)                                                               \\
+            g_{2}(x+y)  & = g(x + y + \gamma) = g(x + \gamma + y + \gamma - \gamma)
+            \le a^{2} g(-\gamma) g(x+\gamma) g(y + \gamma)                                                                                                    \\
+                        & \le a^{2} g(-\gamma) g_{2}( x)g_{2}(y)                                                                                              \\
+            g_{3}(x+y)  & = g(x+y) ^{\alpha} \le \left(a g(x) g(y) \right) ^{\alpha}= a^{\alpha} g(x)^{\alpha} g(y)^{\alpha} = a^{\alpha} g_{3}(x) g_{3}(y) .
+        \end{align*}
+    }
+
+    (iii)
+    \textcolor{blue}{ TODO: understand this}
+    Let $h(u)$ be a positive increasing function on $\mathbb{R}$ such that, for some
     $b \geq 0, h(u)$ is flat on $(-\infty, b]$ and $\log h(u)$ is concave on $[b, \infty)$. Then
     $h(u)$ is submultiplicative on $\mathbb{R}$. In fact, for $u, v \geq b$, the function $f(u)=\log h(u)$ satisfies
 
@@ -112,10 +157,23 @@ LEMMA 25.5. If $g(x)$ is submultiplicative and locally bounded, then
 with some $b>0$ and $c>0$.
 
 \begin{proof}
-    Choose $b$ in such a way that $\sup _{|x| \leq 1} g(x) \leq b$ and $a b>1$. If $n-1<|x| \leq n$,
-    then
+    \textcolor{red}{
+        Choose $b$ in such a way that $\sup _{|x| \leq 1} g(x) \leq b$ and $a b>1$. If $n-1<|x| \leq n$,
+        then
+    }
+    \textcolor{blue}{
+        $\exists b: \sup _{|x| \leq 1} g(x) \leq b$ and $a b>1$ because $g$ is locally bounded.
+        $\forall x$ set $n_x = \lceil \left| x \right| \rceil$ implying $n_x-1 < \left| x \right| \leq n_x, \frac{x}{n_x} \in \{u | |u| \leq 1\} $, then
+    }
     $$
-        g(x) \leq a^{n-1} g\left(\frac{1}{n} x\right)^{n} \leq a^{n-1} b^{n} \leq b(a b)^{|x|}
+        g(x)
+        \textcolor{blue}{
+            \le g\left(\sum_{i=1}^{n_x} \frac{x}{n_x}\right)
+        }
+        \leq a^{n_x-1} g\left(\frac{x}{n_x} \right)^{n_x} \leq a^{n_x-1} b^{n_x} \leq b(a b)^{|x|}
+        \textcolor{blue}{
+            \le b e^{\ln \left(ab\right)|x|}
+        }
     $$
     which shows (25.3).
 \end{proof}
@@ -226,6 +284,7 @@ is expressed by the corresponding property of $[\nu]_{\{|x|>1\}}$.
     This follows from Theorem 25.3 and Proposition 25.4.
 \end{proof}
 
+\transparent{0.5}
 REMARK 25.9. There is a nonnegative measurable function $g(x)$ satisfying (25.3) such that finiteness of the $g$-moment is a
 time dependent distributional property in the class of Lévy processes. For example, let $g(x)=\left(1 \wedge|x|^{-\alpha}\right)
     \mathrm{e}^{|x|}$ with $\alpha>0$. Consider a $\Gamma$-process $\left\{X_{t}\right\}$ with $E[X_{1}]=1$. Then it is easy to see
@@ -270,6 +329,7 @@ for every $c>0$ and $t>0$. Use Theorem 25.3 for $g(x)=e^{c x}$. For instance, a 
 process on $\mathbb{R}$ with $1 \leq \alpha<2$ and $\beta=-1$ satisfies this assumption
 although it has support $\mathbb{R}$ for every $t>0$ (Theorem 24.10(i)). \\
 
+\transparent{1.0}
 EXAMPLE 25.12. Let $\left\{X_{t}\right\}$ be a Lévy process on $\mathbb{R}^{d}$ generated
 by $(A, \nu$, 1). In components, $X_{t}=\left(X_{j}(t)\right), \gamma=\left(\gamma_{j}\right)$,
 and $A=\left(A_{j k}\right)$. Then $X_{t}$ has finite mean for $t>0$
@@ -301,6 +361,8 @@ Theorem 25.3 shows that, for a Lévy process $\left\{X_{t}\right\}$ with Lévy m
 the tails of $P_{X_{t}}$ and $\nu$ have a kind of similarity. Are they actually equivalent
 in some class of Lévy processes? This question was answered by Embrecht, Goldie, and Veraverbeke [109]
 for subordinators. We state their result without proof in two remarks below. \\
+
+\transparent{0.5}
 
 Definition 25.13. A probability measure $\mu$ on $[0, \infty)$ is called
 subexponential if $\mu(x, \infty)>0$ for every $x$ and
@@ -390,6 +452,8 @@ We define, for $w=\left(w_{j}\right)_{1 \leq j \leq d}$ and $v=\left(v_{j}\right
 the inner product $\langle w, v\rangle=\sum_{j=1}^{d} w_{j} v_{j}$ (not the Hermitian
 inner product $\sum_{j=1}^{d} w_{j} \overline{v_{j}}$ ).
 We write $\operatorname{Re} w=\left(\operatorname{Re} w_{j}\right)_{1 \leq j \leq d} \in \mathbb{R}^{d}$. Let $D=\left\{x \in \mathbb{R}^{d}:|x| \leq 1\right\}$. \\
+
+\transparent{1.0}
 
 THEOREM 25.17 (Exponential moment). Let $\left\{X_{t}\right\}$ be a Lévy process on $\mathbb{R}^{d}$
 generated by $(A, \nu, \gamma)$. Let
@@ -551,6 +615,9 @@ similarly. Hence, if $E\left[g\left(\left|X_{t}\right|\right)\right]<\infty$,
 then $E\left[g\left(X_{t}^{*}-b\right) ; X_{t}^{*}>b\right]<\infty$ and,
 by the submultiplicativity of $g, E\left[g\left(X_{t}^{*}\right)\right]<\infty$. \\
 
+
+\transparent{0.5}
+
 Remark 25.19. Let $d=1$. Doob [93], p. 337, shows an explicit bound:
 
 \begin{equation*}
@@ -564,6 +631,5 @@ If $\frac{1}{\nu(1, \infty)}[\nu]_{(1, \infty)}$ is subexponential,
 then $P\left[M_{t}>x\right] / \nu(x, \infty) \rightarrow t$ as $x \rightarrow \infty$.
 This is due to Berman [18] and Rosinski and Samorodnitsky [382]. Extension of this result in the case
 where the right tail of $v$ is lighter is studied in Braverman and Samorodnitsky [57] and Braverman [56].
-
 
 \end{document}
