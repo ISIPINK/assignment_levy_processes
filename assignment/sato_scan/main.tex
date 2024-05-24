@@ -222,16 +222,16 @@ function on $\mathbb{C}$, then $\mu$ has finite exponential moments, that is, it
     Let $\nu_{0}=[\nu]_{\{|x| \leq 1\}}$ and $\nu_{1}=[\nu]_{\{|x|>1\}}$. Construct
     independent Lévy processes $\left\{X_{t}^{0}\right\}$ and $\left\{X_{t}^{1}\right\}$ on $\mathbb{R}^{d}$ such
     that $\left\{X_{t}\right\} =_{d} \left\{X_{t}^{0}+ X_{t}^{1}\right\}$ and
-    $\left\{X_{t}^{1}\right\}$ is compound Poisson with Lévy measure $\nu_{1}$. Let $\mu_{0}$ and $\mu_{1}$ be
-    the distributions of $X_{1}^{0}$ and $X_{1}^{1}$, respectively.
+    $\left\{X_{t}^{1}\right\}$ is compound Poisson with Lévy measure $\nu_{1}$. Let $\mu_{0}^{\textcolor{blue}{t}}$ and $\mu_{1}^{\textcolor{blue}{t}}$ be
+    the distributions of $X_{\textcolor{blue}{t}}^{0}$ and $X_{\textcolor{blue}{t}}^{1}$, respectively.
 
     Suppose that $X_{t}$ has finite $g$-moment for some $t>0$. It follows from
 
     $$
-        E\left[g\left(X_{t}\right)\right]=\iint g(x+y) \mu_{0}^{t}(dx) \mu_{1}^{t}(dy)
+        E\left[g\left(X_{t}\right)\right]=\iint g(x+y) \mu_{0}^{t}(dx) \mu_{1}^{t}(dy) \quad  \textcolor{blue}{(X_{t}^{1} \perp\!\!\!\perp X_{t}^{2})}
     $$
 
-    that $\int g(x+y) \mu_{1}{ }^{t}(dy)<\infty$ for some $x$. This means
+    that $\int g(x+y) \mu_{1}^{t}(dy)<\infty$ for some $x$. This means
 
     $$
         \sum_{n=0}^{\infty} \frac{t^{n}}{n !} \int g(x+y) \nu_{1}^{n}(dy)<\infty
@@ -333,7 +333,7 @@ although it has support $\mathbb{R}$ for every $t>0$ (Theorem 24.10(i)). \\
 
 \transparent{1.0}
 EXAMPLE 25.12. Let $\left\{X_{t}\right\}$ be a Lévy process on $\mathbb{R}^{d}$ generated
-by $(A, \nu$, 1). In components, $X_{t}=\left(X_{j}(t)\right), \gamma=\left(\gamma_{j}\right)$,
+by $(A, \nu, \gamma )$. In components, $X_{t}=\left(X_{j}(t)\right), \gamma=\left(\gamma_{j}\right)$,
 and $A=\left(A_{j k}\right)$. Then $X_{t}$ has finite mean for $t>0$
 if and only if $\int_{\{|x| >1\}} |x| \nu(\mathrm{d} x)<\infty$.
 When this condition is met, we can find $m_{j}(t)=E\left[X_{j}(t)\right]$ expressed as
@@ -579,44 +579,44 @@ Then the following four statements are equivalent.
     Theorem 25.3. As $\left|X_{t}\right| \leq X_{t}^{*}$, all we have to show is that, for
     any fixed $t>0$, $E\left[g\left(\left|X_{t}\right|\right)\right]<\infty$ implies
     $E\left[g\left(X_{t}^{*}\right)\right]<\infty$. We claim that, for any $a>0$ and $b>0$,
+
+    \begin{equation*}
+        P\left[X_{t}^{*}>a+b\right] \leq P\left[\left|X_{t}\right|>a\right] / P\left[X_{t}^{*} \leq b / 2\right] \tag{25.15}
+    \end{equation*}
+
+    Fix $t$ and let $t_{n, j}=j t / 2^{n}$ for $j=1, \ldots, 2^{n}$ and $X_{(n)}^{*}=\max _{1 \leq j \leq 2^{n}}\left|X_{t_{n, j}}\right|$. Choosing $Z_{j}(s)=Z_{j}=X_{t_{n, j}}-X_{t_{n, j-1}}$ in Lemma 20.2 and using Remark 20.3, we have
+
+    $$
+        P\left[X_{(n)}^{*}>a+b\right] \leq P\left[\left|X_{t}\right|>a\right] / P\left[X_{(n)}^{*} \leq b / 2\right]
+    $$
+
+    in (20.2). Hence, letting $n \rightarrow \infty$, we get (25.15).
+    Choose $b>0$ such that $P\left[X_{t}^{*} \leq b / 2\right]>0$.
+    Let $\tilde{g}(r)$ be a continuous increasing function on $[0, \infty)$
+                    such that $\bar{g}(0)=0$ and $\tilde{g}(r)=g(r)$ for $r \geq 1$.
+                    Apply Lemma 17.6 to $\left.k(r)=1-P|| X_{t} \mid \leq r\right]$ and $l(r)=\tilde{g}(r)$. Then
+
+    $$
+        \int_{0+}^{\infty} P\left[\left|X_{t}\right|>r\right] \mathrm{d} \tilde{g}(r)=\int_{(0, \infty)} \tilde{g}(r) P\left[\left|X_{t}\right| \in \mathrm{d} r\right]=E\left[\widetilde{g}\left(\left|X_{t}\right|\right)\right]
+    $$
+
+    14 follows from (25.15) that
+
+    $$
+        \int_{0+}^{\infty} P\left[X_{t}^{*}>r+b\right] \mathrm{d} \widetilde{g}(r) \leq E\left[\widetilde{g}\left(\left|X_{t}\right|\right)\right] / P\left[X_{t}^{*} \leq b / 2\right]
+    $$
+
+    The integral in the left-hand side equals
+
+    $$
+        \int_{(0, \infty)} \tilde{g}(r) P\left[X_{t}^{*}-b \in \mathrm{d} r\right]=E\left[\tilde{g}\left(X_{t}^{*}-b\right) ; X_{t}^{*}>b\right]
+    $$
+
+    similarly. Hence, if $E\left[g\left(\left|X_{t}\right|\right)\right]<\infty$,
+    then $E\left[g\left(X_{t}^{*}-b\right) ; X_{t}^{*}>b\right]<\infty$ and,
+    by the submultiplicativity of $g, E\left[g\left(X_{t}^{*}\right)\right]<\infty$. \\
+
 \end{proof}
-
-\begin{equation*}
-    P\left[X_{t}^{*}>a+b\right] \leq P\left[\left|X_{t}\right|>a\right] / P\left[X_{t}^{*} \leq b / 2\right] \tag{25.15}
-\end{equation*}
-
-Fix $t$ and let $t_{n, j}=j t / 2^{n}$ for $j=1, \ldots, 2^{n}$ and $X_{(n)}^{*}=\max _{1 \leq j \leq 2^{n}}\left|X_{t_{n, j}}\right|$. Choosing $Z_{j}(s)=Z_{j}=X_{t_{n, j}}-X_{t_{n, j-1}}$ in Lemma 20.2 and using Remark 20.3, we have
-
-$$
-    P\left[X_{(n)}^{*}>a+b\right] \leq P\left[\left|X_{t}\right|>a\right] / P\left[X_{(n)}^{*} \leq b / 2\right]
-$$
-
-in (20.2). Hence, letting $n \rightarrow \infty$, we get (25.15).
-Choose $b>0$ such that $P\left[X_{t}^{*} \leq b / 2\right]>0$.
-Let $\tilde{g}(r)$ be a continuous increasing function on $[0, \infty)$
-                such that $\bar{g}(0)=0$ and $\tilde{g}(r)=g(r)$ for $r \geq 1$.
-                Apply Lemma 17.6 to $\left.k(r)=1-P|| X_{t} \mid \leq r\right]$ and $l(r)=\tilde{g}(r)$. Then
-
-$$
-    \int_{0+}^{\infty} P\left[\left|X_{t}\right|>r\right] \mathrm{d} \tilde{g}(r)=\int_{(0, \infty)} \tilde{g}(r) P\left[\left|X_{t}\right| \in \mathrm{d} r\right]=E\left[\widetilde{g}\left(\left|X_{t}\right|\right)\right]
-$$
-
-14 follows from (25.15) that
-
-$$
-    \int_{0+}^{\infty} P\left[X_{t}^{*}>r+b\right] \mathrm{d} \widetilde{g}(r) \leq E\left[\widetilde{g}\left(\left|X_{t}\right|\right)\right] / P\left[X_{t}^{*} \leq b / 2\right]
-$$
-
-The integral in the left-hand side equals
-
-$$
-    \int_{(0, \infty)} \tilde{g}(r) P\left[X_{t}^{*}-b \in \mathrm{d} r\right]=E\left[\tilde{g}\left(X_{t}^{*}-b\right) ; X_{t}^{*}>b\right]
-$$
-
-similarly. Hence, if $E\left[g\left(\left|X_{t}\right|\right)\right]<\infty$,
-then $E\left[g\left(X_{t}^{*}-b\right) ; X_{t}^{*}>b\right]<\infty$ and,
-by the submultiplicativity of $g, E\left[g\left(X_{t}^{*}\right)\right]<\infty$. \\
-
 
 \transparent{0.5}
 
