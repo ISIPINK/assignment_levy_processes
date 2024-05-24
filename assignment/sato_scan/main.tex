@@ -168,7 +168,7 @@ with some $b>0$ and $c>0$.
     $$
         g(x)
         \textcolor{blue}{
-            \le g\left(\sum_{i=1}^{n_x} \frac{x}{n_x}\right)
+            = g\left(\sum_{i=1}^{n_x} \frac{x}{n_x}\right)
         }
         \leq a^{n_x-1} g\left(\frac{x}{n_x} \right)^{n_x} \leq a^{n_x-1} b^{n_x} \leq b(a b)^{|x|}
         \textcolor{blue}{
@@ -178,23 +178,25 @@ with some $b>0$ and $c>0$.
     which shows (25.3).
 \end{proof}
 
-LEMMA 25.6. Let $\mu$ be an infinitely divisible distribution on $\mathbb{R}$ with Lévy measure $\nu$
-supported on a bounded set. Then $\widehat{\mu}(z)$ can be extended to an entire function on $\mathbb{C}$.
+% similar to fourier stuff 
+LEMMA 25.6. Let $\mu$ be an infinitely divisible distribution on $\mathbb{R} \textcolor{blue}{^{d}}$ with Lévy measure $\nu$
+supported on a bounded set \textcolor{blue}{S}. Then $\widehat{\mu}(t)$ can be extended to an entire function on $\mathbb{C}\textcolor{blue}{^{d}}$.
 
 \begin{proof}
-    There is a finite $a>0$ such that $S_{\nu} \subset[-a, a]$. The Lévy representation of $\widehat{\mu}(z)$ is written as
+    \textcolor{red}{There is a finite $a>0$ such that $S_{\nu} \subset[-a, a]$.} The Lévy representation of $\widehat{\mu}(t)$ is written as
     $$
-        \widehat{\mu}(z)=\exp \left[-\frac{1}{2} A z^{2}+\int_{[-a, a]}\left(\mathrm{e}^{\mathrm{i} z x}-1-\mathrm{i} z x\right) \nu(\mathrm{d} x)+\mathrm{i} \gamma^{\prime} z\right]
+        \widehat{\mu}(t)=\exp \left[-\frac{1}{2} \textcolor{blue}{\langle t, At \rangle} +\int_{\textcolor{blue}{S}}\left(\mathrm{e}^{\mathrm{i} \textcolor{blue}{\langle t, x \rangle}}-1-\mathrm{i} \textcolor{blue}{\langle t, x \rangle}\right) \nu(\mathrm{d} x)+\mathrm{i} \textcolor{blue}{\langle \gamma', t \rangle}\right]
     $$
-    with some $\gamma^{\prime} \in \mathbb{R}$. The right-hand side is meaningful even if $z$ is complex. Denote
-    this function by $\Phi(z)$. Then $\Phi(z)$ is an entire function, since we can exchange the order of
-    integration and differentiation.
+    with some $\gamma^{\prime} \in \mathbb{R}\textcolor{blue}{^{d}}$. The right-hand side is meaningful even if $t$ is complex. Denote
+    this function by $\Phi(t)$. Then $\Phi(t)$ is an entire function \textcolor{blue}{in each of its variables}, since we can exchange the order of integration and differentiation \textcolor{blue}{and innerproducts are analytical}.
+    \textcolor{blue}{Thereby $\Phi(t)$ is also entire by Hartogs's theorem.}
 \end{proof}
 
 
 LEMMA 25.7. If $\mu$ is a probability measure on $\mathbb{R}$ and $\widehat{\mu}(z)$ is extendible to an entire
 function on $\mathbb{C}$, then $\mu$ has finite exponential moments, that is, it has finite $e^{c|x|}$-moment for every $c>0$.
 
+% prop 2.5(x) isn't proven in the book but was asked by the proffesor
 \begin{proof}
     It follows from Proposition 2.5(x) that $\alpha_{n}=\int x^{n} \mu(\mathrm{d} x)$ and
     $\beta_{n}=\int|x|^{n} \mu(\mathrm{d} x)$ are finite for any $n \geq 1$. Since
