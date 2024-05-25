@@ -70,6 +70,19 @@ and only if $[\nu]_{\{|x|>1\}}$ has finite $g$-moment. \\
 
 The following facts indicate the wide applicability of the theorem. \\
 
+% it isnt exactly what I need
+% \textcolor{blue}{
+%     LEMMA 25.i2 Let $f:\mathbb{R} \rightarrow \mathbb{R} $ be a function and 
+%     $$
+%     R(x_{1},x_{2}) = \frac{f(x_{1}) - f(x_{2})}{ x_{1} - x_{2}}.
+%     $$ 
+%     The $f$ is convex if and only if $R(x_{1},x_{2})$ is monotonically non-decreasing in $x_{1}$ for all $x_{2}$.
+
+%     \begin{proof}
+%         not yet
+%     \end{proof}
+% }
+
 PROPOSITION 25.4. \\
 (i) The product of two submultiplicative functions is submultiplicative. \\
 (ii) If $g(x)$ is submultiplicative on $\mathbb{R}^{d}$, then so is $g(c x+\gamma)^{\alpha}$
@@ -113,33 +126,32 @@ Here $x_{j}$ is the $j$ th component of $x$.
     }
 
     (iii)
-    \textcolor{blue}{ TODO: understand this}
     Let $h(u)$ be a positive increasing function on $\mathbb{R}$ such that, for some
-    $b \geq 0, h(u)$ is flat on $(-\infty, b]$ and $\log h(u)$ is concave on $[b, \infty)$. Then
-    $h(u)$ is submultiplicative on $\mathbb{R}$. In fact, for $u, v \geq b$, the function $f(u)=\log h(u)$ satisfies
+    $b \geq 0, h(u)$ is \textcolor{blue}{constant} on $(-\infty, b]$ and $\log h(u)$ is concave on $[b, \infty)$. Then
+    $h(u)$ is submultiplicative on $\mathbb{R}$. In fact, for $u, v \geq b \textcolor{blue}{ \ge 0}$,
+    \textcolor{blue}{by concaveness} the function $f(u)=\log h(u)$ satisfies
 
     $$
         \begin{aligned}
-             & f(u+b)-f(u) \leq f(2 b)-f(b) \\
-             & f(u+v)-f(v) \leq f(u+b)-f(b)
+            \textcolor{blue}{\frac{f(u+b)-f(u)}{b}  \leq \frac{f(2 b)-f(b)}{b}} & \Leftrightarrow f(u+b)-f(u)  \le f(2 b)-f(b) \\
+            \textcolor{blue}{\frac{f(u+v)-f(v)}{u}  \leq \frac{f(u+b)-f(b)}{u}} & \Leftrightarrow f(u+v)-f(v)  \le f(u+b)-f(b)
         \end{aligned}
     $$
-
+    \textcolor{blue}{ the first line is for $b \neq 0, b = 0$ is trivial }
     and hence
-
-    $$
-        f(u+v) \leq f(u+b)-f(b)+f(v) \leq f(2 b)-2 f(b)+f(u)+f(v)
-    $$
+    \begin{align*}
+         & f(u+v)                   \leq f(u+b)-f(b)+f(v) \leq f(2 b)-2 f(b)+f(u)+f(v) \Leftrightarrow \\
+         & \textcolor{blue}{h(u+v)  \le \frac{h(2b)}{h(b)^{2}} h(u) h(v)}
+    \end{align*}
 
     which shows
-
 
     \begin{equation*}
         h(u+v) \leq \text { const } h(u) h(v) \tag{25.2}
     \end{equation*}
 
 
-    It follows that (25.2) holds for all $u, v \in \mathbb{R}$. The functions
+    It follows \textcolor{blue}{(we miss the cases for $u \ge b \ge v, b \ge u,v $)} that (25.2) holds for all $u, v \in \mathbb{R}$. The functions
     $u \vee 1, \exp \left((u \vee 0)^{\beta}\right)$, $\log (u \vee \mathrm{e})$, and
     $\log \log \left(u \vee \mathrm{e}^{\mathrm{e}}\right)$ fulfil the conditions on
     $h(u)$. By (25.2) and by the increasingness of $h$, the functions $h(|x|), h\left(\left|x_{j}\right|\right)$, and
@@ -231,7 +243,7 @@ function on $\mathbb{C}$, then $\mu$ has finite exponential moments, that is, it
         E\left[g\left(X_{t}\right)\right]=\iint g(x+y) \mu_{0}^{t}(dx) \mu_{1}^{t}(dy) \quad  \textcolor{blue}{(X_{t}^{1} \perp\!\!\!\perp X_{t}^{2})}
     $$
 
-    that $\int g(x+y) \mu_{1}^{t}(dy)<\infty$ for some $x$. This means
+    that $\int g(x+y) \mu_{1}^{t}(dy)<\infty$ for some $x$. This means \textcolor{blue}{(see (24.1) in sato)}
 
     $$
         \sum_{n=0}^{\infty} \frac{t^{n}}{n !} \int g(x+y) \nu_{1}^{n}(dy)<\infty
@@ -259,7 +271,7 @@ function on $\mathbb{C}$, then $\mu$ has finite exponential moments, that is, it
     Hence we have (25.4) for every $t$. That is, $X_{t}^{1}$ has finite $g$-moment. Since
 
     $$
-        E\left[g\left(X_{t}\right)\right] \leq a b E\left[\mathrm{e}^{\mathrm{c}\left|X_{t}^{0}\right|}\right] E\left[g\left(X_{t}^{1}\right)\right]
+        E\left[g\left(X_{t}\right)\right] \leq \textcolor{blue}{E\left[g\left(X_{t}^{0} + X_{t}^{1}\right)\right]}   \le a b E\left[\mathrm{e}^{\mathrm{c}\left|X_{t}^{0}\right|}\right] E\left[g\left(X_{t}^{1}\right)\right]
     $$
 
     by (25.1) and (25.3), it remains only to show that $E\left[e^{\mathrm{ec} X_{i}^{0}}\right]<\infty$.
