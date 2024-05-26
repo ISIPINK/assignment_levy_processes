@@ -240,7 +240,9 @@ function on $\mathbb{C}$, then $\mu$ has finite exponential moments, that is, it
     Suppose that $X_{t}$ has finite $g$-moment for some $t>0$. It follows from
 
     $$
-        E\left[g\left(X_{t}\right)\right]=\iint g(x+y) \mu_{0}^{t}(dx) \mu_{1}^{t}(dy) \quad  \textcolor{blue}{(X_{t}^{1} \perp\!\!\!\perp X_{t}^{2})}
+        E\left[g\left(X_{t}\right)\right]
+        = \textcolor{blue}{ E\left[g\left(X^{0}_{t} + X^{1}_{t}\right)\right]}
+        = \iint g(x+y) \mu_{0}^{t}(dx) \mu_{1}^{t}(dy)
     $$
 
     that $\int g(x+y) \mu_{1}^{t}(dy)<\infty$ for some $x$. This means \textcolor{blue}{(see (24.1) in sato)}
@@ -274,18 +276,28 @@ function on $\mathbb{C}$, then $\mu$ has finite exponential moments, that is, it
         E\left[g\left(X_{t}\right)\right] \leq \textcolor{blue}{E\left[g\left(X_{t}^{0} + X_{t}^{1}\right)\right]}   \le a b E\left[\mathrm{e}^{\mathrm{c}\left|X_{t}^{0}\right|}\right] E\left[g\left(X_{t}^{1}\right)\right]
     $$
 
-    by (25.1) and (25.3), it remains only to show that $E\left[e^{\mathrm{ec} X_{i}^{0}}\right]<\infty$.
+    by (25.1) and (25.3), it remains only to show that $E\left[e^{c |X_{t}^{0}| }\right]<\infty$.
     Let $X_{j}^{0}(t)$, $1 \leq j \leq d$, be the components of $X_{t}^{0}$. Then
 
-    $$
-        E\left[e^{c\left|X_{i}^{0}\right|}\right] \leq E\left[\exp \left(c \sum_{j=1}^{d}\left|X_{j}^{0}(t)\right|\right)\right] \leq E\left[\prod_{j=1}^{d}\left(e^{c X_{j}^{0}(t)}+e^{-c X_{j}^{0}(t)}\right)\right]
-    $$
+    \begin{align*}
+        E\left[e^{c\left|X_{t}^{0}\right|}\right] & \leq E\left[\exp \left(c \sum_{j=1}^{d}\left|X_{j}^{0}(t)\right|\right)\right] \leq E\left[\prod_{j=1}^{d}\left(e^{c X_{j}^{0}(t)}+e^{-c X_{j}^{0}(t)}\right)\right] \\
+                                                  & \textcolor{blue}{
+            \le  E \left[ \sum_{\alpha_{j} \in \{-1,1\}} e^{c \sum_{ j=1} ^{d} \alpha_{j} X^{0}_{j}(t)} \right]
+            \le  \sum_{\alpha_{j} \in \{-1,1\}} E \left[e^{c \sum_{ j=1} ^{d} \alpha_{j} X^{0}_{j}(t)} \right]
+        }
+    \end{align*}
 
-    which is written as a sum of a finite number of terms of the form $E\left[\exp X_{t}^{\sharp}\right]$
-    with $X_{t}^{\sharp}$ being a linear combination of $X_{j}^{0}(t), 1 \leq j \leq d$. Since $\left\{X_{t}^{\sharp}\right\}$
-    is a Lévy process on $\mathbb{R}$ with Lévy measure supported on a bounded set (use Proposition 11.10),
-    $E\left[\exp X_{t}^{\sharp}\right]$ is finite by virtue of Lemmas 25.6 and 25.7. This proves all statements in the theorem.
-
+    \textcolor{red}{
+        which is written as a sum of a finite number of terms of the form $E\left[\exp X_{t}^{\sharp}\right]$
+        with $X_{t}^{\sharp}$ being a linear combination of $X_{j}^{0}(t), 1 \leq j \leq d$. Since $\left\{X_{t}^{\sharp}\right\}$
+        is a Lévy process on $\mathbb{R}$ with Lévy measure supported on a bounded set (use Proposition 11.10),
+        $E\left[\exp X_{t}^{\sharp}\right]$ is finite by virtue of Lemmas 25.6 and 25.7. This proves all statements in the theorem.\\
+    }
+    \textcolor{blue}{
+    Since $X^{0}_{t}$ is a Lévy process with a Lévy measure supported on a bounded set,
+    $X^{0}_{j}(t)$ is a Lévy process on $\mathbb{R}$ with a Lévy measure supported on a bounded set
+    therefore it has finite (exponential) moments by (25.7) and so do any linear combinations $\sum_{j=1}^{d} \alpha_{j} X^{0}_{j}(t)$. I.e. $E\left[e^{c\left|X_{t}^{0}\right|}\right] \le  E \left[e^{c \sum_{ j=1} ^{d} \alpha_{j} X^{0}_{j}(t)} \right] <  \infty$.
+    }
 \end{proof}
 
 Corollary 25.8. Let $\alpha>0,0<\beta \leq 1$, and $\gamma \geq 0$. None of the properties
@@ -355,13 +367,34 @@ When this condition is met, we can find $m_{j}(t)=E\left[X_{j}(t)\right]$ expres
     m_{j}(t)=t\left(\int_{|x|>1} x_{j} \nu(\mathrm{d} x)+\gamma_{j}\right)=t \gamma_{1, j}, \quad j=1, \ldots, d \tag{25.7}
 \end{equation*}
 
-differentiating $\widehat{\mu}(z)$ (Proposition 2.5(ix)). Here $\gamma_{1, j}$ is the $j$ th
+differentiating $\widehat{\mu}(z)$ (Proposition 2.5(ix) , \textcolor{blue}{$m_{j}(t) = \frac{1}{i} \partial z_{j}|_{z=0} \widehat{\mu_{t}}(z)$}).
+
+\textcolor{blue}{
+    \small
+    \begin{align*}
+        \widehat{\mu}_{t}(z)                                                      =
+        \operatorname{e x p} \biggl[-t                                           & \left(\frac{1} {2} \langle z, A z \rangle +i \langle\gamma, z \rangle+\int_{\mathbb{R}^{d}} \bigl( \operatorname{e x p} ( i \langle z, x \rangle)-1-i \langle z, x \rangle I_{D} ( x ) \bigr) \, \nu( d x )\right) \biggr], \\
+        \partial z_{j}|_{z=0}\left( -\frac{1} {2} \langle z, A z \rangle \right) & =
+        -\frac{1} {2} \langle \partial z_{j}(z), A z|_{z=0} \rangle
+        -\frac{1} {2} \langle z|_{z=0}, A \partial z_{j}(z) \rangle=0,                                                                                                                                                                                                                                         \\
+        \partial z_{j}|_{z=0}\left( i \langle \gamma, z \rangle \right)          & = i \langle\gamma, \partial z_{j}|_{z=0}(z) \rangle =
+        i \langle\gamma, e_{j}  \rangle = i \gamma_{j}                           ,                                                                                                                                                                                                                             \\
+        \partial z_{j}|_{z=0}                                                    & \left( \int_{\mathbb{R}^{d}}                         \bigl( \operatorname{e x p} ( i \langle z, x \rangle)-1-i \langle z, x \rangle I_{D} ( x ) \bigr) \nu(dx) \right)                                                      \\
+                                                                                 & = \int_{\mathbb{R}^{d}}                         \bigl( ix_{j}-i x_{j}I_{D} ( x ) \bigr) \nu(dx)                                                                                                                             \\
+                                                                                 & = i\int_{D^{c}} x_{j} \nu(dx)
+    \end{align*}
+}
+
+Here $\gamma_{1, j}$ is the $j$ th
 component of the center $\gamma_{1}$ in (8.8). Similarly, $E\left[\left|X_{t}\right|^{2}\right]<\infty$
 for all $t>0$ if and only if $\int_{|x|>1}|x|^{2} \nu(\mathrm{d} x)<\infty$. In this case,
 
-$$
-    v_{j k}(t)=E\left[\left(X_{j}(t)-m_{j}(t)\right)\left(X_{k}(t)-m_{k}(t)\right)\right], \quad j, k=1, \ldots, d
-$$
+\begin{align*}
+    v_{j k}(t) & =E\left[\left(X_{j}(t)-m_{j}(t)\right)\left(X_{k}(t)-m_{k}(t)\right)\right], \quad j, k=1, \ldots, d \\
+               & \textcolor{blue}{= E[X_{j}(t)X_{k}(t)] - m_{j}(t)m_{k}(t)}                                           \\
+               & \textcolor{blue}{ = -\partial z_{j} \partial z_{k} \widehat{\mu_{t}}(z)|_{z=0} - m_{j}(t)m_{k}(t)}
+\end{align*}
+
 
 the $(j, k)$ elements of the covariance matrix of $X(t)$, are expressed as
 
