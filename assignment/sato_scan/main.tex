@@ -395,13 +395,26 @@ for all $t>0$ if and only if $\int_{|x|>1}|x|^{2} \nu(\mathrm{d} x)<\infty$. In 
                & \textcolor{blue}{ = -\partial z_{j} \partial z_{k} \widehat{\mu_{t}}(z)|_{z=0} - m_{j}(t)m_{k}(t)}
 \end{align*}
 
-
 the $(j, k)$ elements of the covariance matrix of $X(t)$, are expressed as
 
 
 \begin{equation*}
     v_{j k}(t)=t\left(A_{j k}+\int_{\mathbb{R}^{d}} x_{j} x_{k} \nu(\mathrm{d} x)\right) \tag{25:8}
 \end{equation*}
+
+\textcolor{blue}{
+    \begin{align*}
+        -\partial z_{j} \partial z_{k} \left( -\frac{t}{2} \left< z,Az \right> \right) & =
+        \frac{t}{2}\partial z_{j} \left( \left<e_{k}, Az \right> + \left<z , Ae_{k} \right>  \right)                                                                                                                                            \\
+                                                                                       & = \frac{t}{2} \left( \left<e_{k}, Ae_{j} \right> + \left<e_{j} , Ae_{k} \right>  \right)                                                               \\
+                                                                                       & = tA_{jk}                                                                                                                                              \\
+        -\partial z_{j} \partial z_{k} \left(  i\left< \gamma,z \right> \right)        & = -i \partial z_{j} \left< \gamma, e_{k} \right>                                                                                                       \\
+                                                                                       & = 0                                                                                                                                                    \\
+        -\partial z_{j} \partial z_{k}|_{z=0}                                          & \left(t \int_{\mathbb{R}^{d}} \bigl( \operatorname{e x p} ( i \langle z, x \rangle)-1-i \langle z, x \rangle I_{D} ( x ) \bigr) \, \nu( d x )  \right) \\
+                                                                                       & = -t\int_{\mathbb{R}^{d}}  \partial z_{j} \partial z_{k} |_{z=0}\operatorname{e x p} ( i \langle z, x \rangle) \nu( d x )                              \\
+                                                                                       & = t\int_{\mathbb{R}^{d}} x_{j} x_{k} \nu( d x )
+    \end{align*}
+}
 
 
 Theorem 25.3 shows that, for a Lévy process $\left\{X_{t}\right\}$ with Lévy measure $\nu$,
