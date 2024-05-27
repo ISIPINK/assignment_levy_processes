@@ -13,6 +13,7 @@
 \usepackage{pdfpages}
 \usepackage{transparent}
 \usepackage{xcolor}
+\usepackage{cancel}
 
 
 \title{25. Moments}
@@ -389,11 +390,17 @@ Here $\gamma_{1, j}$ is the $j$ th
 component of the center $\gamma_{1}$ in (8.8). Similarly, $E\left[\left|X_{t}\right|^{2}\right]<\infty$
 for all $t>0$ if and only if $\int_{|x|>1}|x|^{2} \nu(\mathrm{d} x)<\infty$. In this case,
 
-\begin{align*}
-    v_{j k}(t) & =E\left[\left(X_{j}(t)-m_{j}(t)\right)\left(X_{k}(t)-m_{k}(t)\right)\right], \quad j, k=1, \ldots, d \\
-               & \textcolor{blue}{= E[X_{j}(t)X_{k}(t)] - m_{j}(t)m_{k}(t)}                                           \\
-               & \textcolor{blue}{ = -\partial z_{j} \partial z_{k} \widehat{\mu_{t}}(z)|_{z=0} - m_{j}(t)m_{k}(t)}
-\end{align*}
+{ \small
+        \begin{align*}
+            v_{j k}(t) & =E\left[\left(X_{j}(t)-m_{j}(t)\right)\left(X_{k}(t)-m_{k}(t)\right)\right], \quad j, k=1, \ldots, d                                                                                                                                                                                                                                      \\
+                       & = \textcolor{blue}{ E[X_{j}(t)X_{k}(t)] - m_{j}(t)m_{k}(t)}                                                                                                                                                                                                                                                                               \\
+                       & = \textcolor{blue}{  -\partial z_{j} \partial z_{k} \widehat{\mu_{t}}(z)|_{z=0} - m_{j}(t)m_{k}(t)}                                                                                                                                                                                                                                       \\
+                       & = \textcolor{blue}{  -\partial z_{j} \left( \partial z_{k} (\ln \widehat{\mu_{t}}(z)) \widehat{\mu_{t}}(z) \right) |_{z=0} - m_{j}(t)m_{k}(t)}                                                                                                                                                                                            \\
+                       & = \textcolor{blue}{  -\partial z_{j} \partial z_{k}|_{z=0} (\ln \widehat{\mu_{t}}(z)) \widehat{\mu_{t}}(z)   -\partial z_{j}( \ln\widehat{\mu_{t}}(z) )\partial z_{k}( \ln\widehat{\mu_{t}}(z) )\widehat{\mu_{t}}(z)|_{z=0} - m_{j}(t)m_{k}(t)}                                                                                           \\
+                       & = \textcolor{blue}{  -\partial z_{j} \partial z_{k}|_{z=0} (\ln \widehat{\mu_{t}}(z)) \cancelto{1}{\widehat{\mu_{t}}(z)}   -\cancelto{i m_{j}(t)}{\partial z_{j}( \ln\widehat{\mu_{t}}(z) )}\cancelto{im_{k}(t)}{\partial z_{k}( \ln\widehat{\mu_{t}}(z) )} \hspace{0.3cm}\cancelto{1}{\widehat{\mu_{t}}(z)}\,|_{z=0} - m_{j}(t)m_{k}(t)} \\
+                       & = \textcolor{blue}{  -\partial z_{j} \partial z_{k}|_{z=0} (\ln \widehat{\mu_{t}}(z)) }
+        \end{align*}
+    }
 
 the $(j, k)$ elements of the covariance matrix of $X(t)$, are expressed as
 
