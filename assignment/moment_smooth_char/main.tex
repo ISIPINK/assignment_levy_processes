@@ -58,82 +58,100 @@
     \end{align}
 \end{proof}
 
-\begin{lemma}[$\Delta c$]
-    \begin{equation}
-        \forall c \in \mathbb{R}: \Delta_{h} c =c-c = 0
-        .
-    \end{equation}
-\end{lemma}
+% \begin{lemma}[$\Delta c$]
+%     \begin{equation}
+%         \forall c \in \mathbb{R}: \Delta_{h} c =c-c = 0
+%         .
+%     \end{equation}
+% \end{lemma}
 
 
-\begin{lemma}[$\Delta_{h} t^{n}$]
-    $\forall n>0 \in \mathbb{N}: \Delta_{h} t^{n}$ is a polynomial of degree $n-1$
-    with leading coefficient $2hn$.
-\end{lemma}
+% \begin{lemma}[$\Delta_{h} t^{n}$]
+%     $\forall n>0 \in \mathbb{N}: \Delta_{h} t^{n}$ is a polynomial of degree $n-1$
+%     with leading coefficient $2hn$.
+% \end{lemma}
 
-\begin{proof}
-    \begin{equation}
-        \Delta_{h} t^{n} = (t+h) ^{n}- (t-h) ^{n}  .
-    \end{equation}
-    So $\Delta_{h} t^{n}$  is a polynomial, verify the degree and leading coefficient by looking at its derivatives
-    (or use the binomial theorem):
-    \begin{align}
-        \frac{d^{n}}{dt^{n}}\left((t+h) ^{n}- (t-h) ^{n} \right)     & = n! -n! =0.         \\
-        \frac{d^{n-1}}{dt^{n-1}}\left((t+h) ^{n}- (t-h) ^{n} \right) & = n!(t+h) - n!(t-h). \\
-                                                                     & = 2h n! \neq 0.
-    \end{align}
+% \begin{proof}
+%     \begin{equation}
+%         \Delta_{h} t^{n} = (t+h) ^{n}- (t-h) ^{n}  .
+%     \end{equation}
+%     So $\Delta_{h} t^{n}$  is a polynomial, verify the degree and leading coefficient by looking at its derivatives
+%     (or use the binomial theorem):
+%     \begin{align}
+%         \frac{d^{n}}{dt^{n}}\left((t+h) ^{n}- (t-h) ^{n} \right)     & = n! -n! =0.         \\
+%         \frac{d^{n-1}}{dt^{n-1}}\left((t+h) ^{n}- (t-h) ^{n} \right) & = n!(t+h) - n!(t-h). \\
+%                                                                      & = 2h n! \neq 0.
+%     \end{align}
 
-\end{proof}
+% \end{proof}
 
-\begin{lemma}[$\Delta^{k}_{h} t^{n}$]
-    $\forall n,k \in \mathbb{N}, n<k: \Delta^{k}_{h} t^{n} = 0$.
-\end{lemma}
+% \begin{lemma}[$\Delta^{k}_{h} t^{n}$]
+%     $\forall n,k \in \mathbb{N}, n<k: \Delta^{k}_{h} t^{n} = 0$.
+% \end{lemma}
 
-\begin{proof}
-    Follows from the previous $2$ lemmas and linearity of $\Delta^{k}_{h}$.
-\end{proof}
+% \begin{proof}
+%     Follows from the previous $2$ lemmas and linearity of $\Delta^{k}_{h}$.
+% \end{proof}
 
-\begin{lemma}[$\Delta^{k}_{h} t^{k}$]
-    $\forall k \in \mathbb{N}: \Delta^{k}_{h} t^{k} = (2h)^{k} k!$.
-\end{lemma}
+% \begin{lemma}[$\Delta^{k}_{h} t^{k}$]
+%     $\forall k \in \mathbb{N}: \Delta^{k}_{h} t^{k} = (2h)^{k} k!$.
+% \end{lemma}
 
-\begin{proof}
-    Proof by induction. Base case $k=0$ is trivial. Induction hypothesis:
-    \begin{equation}
-        \forall l<k:  \Delta^{l}_{h} t^{l} = (2h)^{l} l!.
-    \end{equation}
-    Induction step, use previous lemmas:
-    \begin{align}
-        \Delta^{k}_{h} t^{k} & = \Delta^{k-1}_{h}\Delta_{h} t^{k}                     \\
-                             & = \Delta^{k-1}_{h}\left( (t+h)^{k} - (t-h)^{k} \right) \\
-                             & = \Delta^{k-1}_{h}\left( 2hk t^{k-1} + ... \right)     \\
-                             & = \Delta^{k-1}_{h}\left( 2hk t^{k-1}\right)            \\
-                             & =2h  \Delta^{k-1}_{h}\left( t^{k-1}\right)             \\
-                             & =2hk  (2h)^{k-1} (k-1)!                                \\
-                             & =  (2h)^{k} k!
-    \end{align}
-\end{proof}
+% \begin{proof}
+%     Proof by induction. Base case $k=0$ is trivial. Induction hypothesis:
+%     \begin{equation}
+%         \forall l<k:  \Delta^{l}_{h} t^{l} = (2h)^{l} l!.
+%     \end{equation}
+%     Induction step, use previous lemmas:
+%     \begin{align}
+%         \Delta^{k}_{h} t^{k} & = \Delta^{k-1}_{h}\Delta_{h} t^{k}                     \\
+%                              & = \Delta^{k-1}_{h}\left( (t+h)^{k} - (t-h)^{k} \right) \\
+%                              & = \Delta^{k-1}_{h}\left( 2hk t^{k-1} + ... \right)     \\
+%                              & = \Delta^{k-1}_{h}\left( 2hk t^{k-1}\right)            \\
+%                              & =2hk  \Delta^{k-1}_{h}\left( t^{k-1}\right)            \\
+%                              & =2hk  (2h)^{k-1} (k-1)!                                \\
+%                              & =  (2h)^{k} k!
+%     \end{align}
+% \end{proof}
 
 
 \begin{theorem}[central finite difference formula]
     $\forall k \in \mathbb{N}$ $\forall$  $k$-continuously differentiable $f$'s at $0$:
+    $\exists \delta>0: \forall |s|<\delta: $
     \begin{equation}
-        f^{(k)}(0) = \lim_{h \to 0} \frac{\Delta^{k}_{h}|_{t=0} f(t)}{(2h)^{k}}.
+        f^{(k)}(s) = \lim_{h \to 0} \frac{\Delta^{k}_{h} f(t)|_{t=s}}{(2h)^{k}}.
     \end{equation}
 \end{theorem}
 
 \begin{proof}
-    Follows from Taylor's theorem and previous lemma.
+    Follows by induction and the mean value theorem. Base case $k=0$ is trivial.
+    Induction hypothesis:
+    \begin{equation}
+        \exists \delta>0: \forall |s|<\delta: \forall l<k: f^{(l)}(s) = \lim_{h \to 0} \frac{\Delta^{l}_{h} f(t)|_{t=s}}{(2h)^{l}}
+        .
+    \end{equation}
+    Induction step:
     \begin{align}
-         & \lim_{h \to 0} \frac{\Delta^{k}_{h}|_{t=0} f(t)}{(2h)^{k}}                                                                   \\
-         & = \lim_{h \to 0} \frac{\Delta^{k}_{h}|_{t=0} \left( \sum_{n=0}^{k-1} \frac{f^{(n)}(0)}{n!} t^n
-        + \left(\frac{f^{(k)}(0)}{k!} + h_{k}(t)\right)t^{k} \right)  }{(2h)^{k}}                                                       \\
-         & = \lim_{h \to 0} \frac{\Delta^{k}_{h}|_{t=0} \left( \left(\frac{f^{(k)}(0)}{k!} + h_{k}(t)\right)t^{k} \right)  }{(2h)^{k}}  \\
-         & = \lim_{h \to 0} \frac{\left(\frac{f^{(k)}(0)}{k!} + h_{k}(t)\right) \Delta^{k}_{h}|_{t=0} \left( t^{k} \right)  }{(2h)^{k}} \\
-         & = \lim_{h \to 0} \frac{\left(\frac{f^{(k)}(0)}{k!} + h_{k}(t)\right) (2h)^{k} k!  }{(2h)^{k}}                                \\
-         & = \lim_{h \to 0} f^{(k)}(0) + h_{k}(t) k!                                                                                    \\
-         & = f^{(k)}(0)
+         & \lim_{h \to 0} \frac{\Delta^{k}_{h} f(t)|_{t=s}}{(2h)^{k}}                                         \\
+         & = \lim_{h \to 0} \frac{\Delta_{h}\Delta^{k-1}_{h} f(t)|_{t=s}}{(2h)^{k}}                           \\
+         & = \lim_{h \to 0} \frac{\Delta^{k-1}_{h} f(t)(|_{t=s+h}-|_{t=s-h})}{(2h)^{k}}                       \\
+         & = \lim_{h \to 0} \frac{2h (\Delta^{k-1}_{h} f(t))'|_{t=z_{h}}}{(2h)^{k}}, z_{h} \in[s-h,s+h]       \\
+         & = \lim_{h \to 0} \frac{\Delta^{k-1}_{h} f'(t)|_{t=z_{h}}}{(2h)^{k-1}} = f'^{(k-1)}(s) = f^{(k)}(s)
+        .
     \end{align}
+    The induction hypothesis may be applied because $\Delta^{k-1}_{h} f'(t)$ is $k-1$-continuously differentiable.
+
+    % Follows from Taylor's theorem and previous lemma.
+    % \begin{align}
+    %      & \lim_{h \to 0} \frac{\Delta^{k}_{h}|_{t=0} f(t)}{(2h)^{k}}                                                                   \\
+    %      & = \lim_{h \to 0} \frac{\Delta^{k}_{h}|_{t=0} \left( \sum_{n=0}^{k-1} \frac{f^{(n)}(0)}{n!} t^n
+    %     + \left(\frac{f^{(k)}(0)}{k!} + h_{k}(t)\right)t^{k} \right)  }{(2h)^{k}}                                                       \\
+    %      & = \lim_{h \to 0} \frac{\Delta^{k}_{h}|_{t=0} \left( \left(\frac{f^{(k)}(0)}{k!} + h_{k}(t)\right)t^{k} \right)  }{(2h)^{k}}  \\
+    %      & = \lim_{h \to 0} \frac{\left(\frac{f^{(k)}(0)}{k!} + h_{k}(t)\right) \Delta^{k}_{h}|_{t=0} \left( t^{k} \right)  }{(2h)^{k}} \\
+    %      & = \lim_{h \to 0} \frac{\left(\frac{f^{(k)}(0)}{k!} + h_{k}(t)\right) (2h)^{k} k!  }{(2h)^{k}}                                \\
+    %      & = \lim_{h \to 0} f^{(k)}(0) + h_{k}(t) k!                                                                                    \\
+    %      & = f^{(k)}(0)
+    % \end{align}
 \end{proof}
 
 
