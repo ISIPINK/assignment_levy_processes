@@ -40,7 +40,7 @@
 
 \section{Proof of Existence of Moments from Smoothness of Characteristic Function}
 
-In this subsection we prove partial reverse fact that that existence of moments implies smoothness of the characteristic function. 
+In this section we prove the partial reverse of the existence of moments implies smoothness of the characteristic function.
 
 \begin{definition}[$\Delta^{k}_{h}$]
     We define $\forall h>0: \Delta_{h}$ ($h$-central difference) of $f:\mathbb{R}\rightarrow \mathbb{R}$ as follows:
@@ -102,7 +102,7 @@ In this subsection we prove partial reverse fact that that existence of moments 
          & = \lim_{h \to 0} f^{(k)}(t)|_{t=z^{k}_{h}},  z^{k}_{h} \in [-k h, k h]                                                                  \\
          & = \lim_{h \to 0} f^{(k)}(z^{k}_{h}) = f^{(k)}(0).
     \end{align}
-    Last line follows because $f^{k}$ is continuous at $0$.
+    Last line follows because $f^{k}$ is continuous at $0$. This proof may need some modification because we need to assume that there exist a neighborhood around $0$ where $f$ is $k$-times continuously differentiable instead only $k$-times continuously differentiable at $0$.
 \end{proof}
 
 
@@ -127,192 +127,155 @@ In this subsection we prove partial reverse fact that that existence of moments 
     Where last line follows by Fatou's lemma.
 \end{proof}
 
+\section{Submultiplicative Functions}
+In this section we introduce submultiplicative functions and prove some properties of them.
 
+\begin{definition}[submultiplicative function]
+    A function $g(x)$ on $\mathbb{R}^{d}$ is submultiplicative if and only if it is nonnegative
+    and $\exists a \in \mathbb{R}>0:$
 
+    \begin{equation}
+        g(x+y) \leq a g(x) g(y) \text { for } x, y \in \mathbb{R}^{d}
+        .
+    \end{equation}
 
-\section*{25. Moments}
-We define the $g$-moment of a random variable and discuss finiteness of the $g$-moment of $X_{t}$ for a Lévy process
-$\left\{X_{t}\right\}$. \\
+\end{definition}
 
-DEFINITION 25.1. Let $g(x)$ be a nonnegative measurable function on $\mathbb{R}^{d}$. We call
-$\int g(x) \mu(\mathrm{d} x)$ the $g$-moment of a measure $\mu$ on $\mathbb{R}^{d}$. We call $E[g(X)]$ the $g$-moment of
-a random variable $X$ on $\mathbb{R}^{d}$. \\
-
-DEFINITION 25.2. A function $g(x)$ on $\mathbb{R}^{d}$ is called submultiplicative if it is nonnegative
-and there is a constant $a>0$ such that
-
-\begin{equation*}
-    g(x+y) \leq a g(x) g(y) \text { for } x, y \in \mathbb{R}^{d} \tag{25.1}
-\end{equation*}
-
-\noindent A function bounded on every compact set is called locally bounded. \\
-
-
-\textcolor{blue}{
-    LEMMA 25.i1 Let $g(x)$ be a submultiplicative with constant $a$ then:
-    $$
+\begin{lemma}[induction on submultiplicativity]
+    Let $g(x)$ be a submultiplicative with constant $a$ then:
+    \begin{equation}
         \forall (x_{i})_{i} \subset \mathbb{R}^d:
         g\left(\sum_{i=1}^{n} x_{i}\right) \le a^{n-1} \prod_{i=1}^{n} g(x_{i})  .
-    $$
-    \begin{proof}
-        This follows by induction on $n$. \\
-        Base case: $n=2$ is true by submultiplicativity. \\
-        Induction hypothesis: assume $2 \le  n \le k$. \\
-        Induction step: $n=k+1$:
-        \begin{align*}
-            \forall (x_{i})_{i}                  & \subset \mathbb{R}^d:                                                                          \\
-            g\left(\sum_{i=1}^{k+1} x_{i}\right) & = g\left(\sum_{i=1}^{k} x_{i} + x_{k+1}\right)                                                 \\
-                                                 & \le a g\left(\sum_{i=1}^{k} x_{i}\right) g(x_{k+1})  \text{ by submultiplicativity}            \\
-                                                 & \le a a^{k-1} \prod_{i=1}^{k}  g\left(x_{i}\right) g(x_{k+1})  \text{ by induction hypothesis} \\
-                                                 & \le a^{k} \prod_{i=1}^{k+1}  g\left(x_{i}\right) .
-        \end{align*}
-    \end{proof}
-}
-
-THEOREM 25.3 ($g$-Moment). Let $g$ be a submultiplicative, locally bounded, measurable
-function on $\mathbb{R}^{d}$. Then, finiteness of the $g$-moment is not a time dependent
-distributional property in the class of Lévy processes. Let $\left\{X_{t}\right\}$ be a Lévy process
-on $\mathbb{R}^{d}$ with Lévy measure $\nu$. Then, $X_{t}$ has finite $g$-moment for every $t>0$ if
-and only if $[\nu]_{\{|x|>1\}}$ has finite $g$-moment. \\
-
-The following facts indicate the wide applicability of the theorem. \\
-
-% it isnt exactly what I need
-% \textcolor{blue}{
-%     LEMMA 25.i2 Let $f:\mathbb{R} \rightarrow \mathbb{R} $ be a function and 
-%     $$
-%     R(x_{1},x_{2}) = \frac{f(x_{1}) - f(x_{2})}{ x_{1} - x_{2}}.
-%     $$ 
-%     The $f$ is convex if and only if $R(x_{1},x_{2})$ is monotonically non-decreasing in $x_{1}$ for all $x_{2}$.
-
-%     \begin{proof}
-%         not yet
-%     \end{proof}
-% }
-
-PROPOSITION 25.4. \\
-(i) The product of two submultiplicative functions is submultiplicative. \\
-(ii) If $g(x)$ is submultiplicative on $\mathbb{R}^{d}$, then so is $g(c x+\gamma)^{\alpha}$
-with $c \in \mathbb{R}$, $\gamma \in \mathbb{R}^{d}$, and $\alpha>0$. \\
-(iii) Let $0<\beta \leq 1$. Then the following functions are submultiplicative:
-
-$$
-    \begin{gathered}
-        |x| \vee 1,\left|x_{j}\right| \vee 1, x_{j} \vee 1, \exp \left(|x|^{\beta}\right), \exp \left(\left|x_{j}\right|^{\beta}\right) \\
-        \exp \left(\left(x_{j} \vee 0\right)^{\beta}\right), \log (|x| \vee e), \log \left(\left|x_{j}\right| \vee e\right), \log \left(x_{j} \vee \mathrm{e}\right) \\
-        \log \log \left(|x| \vee e^{e}\right), \log \log \left(\left|x_{j}\right| \vee e^{e}\right), \log \log \left(x_{j} \vee e^{e}\right)
-    \end{gathered}
-$$
-
-Here $x_{j}$ is the $j$ th component of $x$.
+    \end{equation}
+\end{lemma}
 
 \begin{proof}
+    This follows by induction on $n$. \\
+    Base case: $n=2$ is true by submultiplicativity. \\
+    Induction hypothesis: assume $2 \le  n \le k$. \\
+    Induction step: $n=k+1$:
+    \begin{align}
+        \forall (x_{i})_{i}                  & \subset \mathbb{R}^d:                                                                          \\
+        g\left(\sum_{i=1}^{k+1} x_{i}\right) & = g\left(\sum_{i=1}^{k} x_{i} + x_{k+1}\right)                                                 \\
+                                             & \le a g\left(\sum_{i=1}^{k} x_{i}\right) g(x_{k+1})  \text{ by submultiplicativity}            \\
+                                             & \le a a^{k-1} \prod_{i=1}^{k}  g\left(x_{i}\right) g(x_{k+1})  \text{ by induction hypothesis} \\
+                                             & \le a^{k} \prod_{i=1}^{k+1}  g\left(x_{i}\right) .
+    \end{align}
+\end{proof}
 
-    (i) \textcolor{red}{Immediate from the definition. \\}
-    \textcolor{blue}{
+\begin{lemma}
+    The product of two submultiplicative functions is submultiplicative.
+\end{lemma}
+
+\begin{proof}
     Let $g,h:\mathbb{R}^{d}\rightarrow \mathbb{R}$ be submultiplicative functions then:
     $$
         \forall x,y \in \mathbb{R}^{d}: g(x+y)h(x+y) \le a_{1} g(x)g(y) a_{2} h(x)h(y) \leq a_{1}a_{2} g(x)h(x)g(y)h(y).
     $$
-    So $gh:\mathbb{R}^{d}\rightarrow \mathbb{R}$ is submultiplicative.\\
-    }
+    So $gh:\mathbb{R}^{d}\rightarrow \mathbb{R}$ is submultiplicative.
+\end{proof}
 
-    (ii)
+\begin{lemma}
+    If $g(x)$ is submultiplicative on $\mathbb{R}^{d}$, then so is $g(c x+\gamma)^{\alpha}$
+    with $c \in \mathbb{R}$, $\gamma \in \mathbb{R}^{d}$, and $\alpha>0$.
+\end{lemma}
+
+\begin{proof}
     Let $g_{1}(x)=g(c x), g_{2}(x)=g(x+\gamma)$, and $g_{3}(x)=g(x)^{\alpha}$.
-    \textcolor{red}{Then it follows from (25.1) that $g_{1}(x+y) \leq a g_{1}(x) g_{1}(y), g_{2}(x+y) \leq
-            a^{2} g(-\gamma) g_{2}(x) g_{2}(y)$, and $g_{3}(x+y) \leq a^{\alpha} g_{3}(x) g_{3}(y)$. }
-    \textcolor{blue}{
-        \begin{align*}
-            \forall x,y & \in \mathbb{R}^{d}:                                                                                                                 \\
-            g_{1}(x+y)  & = g(c(x+y)) = g(c x + c y) \leq a g(c x) g(c y) = a g_{1}(x) g_{1}(y)                                                               \\
-            g_{2}(x+y)  & = g(x + y + \gamma) = g(x + \gamma + y + \gamma - \gamma)
-            \le a^{2} g(-\gamma) g(x+\gamma) g(y + \gamma)                                                                                                    \\
-                        & \le a^{2} g(-\gamma) g_{2}( x)g_{2}(y)                                                                                              \\
-            g_{3}(x+y)  & = g(x+y) ^{\alpha} \le \left(a g(x) g(y) \right) ^{\alpha}= a^{\alpha} g(x)^{\alpha} g(y)^{\alpha} = a^{\alpha} g_{3}(x) g_{3}(y) .
-        \end{align*}
-    }
-
-    (iii)
-    Let $h(u)$ be a positive increasing function on $\mathbb{R}$ such that, for some
-    $b \geq 0, h(u)$ is \textcolor{blue}{constant} on $(-\infty, b]$ and $\log h(u)$ is concave on $[b, \infty)$. Then
-    $h(u)$ is submultiplicative on $\mathbb{R}$. In fact, for $u, v \geq b \textcolor{blue}{ \ge 0}$,
-    \textcolor{blue}{by concaveness} the function $f(u)=\log h(u)$ satisfies
-
-    $$
-        \begin{aligned}
-            \textcolor{blue}{\frac{f(u+b)-f(u)}{b}  \leq \frac{f(2 b)-f(b)}{b}} & \Leftrightarrow f(u+b)-f(u)  \le f(2 b)-f(b) \\
-            \textcolor{blue}{\frac{f(u+v)-f(v)}{u}  \leq \frac{f(u+b)-f(b)}{u}} & \Leftrightarrow f(u+v)-f(v)  \le f(u+b)-f(b)
-        \end{aligned}
-    $$
-    \textcolor{blue}{ the first line is for $b \neq 0, b = 0$ is trivial }
-    and hence
-    \begin{align*}
-         & f(u+v)                   \leq f(u+b)-f(b)+f(v) \leq f(2 b)-2 f(b)+f(u)+f(v) \Leftrightarrow \\
-         & \textcolor{blue}{h(u+v)  \le \frac{h(2b)}{h(b)^{2}} h(u) h(v)}
-    \end{align*}
-
-    which shows
-
-    \begin{equation*}
-        h(u+v) \leq \text { const } h(u) h(v) \tag{25.2}
-    \end{equation*}
-
-
-    It follows \textcolor{blue}{(we miss the cases for $u \ge b \ge v, b \ge u,v $)} that (25.2) holds for all $u, v \in \mathbb{R}$. The functions
-    $u \vee 1, \exp \left((u \vee 0)^{\beta}\right)$, $\log (u \vee \mathrm{e})$, and
-    $\log \log \left(u \vee \mathrm{e}^{\mathrm{e}}\right)$ fulfil the conditions on
-    $h(u)$. By (25.2) and by the increasingness of $h$, the functions $h(|x|), h\left(\left|x_{j}\right|\right)$, and
-    $h\left(x_{j}\right)$ are submultiplicative on $\mathbb{R}^{d}$.
-
+    \begin{align}
+        \forall x,y & \in \mathbb{R}^{d}:                                                                                                                 \\
+        g_{1}(x+y)  & = g(c(x+y)) = g(c x + c y) \leq a g(c x) g(c y) = a g_{1}(x) g_{1}(y)                                                               \\
+        g_{2}(x+y)  & = g(x + y + \gamma) = g(x + \gamma + y + \gamma - \gamma)
+        \le a^{2} g(-\gamma) g(x+\gamma) g(y + \gamma)                                                                                                    \\
+                    & \le a^{2} g(-\gamma) g_{2}( x)g_{2}(y)                                                                                              \\
+        g_{3}(x+y)  & = g(x+y) ^{\alpha} \le \left(a g(x) g(y) \right) ^{\alpha}= a^{\alpha} g(x)^{\alpha} g(y)^{\alpha} = a^{\alpha} g_{3}(x) g_{3}(y) .
+    \end{align}
 \end{proof}
 
-We prove Theorem 25.3 after three lemmas.
-
-LEMMA 25.5. If $g(x)$ is submultiplicative and locally bounded, then
-
-\begin{equation*}
-    g(x) \leq b e^{c|x|} \tag{25.3}
-\end{equation*}
-with some $b>0$ and $c>0$.
+\begin{example}[submultiplicative functions]
+    The class of submultiplicative functions is broad. Let $0<\beta \leq 1$. Then the following functions are submultiplicative:
+    \begin{gather}
+        |x| \vee 1, \left|x_{j}\right| \vee 1, x_{j} \vee 1, \exp \left(|x|^{\beta}\right), \exp \left(\left|x_{j}\right|^{\beta}\right) \\
+        \exp \left(\left(x_{j} \vee 0\right)^{\beta}\right), \log (|x| \vee e), \log \left(\left|x_{j}\right| \vee e\right), \log \left(x_{j} \vee \mathrm{e}\right) \\
+        \log \log \left(|x| \vee e^{e}\right), \log \log \left(\left|x_{j}\right| \vee e^{e}\right), \log \log \left(x_{j} \vee e^{e}\right)
+    \end{gather}
+\end{example}
 
 \begin{proof}
-    \textcolor{red}{
-        Choose $b$ in such a way that $\sup _{|x| \leq 1} g(x) \leq b$ and $a b>1$. If $n-1<|x| \leq n$,
-        then
-    }
-    \textcolor{blue}{
-        $\sup _{|x| \leq 1} g(x) < \infty$ because $g$ is locally bounded, let $b = \max(\sup _{|x| \leq 1} g(x),\frac{1}{a}+1)$ such that $\sup _{|x| \leq 1} g(x)<b$ and $ab>1$.
-        $\forall x$ set $n_x = \lceil \left| x \right| \rceil$ implying $n_x-1 < \left| x \right| \leq n_x, \frac{x}{n_x} \in \{u | |u| \leq 1\} $, then
-    }
-    $$
-        g(x)
-        \textcolor{blue}{
-            = g\left(\sum_{i=1}^{n_x} \frac{x}{n_x}\right)
-        }
+    See \cite{sato_levy_2013} page 159 PROPOSITION 25.4 (iii).
+\end{proof}
+
+\section{Finiteness of the $g$-moments of a L\'{e}vy process}
+
+In this section we characterize the finiteness of the $g$-moment of a Lévy process in terms of the Lévy measure.
+
+\begin{definition}[$g$-moment]
+    Let $g(x)$ be a nonnegative measurable function on $\mathbb{R}^{d}$. We call
+    $\int g(x) \mu(\mathrm{d} x)$ the $g$-moment of a measure $\mu$ on $\mathbb{R}^{d}$. We call $E[g(X)]$ the $g$-moment of a random variable $X$ on $\mathbb{R}^{d}$.
+\end{definition}
+
+\begin{definition}[locally bounded function]
+    A function is locally bounded if and only if it is bounded on every compact set.
+\end{definition}
+
+The main result of the assignment is following theorem.
+
+
+\begin{theorem}[charaterization of finiteness of the $g$-moment of a L\'{e}vy process] \label{th:char finite moment}
+    Let $g$ be a submultiplicative, locally bounded, measurable
+    function on $\mathbb{R}^{d}$ and let $\left\{X_{t}\right\}$ be a Lévy process
+    on $\mathbb{R}^{d}$ with Lévy measure $\nu$. Then, $X_{t}$ has finite $g$-moment for every $t>0$ if
+    and only if $[\nu]_{\{|x|>1\}}$ has finite $g$-moment.
+\end{theorem}
+
+\begin{corollary}[time independent property]
+    Let $g$ be a submultiplicative, locally bounded, measurable
+    function on $\mathbb{R}^{d}$. Then, finiteness of the $g$-moment is not a time dependent
+    distributional property in the class of Lévy processes.
+\end{corollary}
+\begin{proof}
+    Follows directly from Theorem \ref{th:char finite moment}.
+\end{proof}
+
+We prove Theorem \ref{th:char finite moment} after three lemmas.
+
+\begin{lemma}[exponential bound for submultiplicative functions]
+    If $g(x)$ is submultiplicative and locally bounded, then
+
+    \begin{equation}
+        g(x) \leq b e^{c|x|}
+    \end{equation}
+    with some $b>0$ and $c>0$.
+\end{lemma}
+
+\begin{proof}
+    $\sup _{|x| \leq 1} g(x) < \infty$ because $g$ is locally bounded, let $b = \max(\sup _{|x| \leq 1} g(x),\frac{1}{a}+1)$ such that $\sup _{|x| \leq 1} g(x)\le b$ and $ab>1$.
+    $\forall x$ set $n_x = \lceil \left| x \right| \rceil$ implying $n_x-1 < \left| x \right| \leq n_x, |\frac{x}{n_x}|\le 1$ and $g(\frac{x}{n _{x}})\le b$, then
+    \begin{equation}
+        g(x) = g\left(\sum_{i=1}^{n_x} \frac{x}{n_x}\right)
         \leq a^{n_x-1} g\left(\frac{x}{n_x} \right)^{n_x} \leq a^{n_x-1} b^{n_x} \leq b(a b)^{|x|}
-        \textcolor{blue}{
-            \le b e^{\ln \left(ab\right)|x|}
-        }
-    $$
-    which shows (25.3).
+        \le b e^{\ln \left(ab\right)|x|}.
+    \end{equation}
 \end{proof}
 
-% similar to fourier stuff 
-LEMMA 25.6. Let $\mu$ be an infinitely divisible distribution on $\mathbb{R} $ with Lévy measure $\nu$
-supported on a bounded set \textcolor{blue}{$S\subset[-a, a]$}. Then $\widehat{\mu}(t)$ can be extended to an entire function on $\mathbb{C}$.
+\begin{lemma}\label{lem:supp entire}
+    Let $\mu$ be an infinitely divisible distribution on $\mathbb{R} $ with Lévy measure $\nu$
+    supported on a bounded set $S\subset[-a, a]$ for some $a>0 \in \mathbb{R}$.
+    Then $\widehat{\mu}(t)$ can be extended to an entire function on $\mathbb{C}$.
+\end{lemma}
 
 \begin{proof}
-    \textcolor{red}{There is a finite $a>0$ such that $S_{\nu} \subset[-a, a]$.} The Lévy representation of $\widehat{\mu}(t)$ is written as
-    \begin{align*}
-        \widehat{\mu}(t) & =\exp \left[-\frac{1}{2}At^{2} +\int_{[-a, a]}\left(\mathrm{e}^{i tx}-1-itx\right) \nu(dx)+i \gamma't \right]                                      \\
-                         & \textcolor{blue}{ =\exp \left[-\frac{1}{2}At^{2}+i \gamma't \right] \exp \left[\int_{-a}^{a}\left(\mathrm{e}^{i tx}-1-itx\right) \nu(dx) \right] }
-    \end{align*}
+    The Lévy representation of $\widehat{\mu}(t)$ is
+    \begin{align}
+        \widehat{\mu}(t) & =\exp \left[-\frac{1}{2}At^{2} +\int_{[-a, a]}\left(\mathrm{e}^{i tx}-1-itx\right) \nu(dx)+i \gamma't \right]                  \\
+                         & =\exp \left[-\frac{1}{2}At^{2}+i \gamma't \right] \exp \left[\int_{-a}^{a}\left(\mathrm{e}^{i tx}-1-itx\right) \nu(dx) \right]
+    \end{align}
 
     with some $\gamma^{\prime} \in \mathbb{R}$.
-    \textcolor{red}{The right-hand side is meaningful even if $t$ is complex. Denote
-        this function by $\Phi(t)$. Then $\Phi(t)$ is an entire function, since we can exchange the order of integration and differentiation.}
-    \textcolor{blue}{As products, sums, compositions and integrals of entire functions are entire (integrals follow from Morera's theorem), $\exp$ and polynomials are entire it is sufficient to show that $\int_{-a}^{a}\left(\mathrm{e}^{i tx}-1-itx\right) \nu(dx)$ is finite for $t \in \mathbb{C}$:
-    \begin{align*}
+
+    As products, sums, compositions and integrals of entire functions are entire (integrals follow from Morera's theorem), $\exp$ and polynomials are entire it is sufficient to show that $\int_{-a}^{a}\left(\mathrm{e}^{i tx}-1-itx\right) \nu(dx)$ is finite for $t \in \mathbb{C}$:
+
+    \begin{align}
          & \left|\int_{-a}^{a}\left(\mathrm{e}^{i tx}-1-itx\right) \nu(dx) \right|                                                                                                 \\
          & \leq \int_{-a}^{a}|\mathrm{e}^{i tx}-1-itx| \nu(dx)                                                                                                                     \\
          & \leq \int_{-1}^{1}|\mathrm{e}^{i tx}-1-itx| \nu(dx) + \int_{[-a,a] \setminus [-1,1]}|\mathrm{e}^{i tx}-1-itx| \nu(dx)                                                   \\
@@ -326,46 +289,49 @@ supported on a bounded set \textcolor{blue}{$S\subset[-a, a]$}. Then $\widehat{\
          & \leq  (e^{|t| }-|t| -1)  \int_{-1}^{1}|x|^{2} \nu(dx) + I_{2}                                                                                                           \\
          & < \infty
         .
-    \end{align*}
+    \end{align}
     We implicitly used $|x|<1 \implies |x|^{n-2}<1$,$|\mathrm{e}^{i tx}-1-itx|$ continuous in $x$ so achieves maximum on compact sets (Weierstrass theorem) and
-    $$
+
+    \begin{equation}
         \int_{\mathbb{R}} (|x|^{2} \wedge 1) \nu(dx)<\infty \implies \int_{-1}^{1} |x|^{2} \nu(dx)<\infty, \int_{[-a,a] \setminus [-1,1]} \nu(dx)<\infty   .
-    $$
-    }
+    \end{equation}
+
 \end{proof}
 
 
-LEMMA 25.7. If $\mu$ is a probability measure on $\mathbb{R}$ and $\widehat{\mu}(z)$ is extendible to an entire
-function on $\mathbb{C}$, then $\mu$ has finite exponential moments, that is, it has finite $e^{c|x|}$-moment for every $c>0$.
+\begin{lemma}[entire characteristic functions imply finite exponential moments] \label{lem:entire_char_mom}
+    If $\mu$ is a probability measure on $\mathbb{R}$ and $\widehat{\mu}(z)$ is extendible to an entire
+    function on $\mathbb{C}$, then $\mu$ has finite exponential moments, that is, it has finite $e^{c|x|}$-moment for every $c>0$.
+\end{lemma}
 
 \begin{proof}
-    It follows from Proposition 2.5(x) (\textcolor{blue}{see} \ref{lemma:moment_smooth_char}) that $\alpha_{n}=\int x^{n} \mu(\mathrm{d} x)$ and
-    $\beta_{n}=\int|x|^{n} \mu(\mathrm{d} x)$ are finite for any $n \geq 1$. Since
-    $\frac{\mathrm{d}^{n} \widehat{\mu}}{\mathrm{d} z^{n}}(0)=\mathrm{i}^{n} \alpha_{n}$, we have
+    As entire functions are infinitely differentiable it follows from Lemma \ref{lemma:moment_smooth_char} that $\alpha_{2n}=\int x^{2n} \mu(\mathrm{d} x) =\int |x|^{2n} \mu(\mathrm{d} x) $ are finite for any $n \geq 1$ and by H\"{o}lder's inequality the uneven (absolute) moments $(\beta_{2n+1}),\alpha_{2n+1}$ are also finite.
+    Since $\frac{\mathrm{d}^{n} \widehat{\mu}}{\mathrm{d} z^{n}}(0)=\mathrm{i}^{n} \alpha_{n}$, we have
 
     $$
         \widehat{\mu}(z)=\sum_{n=0}^{\infty} \frac{1}{n !} \mathrm{i}^{n} \alpha_{n} z^{n}
     $$
 
-    the radius of convergence of the right-hand side being infinite \textcolor{blue}{ therefore $ \forall z: \left| \frac{z^{n} \alpha_{n}}{n!} \right| = \frac{|z|^{n} }{n!} \alpha_{n} \rightarrow 0$}. Notice that $\beta_{2 k}=\alpha_{2 k}$ and
-    $\beta_{2 k+1} \leq \frac{1}{2}\left(\alpha_{2 k+2}+\alpha_{2 k}\right)$, since
-    $|x|^{2 k+1} \leq \frac{1}{2}\left(x^{2 k+2}+x^{2 k}\right)$. It follows that
-    \textcolor{blue}{
-    $\forall c:\frac{2^{n}c^{n}}{n!} \beta_{n}\rightarrow 0 \implies \exists n _{c}: \forall n>n _{c}:\frac{2^{n}c^{n}}{n!} \beta_{n} <c$ and
-    }
+    as $\widehat{\mu}(z)$ is entire the radius of convergence of the right-hand side is infinite therefore $ \forall z \in \mathbb{C}: \left| \frac{z^{n} \alpha_{n}}{n!} \right| = \frac{|z|^{n} }{n!} \alpha_{n} \rightarrow 0$ and again by H\"{o}lder's inequality also  $\forall c \in \mathbb{R}:\frac{2^{n}c^{n}}{n!} \beta_{n}\rightarrow 0 \implies \forall \delta>0 \in \mathbb{R}, \exists n _{c} \in  \mathbb{N},  \forall n>n _{\delta} \in \mathbb{N}:\frac{2^{n}c^{n}}{n!} \beta_{n} <\delta$. Now the exponential moments are easily bounded:
 
-    \begin{align*}
-        \int \mathrm{e}^{c|x|} \mu(\mathrm{d} x) & \textcolor{blue}{=  \int \sum_{n=0}^{\infty} \frac{c^{n} |x|^{n} }{n!} \mu(\mathrm{d} x)}   \\
-                                                 & \textcolor{blue}{=  \sum_{n=0}^{\infty}\frac{c^{n} }{n!} \int |x|^{n} \mu(\mathrm{d} x)}    \\
-                                                 & \le \sum_{n=0}^{\infty} \frac{1}{n !} \beta_{n} c^{n}                                       \\
-                                                 & \textcolor{blue}{
-        \le\sum_{n=0}^{n _{c}} \frac{1}{n !} \beta_{n} c^{n} + \sum_{n=n _{c}}^{\infty} \frac{1}{n !} \beta_{n} c^{n}                        } \\
-                                                 & \textcolor{blue}{
-        \le\sum_{n=0}^{n _{c}} \frac{1}{n !} \beta_{n} c^{n} + \sum_{n=n _{c}}^{\infty} \frac{c}{2^{n}}                                 }      \\
-                                                 & < \infty
-    \end{align*}
-    completing the proof.
+    \begin{align}
+        \int \mathrm{e}^{c|x|} \mu(\mathrm{d} x) & =  \int \sum_{n=0}^{\infty} \frac{c^{n} |x|^{n} }{n!} \mu(\mathrm{d} x)      \\
+                                                 & =  \sum_{n=0}^{\infty}\frac{c^{n} }{n!} \int |x|^{n} \mu(\mathrm{d} x)       \\
+                                                 & \le \sum_{n=0}^{\infty} \frac{1}{n !} \beta_{n} c^{n}                        \\
+                                                 &
+        \le\sum_{n=0}^{n _{\delta}} \frac{1}{n !} \beta_{n} c^{n} + \sum_{n=n _{\delta}}^{\infty} \frac{1}{n !} \beta_{n} c^{n} \\
+                                                 &
+        \le\sum_{n=0}^{n _{\delta}} \frac{1}{n !} \beta_{n} c^{n} + \sum_{n=n _{\delta}}^{\infty} \frac{\delta}{2^{n}}          \\
+                                                 & < \infty.
+    \end{align}
+    Exchanging the sum and the integral is justified by Tonelli's theorem as the summand is positive.
+\end{proof}
 
+\begin{corollary}
+    A L\'{e}vy process with a L\'{e}vy measure supported on a bounded set has finite exponential moments.
+\end{corollary}
+\begin{proof}
+    Follows from Lemma's \ref{lemma:moment_smooth_char}, \ref{lem:supp entire}.
 \end{proof}
 
 \begin{proof}[Proof of Theorem 25.3]
