@@ -141,6 +141,8 @@ In this section we introduce submultiplicative functions and prove some properti
 
 \end{definition}
 
+We will use following lemma implicitly in the following proofs.
+
 \begin{lemma}[induction on submultiplicativity]
     Let $g(x)$ be a submultiplicative with constant $a$ then:
     \begin{equation}
@@ -192,7 +194,7 @@ In this section we introduce submultiplicative functions and prove some properti
     \end{align}
 \end{proof}
 
-\begin{example}[submultiplicative functions]
+\begin{example}[submultiplicative functions]\label{ex:submult_func}
     The class of submultiplicative functions is broad. Let $0<\beta \leq 1$. Then the following functions are submultiplicative:
     \begin{gather}
         |x| \vee 1, \left|x_{j}\right| \vee 1, x_{j} \vee 1, \exp \left(|x|^{\beta}\right), \exp \left(\left|x_{j}\right|^{\beta}\right) \\
@@ -239,7 +241,7 @@ The main result of the assignment is following theorem.
 
 We prove Theorem \ref{th:char finite moment} after three lemmas.
 
-\begin{lemma}[exponential bound for submultiplicative functions]
+\begin{lemma}[exponential bound for submultiplicative functions] \label{lem:exp bound}
     If $g(x)$ is submultiplicative and locally bounded, then
 
     \begin{equation}
@@ -327,107 +329,104 @@ We prove Theorem \ref{th:char finite moment} after three lemmas.
     Exchanging the sum and the integral is justified by Tonelli's theorem as the summand is positive.
 \end{proof}
 
-\begin{corollary}
+\begin{corollary} \label{cor:finite_moments}
     A L\'{e}vy process with a L\'{e}vy measure supported on a bounded set has finite exponential moments.
 \end{corollary}
+
 \begin{proof}
-    Follows from Lemma's \ref{lemma:moment_smooth_char}, \ref{lem:supp entire}.
+    Follows from Lemma's \ref{lem:entire_char_mom}, \ref{lem:supp entire}.
 \end{proof}
 
-\begin{proof}[Proof of Theorem 25.3]
+\begin{theorem}[compound Poisson process expansion] \label{th:compound_poisson expansion}
+    Let $Y_{t}$ be compound Poisson process with Lévy measure $\nu$ then
+    \begin{equation}
+        P_{Y_{t}}= e^{-t\int \nu(dx) }\sum_{n=0}^{\infty}  \frac{t^{n}}{n !} \nu^{n}.
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    \begin{align}
+        P[Y_{t} \in B] & = P \left[ \sum_{j=0}^{N_{t}} \varepsilon_{j} \in B \right]                                                     \\
+                       & = \sum_{n=0}^{\infty} P \left[ \sum_{j=0}^{n} \varepsilon_{j} \in B \right] P[N_{t}=n]                          \\
+                       & = \sum_{n=0}^{\infty} P \left[ \sum_{j=0}^{n} \varepsilon_{j} \in B \right]e^{-t\int \nu(dx) }\frac{t^{n}}{n !}
+    \end{align}
+\end{proof}
 
-    Let $\nu_{0}=[\nu]_{\{|x| \leq 1\}}$ and $\nu_{1}=[\nu]_{\{|x|>1\}}$. Construct
-    independent Lévy processes $\left\{X_{t}^{0}\right\}$ and $\left\{X_{t}^{1}\right\}$ on $\mathbb{R}^{d}$ such
+
+
+\begin{proof}[Proof of Theorem \ref{th:char finite moment}]
+
+    Let $\nu_{0}=[\nu]_{\{|x| \leq 1\}}$ and $\nu_{1}=[\nu]_{\{|x|>1\}}$. Let
+    $\left\{X_{t}^{i}\right\}$ be independent Lévy processes  $\mathbb{R}^{d}$ such
     that $\left\{X_{t}\right\} =_{d} \left\{X_{t}^{0}+ X_{t}^{1}\right\}$ and
-    $\left\{X_{t}^{1}\right\}$ is compound Poisson with Lévy measure $\nu_{1}$. Let $\mu_{0}^{\textcolor{blue}{t}}$ and $\mu_{1}^{\textcolor{blue}{t}}$ be
-    the distributions of $X_{\textcolor{blue}{t}}^{0}$ and $X_{\textcolor{blue}{t}}^{1}$, respectively.
+    $\left\{X_{t}^{1}\right\}$ is compound Poisson with Lévy measure $\nu_{1}$. Let $\mu_{0}^{t}$ and $\mu_{1}^{t}$ be
+    the distributions of $X_{t}^{0}$ and $X_{t}^{1}$, respectively.
 
-    Suppose that $X_{t}$ has finite $g$-moment for some $t>0$. It follows from
-
-    $$
-        \textcolor{blue}{\infty>}E\left[g\left(X_{t}\right)\right]
-        = \textcolor{blue}{ E\left[g\left(X^{0}_{t} + X^{1}_{t}\right)\right]}
-        = \iint g(x+y) \mu_{0}^{t}(dx) \mu_{1}^{t}(dy)
-    $$
-
-    that $\int g(x+y) \mu_{1}^{t}(dy)<\infty$ for some $x$. \textcolor{red}{This means}  \textcolor{blue}{ Because $\mu_{1}^{t}$ is a compound Poisson we have (see (24.1) condition on the Poisson distribution of the compound Poisson process)}
-
-    $$
+    Suppose that $X_{t}$ has a finite $g$-moment for some $t>0$. Then
+    \begin{equation}
+        \infty > E\left[g\left(X_{t}\right)\right]
+        = E\left[g\left(X^{0}_{t} + X^{1}_{t}\right)\right]
+        = \iint g(x+y) \mu_{1}^{t}(dy) \mu_{0}^{t}(dx) .
+    \end{equation}
+    If $\forall x \in \mathbb{R}^{d}:\int g(x+y) \mu_{1}^{t}(dy)=\infty \implies E[g(X_{t})] = \infty$ which is a contradiction. So $\exists x \in \mathbb{R}^{d}:\int g(x+y) \mu_{1}^{t}(dy)<\infty$.
+    Because $\mu_{1}^{t}$ is a compound Poisson we have by theorem \ref{th:compound_poisson expansion}:
+    \begin{equation}
         \sum_{n=0}^{\infty} \frac{t^{n}}{n !} \int g(x+y) \nu_{1}^{n}(dy)<\infty.
-    $$
+    \end{equation}
 
-    Since $g(y) \leq a g(-x) g(x+y) \leq a b e^{c|x|} g(x+y)$ by Lemma 25.5, we get
+    Since $g(y) \leq a g(-x) g(x+y) \leq a b e^{c|x|} g(x+y)$ by Lemma \ref{lem:exp bound}, we get
 
+    \begin{align}
+        \infty & > \sum_{n=0}^{\infty} \frac{t^{n}}{n !} \int g(x+y) \nu_{1}^{n}(dy)                                     \\
+               & \ge a^{-1} b^{-1} e^{-c|x|} \sum_{n=0}^{\infty} \frac{t^{n}}{n !} \int g(y) \nu_{1}^{n}(dy)             \\
+               & \ge a^{-1} b^{-1} e^{-c|x|} \frac{t^{n}}{n !} \int g(y) \nu_{1}^{n}(dy)  \quad \forall n \in \mathbb{N}
+    \end{align}
+    In particular $n=1$ hence $\int g(y) \nu_{1}(d y)<\infty$.
 
-    \begin{equation*}
-        \sum_{n=0}^{\infty} \frac{t^{n}}{n !} \int g(y) \nu_{1}^{n}(dy)<\infty. \tag{25.4}
-    \end{equation*}
+    Conversely, suppose that $\int g(y) \nu_{1}(dy) = G<\infty$ then we have to prove
+    that $E\left[g\left(X_{t}\right)\right]$ $<\infty$ for every $t$.
 
-    Hence $\int g(y) \nu_{1}(d y)<\infty$.
-
-    Conversely, suppose that $\int g(y) \nu_{1}(dy) \textcolor{blue}{= G}<\infty$. Let us prove
-    that $E\left[g\left(X_{t}\right)\right]$ $<\infty$ for every $t$. By the submultiplicativity,
-    \begin{align*}
-        E\left[g\left(X_{t}\right)\right] & =  \textcolor{blue}{E\left[g\left(X_{t}^{0} + X_{t}^{1}\right)\right]}                                    \\
-                                          & \leq \textcolor{blue}{aE\left[ g\left(X_{t}^{0}\right) g\left(X_{t}^{1}\right)\right]}                    \\
-                                          & = \textcolor{blue}{aE\left[ g\left(X_{t}^{0}\right)\right]  E\left[ g\left(X_{t}^{1}\right)\right]}       \\
-                                          & \le a b E\left[\mathrm{e}^{\mathrm{c}\left|X_{t}^{0}\right|}\right] E\left[g\left(X_{t}^{1}\right)\right]
-    \end{align*}
-
-    \textcolor{blue}{So it is sufficient to show that $E\left[g\left(X_{t}^{1}\right) \right]<\infty$ and
+    \begin{align}
+        E\left[g\left(X_{t}\right)\right] & =  E\left[g\left(X_{t}^{0} + X_{t}^{1}\right)\right]                                                                                                \\
+                                          & \leq aE\left[ g\left(X_{t}^{0}\right) g\left(X_{t}^{1}\right)\right]       \quad \text{by submultiplicativity}                                      \\
+                                          & = aE\left[ g\left(X_{t}^{0}\right)\right]  E\left[ g\left(X_{t}^{1}\right)\right]   \quad \text{by independence}                                    \\
+                                          & \le a b E\left[\mathrm{e}^{\mathrm{c}\left|X_{t}^{0}\right|}\right] E\left[g\left(X_{t}^{1}\right)\right] \quad \text{by Lemma \ref{lem:exp bound}}
+    \end{align}
+    So it is sufficient to show that $E\left[g\left(X_{t}^{1}\right) \right]<\infty$ and
     $E\left[\mathrm{e}^{\mathrm{c}\left|X_{t}^{0}\right|}\right] < \infty$
-    \begin{align*}
-        E[g(X^{1}_{t})] & = \int g(x) \mu _{1} ^{t}(dx)                                                                                            \\
-                        & =\sum_{n=0}^{\infty} \frac{t^{n}}{n !} \int g(x) \nu_{1}^{n}(dx)                                                         \\
-                        & =\sum_{n=0}^{\infty} \frac{t^{n}}{n !} \int g\left(\sum_{j} x_{j}\right) \prod_{j}\nu_{1}\left(dx_{j}\right)             \\
-                        & \le \sum_{n=0}^{\infty} \frac{t^{n}}{n !} a^{n-1}\int \prod_{j} g\left(x_{j}\right) \prod_{j} \nu_{1}\left(dx_{j}\right) \\
-                        & =\sum_{n=0}^{\infty} \frac{t^{n}}{n !} a^{n-1} \left(\int g(x) \nu_{1}(dx)\right)^{n}                                    \\
-                        & =a^{-1}\sum_{n=0}^{\infty} \frac{t^{n}}{n !} a^{n} G^{n}                                                                 \\
+    \begin{align}
+        E[g(X^{1}_{t})] & = \int g(x) \mu _{1} ^{t}(dx)                                                                                                                                   \\
+                        & =\sum_{n=0}^{\infty} \frac{t^{n}}{n !} \int g(x) \nu_{1}^{n}(dx)                 \quad \text{by theorem \ref{th:compound_poisson expansion}}                    \\
+                        & =\sum_{n=0}^{\infty} \frac{t^{n}}{n !} \int g\left(\sum_{j} x_{j}\right) \prod_{j}\nu_{1}\left(dx_{j}\right)                                                    \\
+                        & \le \sum_{n=0}^{\infty} \frac{t^{n}}{n !} a^{n-1}\int \prod_{j} g\left(x_{j}\right) \prod_{j} \nu_{1}\left(dx_{j}\right)    \quad \text{by submultiplicativity} \\
+                        & =\sum_{n=0}^{\infty} \frac{t^{n}}{n !} a^{n-1} \left(\int g(x) \nu_{1}(dx)\right)^{n}                                                                           \\
+                        & =a^{-1}\sum_{n=0}^{\infty} \frac{t^{n}}{n !} a^{n} G^{n}                                                                                                        \\
                         & = a^{-1} e^{aGt} < \infty.
-    \end{align*}
-    }
-    \textcolor{red}{
-    $$
-        \begin{aligned}
-            \int g(y) \nu_{1}^{n}(dy) & =\int \cdots \int g\left(y_{1}+\cdots+y_{n}\right) \nu_{1}\left(dy_{1}\right) \ldots \nu_{1}\left(d y_{n}\right) \\
-                                      & \leq a^{n-1}\left(\int g(y) \nu_{1}(dy)\right)^{n}
-        \end{aligned}
-    $$
-    Hence we have (25.4) for every $t$. That is, $X_{t}^{1}$ has finite $g$-moment.
-    Since by (25.1) and (25.3), it remains only to show that $E\left[e^{c |X_{t}^{0}| }\right]<\infty$.
-    }
+    \end{align}
 
     Let $X_{j}^{0}(t)$, $1 \leq j \leq d$, be the components of $X_{t}^{0}$. Then
 
-    \begin{align*}
+    \begin{align}
         E\left[e^{c\left|X_{t}^{0}\right|}\right] & \leq E\left[\exp \left(c \sum_{j=1}^{d}\left|X_{j}^{0}(t)\right|\right)\right] \leq E\left[\prod_{j=1}^{d}\left(e^{c X_{j}^{0}(t)}+e^{-c X_{j}^{0}(t)}\right)\right] \\
-                                                  & \textcolor{blue}{
-            \le  E \left[ \sum_{\alpha_{j} \in \{-1,1\}} e^{c \sum_{ j=1} ^{d} \alpha_{j} X^{0}_{j}(t)} \right]
-            \le  \sum_{\alpha_{j} \in \{-1,1\}} E \left[e^{c \sum_{ j=1} ^{d} \alpha_{j} X^{0}_{j}(t)} \right]
-        }
-    \end{align*}
+                                                  &
+        \le  E \left[ \sum_{\alpha_{j} \in \{-1,1\}} e^{c \sum_{ j=1} ^{d} \alpha_{j} X^{0}_{j}(t)} \right]
+        \le  \sum_{\alpha_{j} \in \{-1,1\}} E \left[e^{c \sum_{ j=1} ^{d} \alpha_{j} X^{0}_{j}(t)} \right]
+    \end{align}
 
-    \textcolor{red}{
-        which is written as a sum of a finite number of terms of the form $E\left[\exp X_{t}^{\sharp}\right]$
-        with $X_{t}^{\sharp}$ being a linear combination of $X_{j}^{0}(t), 1 \leq j \leq d$. Since $\left\{X_{t}^{\sharp}\right\}$
-        is a Lévy process on $\mathbb{R}$ with Lévy measure supported on a bounded set (use Proposition 11.10),
-        $E\left[\exp X_{t}^{\sharp}\right]$ is finite by virtue of Lemmas 25.6 and 25.7. This proves all statements in the theorem.\\
-    }
-    \textcolor{blue}{
-    Since $X^{0}_{t}$ is a Lévy process with a Lévy measure supported on a bounded set,
-    by proposition 11.10 is $\sum_{j=1}^{d} \alpha_{j} X^{0}_{j}(t)$ a Lévy process on $\mathbb{R}$ with a Lévy measure supported on a bounded set
-    therefore it has finite (exponential) moments by lemma 25.7. I.e. $E\left[e^{c\left|X_{t}^{0}\right|}\right] \le  E \left[e^{c \sum_{ j=1} ^{d} \alpha_{j} X^{0}_{j}(t)} \right] <  \infty$.
-    }
+    Since $X^{0}_{t}$ is a Lévy process with a Lévy measure supported on a bounded set
+    then $\sum_{j=1}^{d} \alpha_{j} X^{0}_{j}(t)$ is also a Lévy process on $\mathbb{R}$ with a Lévy measure supported on a bounded set by \cite{sato_levy_2013} page 65 PROPOSITION 11.10
+    therefore it has finite (exponential) moments by corollary \ref{cor:finite_moments}. I.e. $E\left[e^{c\left|X_{t}^{0}\right|}\right] \le \sum_{\alpha_{j} \in \{-1,1\}} E \left[e^{c \sum_{ j=1} ^{d} \alpha_{j} X^{0}_{j}(t)} \right] <  \infty$.
 \end{proof}
 
-Corollary 25.8. Let $\alpha>0,0<\beta \leq 1$, and $\gamma \geq 0$. None of the properties
-$\int|x|^{\alpha} \mu(\mathrm{d} x)<\infty, \int(0 \vee \log |x|)^{\alpha} \mu(\mathrm{d} x)<\infty$, and
-$\int|x|^{\gamma} e^{\alpha|x|^{\beta}} \mu(\mathrm{d} x)<$ $\infty$ is time dependent in the class
-of Lévy processes. For a Lévy process on $\mathbb{R}^{d}$ with Lévy measure $\nu$, each of the properties
-is expressed by the corresponding property of $[\nu]_{\{|x|>1\}}$.
+\begin{corollary}
+    Let $\alpha>0,0<\beta \leq 1$, and $\gamma \geq 0$. None of the properties
+    $\int|x|^{\alpha} \mu(\mathrm{d} x)<\infty, \int(0 \vee \log |x|)^{\alpha} \mu(\mathrm{d} x)<\infty$, and
+    $\int|x|^{\gamma} e^{\alpha|x|^{\beta}} \mu(\mathrm{d} x)<$ $\infty$ is time dependent in the class
+    of Lévy processes. For a Lévy process on $\mathbb{R}^{d}$ with Lévy measure $\nu$, each of the properties
+    is expressed by the corresponding property of $[\nu]_{\{|x|>1\}}$.
+\end{corollary}
 
 \begin{proof}
-    This follows from Theorem 25.3 and Proposition 25.4.
+    This follows from Theorem \ref{th:char finite moment} and Example \ref{ex:submult_func}.
 \end{proof}
 
 
