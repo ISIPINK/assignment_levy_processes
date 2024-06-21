@@ -15,16 +15,11 @@
 \usepackage{xcolor}
 \usepackage{cancel}
 
-
-\title{25. Moments}
-
-\author{}
-\date{}
-
+\allowdisplaybreaks
 
 \begin{document}
-\maketitle
 
+\section*{25. Moments}
 We define the $g$-moment of a random variable and discuss finiteness of the $g$-moment of $X_{t}$ for a Lévy process
 $\left\{X_{t}\right\}$. \\
 
@@ -175,7 +170,7 @@ with some $b>0$ and $c>0$.
         then
     }
     \textcolor{blue}{
-        $\exists b: \sup _{|x| \leq 1} g(x) \leq b$ and $a b>1$ because $g$ is locally bounded.
+        $\sup _{|x| \leq 1} g(x) < \infty$ because $g$ is locally bounded, let $b = \max(\sup _{|x| \leq 1} g(x),\frac{1}{a}+1)$ such that $\sup _{|x| \leq 1} g(x)<b$ and $ab>1$.
         $\forall x$ set $n_x = \lceil \left| x \right| \rceil$ implying $n_x-1 < \left| x \right| \leq n_x, \frac{x}{n_x} \in \{u | |u| \leq 1\} $, then
     }
     $$
@@ -192,26 +187,48 @@ with some $b>0$ and $c>0$.
 \end{proof}
 
 % similar to fourier stuff 
-LEMMA 25.6. Let $\mu$ be an infinitely divisible distribution on $\mathbb{R} \textcolor{blue}{^{d}}$ with Lévy measure $\nu$
-supported on a bounded set \textcolor{blue}{S}. Then $\widehat{\mu}(t)$ can be extended to an entire function on $\mathbb{C}\textcolor{blue}{^{d}}$.
+LEMMA 25.6. Let $\mu$ be an infinitely divisible distribution on $\mathbb{R} $ with Lévy measure $\nu$
+supported on a bounded set \textcolor{blue}{$S\subset[-a, a]$}. Then $\widehat{\mu}(t)$ can be extended to an entire function on $\mathbb{C}$.
 
 \begin{proof}
     \textcolor{red}{There is a finite $a>0$ such that $S_{\nu} \subset[-a, a]$.} The Lévy representation of $\widehat{\mu}(t)$ is written as
+    \begin{align*}
+        \widehat{\mu}(t) & =\exp \left[-\frac{1}{2}At^{2} +\int_{[-a, a]}\left(\mathrm{e}^{i tx}-1-itx\right) \nu(dx)+i \gamma't \right]                                      \\
+                         & \textcolor{blue}{ =\exp \left[-\frac{1}{2}At^{2}+i \gamma't \right] \exp \left[\int_{-a}^{a}\left(\mathrm{e}^{i tx}-1-itx\right) \nu(dx) \right] }
+    \end{align*}
+
+    with some $\gamma^{\prime} \in \mathbb{R}$.
+    \textcolor{red}{The right-hand side is meaningful even if $t$ is complex. Denote
+        this function by $\Phi(t)$. Then $\Phi(t)$ is an entire function, since we can exchange the order of integration and differentiation.}
+    \textcolor{blue}{As products, sums, compositions and integrals of entire functions are entire (integrals follow from Morera's theorem), $\exp$ and polynomials are entire it is sufficient to show that $\int_{-a}^{a}\left(\mathrm{e}^{i tx}-1-itx\right) \nu(dx)$ is finite for $t \in \mathbb{C}$:
+    \begin{align*}
+         & \left|\int_{-a}^{a}\left(\mathrm{e}^{i tx}-1-itx\right) \nu(dx) \right|                                                                                                 \\
+         & \leq \int_{-a}^{a}|\mathrm{e}^{i tx}-1-itx| \nu(dx)                                                                                                                     \\
+         & \leq \int_{-1}^{1}|\mathrm{e}^{i tx}-1-itx| \nu(dx) + \int_{[-a,a] \setminus [-1,1]}|\mathrm{e}^{i tx}-1-itx| \nu(dx)                                                   \\
+         & \leq \int_{-1}^{1}|\mathrm{e}^{i tx}-1-itx| \nu(dx) + \sup_{x \in [-a,a] \setminus [-1,1]}\left(|\mathrm{e}^{i tx}-1-itx|\right) \int_{[-a,a] \setminus [-1,1]} \nu(dx) \\
+         & \leq \int_{-1}^{1}|\mathrm{e}^{i tx}-1-itx| \nu(dx) + I_{2}                                                                                                             \\
+         & \leq \int_{-1}^{1}\left|\sum_{n=2}^{\infty} \frac{(ixt)^{n}}{n!}\right| \nu(dx) + I_{2}                                                                                 \\
+         & \leq \int_{-1}^{1}\sum_{n=2}^{\infty} \frac{|x|^{n}|t|^{n}  }{n!} \nu(dx) + I_{2}                                                                                       \\
+         & \leq \int_{-1}^{1}|x|^{2} \sum_{n=2}^{\infty} \frac{|x|^{n-2} |t| ^{n}}{n!} \nu(dx) + I_{2}                                                                             \\
+         & \leq \int_{-1}^{1}|x|^{2} \sum_{n=2}^{\infty} \frac{|t|^{n}}{n!} \nu(dx) + I_{2}                                                                                        \\
+         & \leq  \sum_{n=2}^{\infty} \frac{|t|^{n}}{n!} \int_{-1}^{1}|x|^{2} \nu(dx) + I_{2}                                                                                       \\
+         & \leq  (e^{|t| }-|t| -1)  \int_{-1}^{1}|x|^{2} \nu(dx) + I_{2}                                                                                                           \\
+         & < \infty
+        .
+    \end{align*}
+    We implicitly used $|x|<1 \implies |x|^{n-2}<1$,$|\mathrm{e}^{i tx}-1-itx|$ continuous in $x$ so achieves maximum on compact sets (Weierstrass theorem) and
     $$
-        \widehat{\mu}(t)=\exp \left[-\frac{1}{2} \textcolor{blue}{\langle t, At \rangle} +\int_{\textcolor{blue}{S}}\left(\mathrm{e}^{\mathrm{i} \textcolor{blue}{\langle t, x \rangle}}-1-\mathrm{i} \textcolor{blue}{\langle t, x \rangle}\right) \nu(\mathrm{d} x)+\mathrm{i} \textcolor{blue}{\langle \gamma', t \rangle}\right]
+        \int_{\mathbb{R}} (|x|^{2} \wedge 1) \nu(dx)<\infty \implies \int_{-1}^{1} |x|^{2} \nu(dx)<\infty, \int_{[-a,a] \setminus [-1,1]} \nu(dx)<\infty   .
     $$
-    with some $\gamma^{\prime} \in \mathbb{R}\textcolor{blue}{^{d}}$. The right-hand side is meaningful even if $t$ is complex. Denote
-    this function by $\Phi(t)$. Then $\Phi(t)$ is an entire function \textcolor{blue}{in each of its variables}, since we can exchange the order of integration and differentiation \textcolor{blue}{and innerproducts are analytical}.
-    \textcolor{blue}{Thereby $\Phi(t)$ is also entire by Hartogs's theorem.}
+    }
 \end{proof}
 
 
 LEMMA 25.7. If $\mu$ is a probability measure on $\mathbb{R}$ and $\widehat{\mu}(z)$ is extendible to an entire
 function on $\mathbb{C}$, then $\mu$ has finite exponential moments, that is, it has finite $e^{c|x|}$-moment for every $c>0$.
 
-% prop 2.5(x) isn't proven in the book but was asked by the proffesor
 \begin{proof}
-    It follows from Proposition 2.5(x) that $\alpha_{n}=\int x^{n} \mu(\mathrm{d} x)$ and
+    It follows from Proposition 2.5(x) (\textcolor{blue}{see} \ref{lemma:moment_smooth_char}) that $\alpha_{n}=\int x^{n} \mu(\mathrm{d} x)$ and
     $\beta_{n}=\int|x|^{n} \mu(\mathrm{d} x)$ are finite for any $n \geq 1$. Since
     $\frac{\mathrm{d}^{n} \widehat{\mu}}{\mathrm{d} z^{n}}(0)=\mathrm{i}^{n} \alpha_{n}$, we have
 
@@ -219,13 +236,23 @@ function on $\mathbb{C}$, then $\mu$ has finite exponential moments, that is, it
         \widehat{\mu}(z)=\sum_{n=0}^{\infty} \frac{1}{n !} \mathrm{i}^{n} \alpha_{n} z^{n}
     $$
 
-    the radius of convergence of the right-hand side being infinite. Notice that $\beta_{2 k}=\alpha_{2 k}$ and
+    the radius of convergence of the right-hand side being infinite \textcolor{blue}{ therefore $ \forall z: \left| \frac{z^{n} \alpha_{n}}{n!} \right| = \frac{|z|^{n} }{n!} \alpha_{n} \rightarrow 0$}. Notice that $\beta_{2 k}=\alpha_{2 k}$ and
     $\beta_{2 k+1} \leq \frac{1}{2}\left(\alpha_{2 k+2}+\alpha_{2 k}\right)$, since
     $|x|^{2 k+1} \leq \frac{1}{2}\left(x^{2 k+2}+x^{2 k}\right)$. It follows that
+    \textcolor{blue}{
+    $\forall c:\frac{2^{n}c^{n}}{n!} \beta_{n}\rightarrow 0 \implies \exists n _{c}: \forall n>n _{c}:\frac{2^{n}c^{n}}{n!} \beta_{n} <c$ and
+    }
 
-    $$
-        \int \mathrm{e}^{|x|} \mu(\mathrm{d} x)=\sum_{n=0}^{\infty} \frac{1}{n !} \beta_{n} c^{n}<\infty
-    $$
+    \begin{align*}
+        \int \mathrm{e}^{c|x|} \mu(\mathrm{d} x) & \textcolor{blue}{=  \int \sum_{n=0}^{\infty} \frac{c^{n} |x|^{n} }{n!} \mu(\mathrm{d} x)}   \\
+                                                 & \textcolor{blue}{=  \sum_{n=0}^{\infty}\frac{c^{n} }{n!} \int |x|^{n} \mu(\mathrm{d} x)}    \\
+                                                 & \le \sum_{n=0}^{\infty} \frac{1}{n !} \beta_{n} c^{n}                                       \\
+                                                 & \textcolor{blue}{
+        \le\sum_{n=0}^{n _{c}} \frac{1}{n !} \beta_{n} c^{n} + \sum_{n=n _{c}}^{\infty} \frac{1}{n !} \beta_{n} c^{n}                        } \\
+                                                 & \textcolor{blue}{
+        \le\sum_{n=0}^{n _{c}} \frac{1}{n !} \beta_{n} c^{n} + \sum_{n=n _{c}}^{\infty} \frac{c}{2^{n}}                                 }      \\
+                                                 & < \infty
+    \end{align*}
     completing the proof.
 
 \end{proof}
@@ -241,43 +268,58 @@ function on $\mathbb{C}$, then $\mu$ has finite exponential moments, that is, it
     Suppose that $X_{t}$ has finite $g$-moment for some $t>0$. It follows from
 
     $$
-        E\left[g\left(X_{t}\right)\right]
+        \textcolor{blue}{\infty>}E\left[g\left(X_{t}\right)\right]
         = \textcolor{blue}{ E\left[g\left(X^{0}_{t} + X^{1}_{t}\right)\right]}
         = \iint g(x+y) \mu_{0}^{t}(dx) \mu_{1}^{t}(dy)
     $$
 
-    that $\int g(x+y) \mu_{1}^{t}(dy)<\infty$ for some $x$. This means \textcolor{blue}{(see (24.1) in sato)}
+    that $\int g(x+y) \mu_{1}^{t}(dy)<\infty$ for some $x$. \textcolor{red}{This means}  \textcolor{blue}{ Because $\mu_{1}^{t}$ is a compound Poisson we have (see (24.1) condition on the Poisson distribution of the compound Poisson process)}
 
     $$
-        \sum_{n=0}^{\infty} \frac{t^{n}}{n !} \int g(x+y) \nu_{1}^{n}(dy)<\infty
+        \sum_{n=0}^{\infty} \frac{t^{n}}{n !} \int g(x+y) \nu_{1}^{n}(dy)<\infty.
     $$
 
     Since $g(y) \leq a g(-x) g(x+y) \leq a b e^{c|x|} g(x+y)$ by Lemma 25.5, we get
 
 
     \begin{equation*}
-        \sum_{n=0}^{\infty} \frac{t^{n}}{n !} \int g(y) \nu_{1}^{n}(dy)<\infty \tag{25.4}
+        \sum_{n=0}^{\infty} \frac{t^{n}}{n !} \int g(y) \nu_{1}^{n}(dy)<\infty. \tag{25.4}
     \end{equation*}
 
     Hence $\int g(y) \nu_{1}(d y)<\infty$.
 
-    Conversely, suppose that $\int g(y) \nu_{1}(dy)<\infty$. Let us prove
+    Conversely, suppose that $\int g(y) \nu_{1}(dy) \textcolor{blue}{= G}<\infty$. Let us prove
     that $E\left[g\left(X_{t}\right)\right]$ $<\infty$ for every $t$. By the submultiplicativity,
+    \begin{align*}
+        E\left[g\left(X_{t}\right)\right] & =  \textcolor{blue}{E\left[g\left(X_{t}^{0} + X_{t}^{1}\right)\right]}                                    \\
+                                          & \leq \textcolor{blue}{aE\left[ g\left(X_{t}^{0}\right) g\left(X_{t}^{1}\right)\right]}                    \\
+                                          & = \textcolor{blue}{aE\left[ g\left(X_{t}^{0}\right)\right]  E\left[ g\left(X_{t}^{1}\right)\right]}       \\
+                                          & \le a b E\left[\mathrm{e}^{\mathrm{c}\left|X_{t}^{0}\right|}\right] E\left[g\left(X_{t}^{1}\right)\right]
+    \end{align*}
 
+    \textcolor{blue}{So it is sufficient to show that $E\left[g\left(X_{t}^{1}\right) \right]<\infty$ and
+    $E\left[\mathrm{e}^{\mathrm{c}\left|X_{t}^{0}\right|}\right] < \infty$
+    \begin{align*}
+        E[g(X^{1}_{t})] & = \int g(x) \mu _{1} ^{t}(dx)                                                                                            \\
+                        & =\sum_{n=0}^{\infty} \frac{t^{n}}{n !} \int g(x) \nu_{1}^{n}(dx)                                                         \\
+                        & =\sum_{n=0}^{\infty} \frac{t^{n}}{n !} \int g\left(\sum_{j} x_{j}\right) \prod_{j}\nu_{1}\left(dx_{j}\right)             \\
+                        & \le \sum_{n=0}^{\infty} \frac{t^{n}}{n !} a^{n-1}\int \prod_{j} g\left(x_{j}\right) \prod_{j} \nu_{1}\left(dx_{j}\right) \\
+                        & =\sum_{n=0}^{\infty} \frac{t^{n}}{n !} a^{n-1} \left(\int g(x) \nu_{1}(dx)\right)^{n}                                    \\
+                        & =a^{-1}\sum_{n=0}^{\infty} \frac{t^{n}}{n !} a^{n} G^{n}                                                                 \\
+                        & = a^{-1} e^{aGt} < \infty.
+    \end{align*}
+    }
+    \textcolor{red}{
     $$
         \begin{aligned}
             \int g(y) \nu_{1}^{n}(dy) & =\int \cdots \int g\left(y_{1}+\cdots+y_{n}\right) \nu_{1}\left(dy_{1}\right) \ldots \nu_{1}\left(d y_{n}\right) \\
                                       & \leq a^{n-1}\left(\int g(y) \nu_{1}(dy)\right)^{n}
         \end{aligned}
     $$
+    Hence we have (25.4) for every $t$. That is, $X_{t}^{1}$ has finite $g$-moment.
+    Since by (25.1) and (25.3), it remains only to show that $E\left[e^{c |X_{t}^{0}| }\right]<\infty$.
+    }
 
-    Hence we have (25.4) for every $t$. That is, $X_{t}^{1}$ has finite $g$-moment. Since
-
-    $$
-        E\left[g\left(X_{t}\right)\right] \leq \textcolor{blue}{E\left[g\left(X_{t}^{0} + X_{t}^{1}\right)\right]}   \le a b E\left[\mathrm{e}^{\mathrm{c}\left|X_{t}^{0}\right|}\right] E\left[g\left(X_{t}^{1}\right)\right]
-    $$
-
-    by (25.1) and (25.3), it remains only to show that $E\left[e^{c |X_{t}^{0}| }\right]<\infty$.
     Let $X_{j}^{0}(t)$, $1 \leq j \leq d$, be the components of $X_{t}^{0}$. Then
 
     \begin{align*}
@@ -296,8 +338,8 @@ function on $\mathbb{C}$, then $\mu$ has finite exponential moments, that is, it
     }
     \textcolor{blue}{
     Since $X^{0}_{t}$ is a Lévy process with a Lévy measure supported on a bounded set,
-    $X^{0}_{j}(t)$ is a Lévy process on $\mathbb{R}$ with a Lévy measure supported on a bounded set
-    therefore it has finite (exponential) moments by (25.7) and so do any linear combinations $\sum_{j=1}^{d} \alpha_{j} X^{0}_{j}(t)$. I.e. $E\left[e^{c\left|X_{t}^{0}\right|}\right] \le  E \left[e^{c \sum_{ j=1} ^{d} \alpha_{j} X^{0}_{j}(t)} \right] <  \infty$.
+    by proposition 11.10 is $\sum_{j=1}^{d} \alpha_{j} X^{0}_{j}(t)$ a Lévy process on $\mathbb{R}$ with a Lévy measure supported on a bounded set
+    therefore it has finite (exponential) moments by lemma 25.7. I.e. $E\left[e^{c\left|X_{t}^{0}\right|}\right] \le  E \left[e^{c \sum_{ j=1} ^{d} \alpha_{j} X^{0}_{j}(t)} \right] <  \infty$.
     }
 \end{proof}
 

@@ -5,6 +5,7 @@
 \setlength{\topmargin}{0cm}
 \setlength{\headsep}{0cm}
 \setlength{\headheight}{0cm}
+\setlength{\parindent}{0pt}
 \pagestyle{plain}
 
 \usepackage[utf8]{inputenc}
@@ -34,11 +35,12 @@
 \maketitle
 
 \begin{abstract}
-    We elaborate some results from chapter $25$ of \citeauthor{sato_levy_2013}'s \citetitle{sato_levy_2013} \cite{sato_levy_2013}.
-    Additions are denoted in blue, while deletions are signified in red.
+    We elaborate some results from chapter $25$ of \citeauthor{sato_levy_2013}'s \citetitle{sato_levy_2013} \cite{sato_levy_2013}. Chapter $25$ of \cite{sato_levy_2013} discusses properties of $g$-moments of Lévy processes and it relation with the Lévy measure.
 \end{abstract}
 
-\section*{\textcolor{blue}{Proof of Existence of Moments from Smoothness of Characteristic Function}}
+\section{Proof of Existence of Moments from Smoothness of Characteristic Function}
+
+In this subsection we prove partial reverse fact that that existence of moments implies smoothness of the characteristic function. 
 
 \begin{definition}[$\Delta^{k}_{h}$]
     We define $\forall h>0: \Delta_{h}$ ($h$-central difference) of $f:\mathbb{R}\rightarrow \mathbb{R}$ as follows:
@@ -409,12 +411,12 @@ function on $\mathbb{C}$, then $\mu$ has finite exponential moments, that is, it
     \textcolor{blue}{So it is sufficient to show that $E\left[g\left(X_{t}^{1}\right) \right]<\infty$ and
     $E\left[\mathrm{e}^{\mathrm{c}\left|X_{t}^{0}\right|}\right] < \infty$
     \begin{align*}
-        E[g(X^{1}_{t})] & = \int g(x) \mu _{1} ^{t}(dx)                                                                                         \\
-                        & =\sum_{n=0}^{\infty} \frac{t^{n}}{n !} \int g(x) \nu_{1}^{n}(dx)                                                      \\
-                        & =\sum_{n=0}^{\infty} \frac{t^{n}}{n !} \int g\left(\sum_{j} x_{j}\right) \prod_{j}\nu_{1}\left(dx_{j}\right)          \\
-                        & =\sum_{n=0}^{\infty} \frac{t^{n}}{n !} a^{n-1}\int \prod_{j} g\left(x_{j}\right) \prod_{j} \nu_{1}\left(dx_{j}\right) \\
-                        & =\sum_{n=0}^{\infty} \frac{t^{n}}{n !} a^{n-1} \left(\int g(x) \nu_{1}(dx)\right)^{n}                                 \\
-                        & =a^{-1}\sum_{n=0}^{\infty} \frac{t^{n}}{n !} a^{n} G^{n}                                                              \\
+        E[g(X^{1}_{t})] & = \int g(x) \mu _{1} ^{t}(dx)                                                                                            \\
+                        & =\sum_{n=0}^{\infty} \frac{t^{n}}{n !} \int g(x) \nu_{1}^{n}(dx)                                                         \\
+                        & =\sum_{n=0}^{\infty} \frac{t^{n}}{n !} \int g\left(\sum_{j} x_{j}\right) \prod_{j}\nu_{1}\left(dx_{j}\right)             \\
+                        & \le \sum_{n=0}^{\infty} \frac{t^{n}}{n !} a^{n-1}\int \prod_{j} g\left(x_{j}\right) \prod_{j} \nu_{1}\left(dx_{j}\right) \\
+                        & =\sum_{n=0}^{\infty} \frac{t^{n}}{n !} a^{n-1} \left(\int g(x) \nu_{1}(dx)\right)^{n}                                    \\
+                        & =a^{-1}\sum_{n=0}^{\infty} \frac{t^{n}}{n !} a^{n} G^{n}                                                                 \\
                         & = a^{-1} e^{aGt} < \infty.
     \end{align*}
     }
@@ -477,20 +479,20 @@ When this condition is met, we can find $m_{j}(t)=E\left[X_{j}(t)\right]$ expres
 differentiating $\widehat{\mu}(z)$ (Proposition 2.5(ix) , \textcolor{blue}{$m_{j}(t) = \frac{1}{i} \partial z_{j}|_{z=0} \widehat{\mu_{t}}(z)$}).
 
 \textcolor{blue}{
-    \small
-    \begin{align*}
-        \widehat{\mu}_{t}(z)                                                      =
-        \operatorname{e x p} \biggl[-t                                           & \left(\frac{1} {2} \langle z, A z \rangle +i \langle\gamma, z \rangle+\int_{\mathbb{R}^{d}} \bigl( \operatorname{e x p} ( i \langle z, x \rangle)-1-i \langle z, x \rangle I_{D} ( x ) \bigr) \, \nu( d x )\right) \biggr], \\
-        \partial z_{j}|_{z=0}\left( -\frac{1} {2} \langle z, A z \rangle \right) & =
-        -\frac{1} {2} \langle \partial z_{j}(z), A z|_{z=0} \rangle
-        -\frac{1} {2} \langle z|_{z=0}, A \partial z_{j}(z) \rangle=0,                                                                                                                                                                                                                                         \\
-        \partial z_{j}|_{z=0}\left( i \langle \gamma, z \rangle \right)          & = i \langle\gamma, \partial z_{j}|_{z=0}(z) \rangle =
-        i \langle\gamma, e_{j}  \rangle = i \gamma_{j}                           ,                                                                                                                                                                                                                             \\
-        \partial z_{j}|_{z=0}                                                    & \left( \int_{\mathbb{R}^{d}}                         \bigl( \operatorname{e x p} ( i \langle z, x \rangle)-1-i \langle z, x \rangle I_{D} ( x ) \bigr) \nu(dx) \right)                                                      \\
-                                                                                 & = \int_{\mathbb{R}^{d}}                         \bigl( ix_{j}-i x_{j}I_{D} ( x ) \bigr) \nu(dx)                                                                                                                             \\
-                                                                                 & = i\int_{D^{c}} x_{j} \nu(dx)
-    \end{align*}
-    The differentiation of the integral is calculated by using the definition of the partial derivative, L'H\^{o}pital's rule, the dominated convergence theorem and $\int(|x|^{2} \wedge 1 ) \nu(dx) < \infty $.
+\small
+\begin{align*}
+    \widehat{\mu}_{t}(z)                                                      =
+    \operatorname{e x p} \biggl[-t                                           & \left(\frac{1} {2} \langle z, A z \rangle +i \langle\gamma, z \rangle+\int_{\mathbb{R}^{d}} \bigl( \operatorname{e x p} ( i \langle z, x \rangle)-1-i \langle z, x \rangle I_{D} ( x ) \bigr) \, \nu( d x )\right) \biggr], \\
+    \partial z_{j}|_{z=0}\left( -\frac{1} {2} \langle z, A z \rangle \right) & =
+    -\frac{1} {2} \langle \partial z_{j}(z), A z|_{z=0} \rangle
+    -\frac{1} {2} \langle z|_{z=0}, A \partial z_{j}(z) \rangle=0,                                                                                                                                                                                                                                         \\
+    \partial z_{j}|_{z=0}\left( i \langle \gamma, z \rangle \right)          & = i \langle\gamma, \partial z_{j}|_{z=0}(z) \rangle =
+    i \langle\gamma, e_{j}  \rangle = i \gamma_{j}                           ,                                                                                                                                                                                                                             \\
+    \partial z_{j}|_{z=0}                                                    & \left( \int_{\mathbb{R}^{d}}                         \bigl( \operatorname{e x p} ( i \langle z, x \rangle)-1-i \langle z, x \rangle I_{D} ( x ) \bigr) \nu(dx) \right)                                                      \\
+                                                                             & = \int_{\mathbb{R}^{d}}                         \bigl( ix_{j}-i x_{j}I_{D} ( x ) \bigr) \nu(dx)                                                                                                                             \\
+                                                                             & = i\int_{D^{c}} x_{j} \nu(dx)
+\end{align*}
+The differentiation of the integral is calculated by using the definition of the partial derivative, L'H\^{o}pital's rule, the dominated convergence theorem and $\int(|x|^{2} \wedge 1 ) \nu(dx) < \infty $.
 }
 
 Here $\gamma_{1, j}$ is the $j$ th
@@ -537,8 +539,6 @@ the tails of $P_{X_{t}}$ and $\nu$ have a kind of similarity. Are they actually 
 in some class of Lévy processes? This question was answered by Embrecht, Goldie, and Veraverbeke [109]
 for subordinators. We state their result without proof in two remarks below. \\
 
-
-\transparent{0.5}
 
 THEOREM 25.17 (Exponential moment). Let $\left\{X_{t}\right\}$ be a Lévy process on $\mathbb{R}^{d}$
 generated by $(A, \nu, \gamma)$. Let
@@ -702,8 +702,6 @@ Then the following four statements are equivalent.
     by the submultiplicativity of $g, E\left[g\left(X_{t}^{*}\right)\right]<\infty$. \\
 
 \end{proof}
-
-\transparent{1.0}
 
 \printbibliography
 
