@@ -35,7 +35,7 @@
 \maketitle
 
 \begin{abstract}
-    We elaborate some results from chapter $25$ of \citeauthor{sato_levy_2013}'s \citetitle{sato_levy_2013} \cite{sato_levy_2013}. Chapter $25$ of \cite{sato_levy_2013} discusses properties of $g$-moments of Lévy processes and it relation with the Lévy measure.
+    We elaborate some results from chapter $25$ of \citeauthor{sato_levy_2013}'s \citetitle{sato_levy_2013} \cite{sato_levy_2013}. Chapter $25$ of \cite{sato_levy_2013} discusses properties of $g$-moments of Lévy processes and their relation with the Lévy measure.
 \end{abstract}
 
 \section{Proof of Existence of Moments from Smoothness of Characteristic Function}
@@ -283,12 +283,12 @@ We prove Theorem \ref{th:char finite moment} after three lemmas.
          & \leq \int_{-1}^{1}|\mathrm{e}^{i tx}-1-itx| \nu(dx) + \int_{[-a,a] \setminus [-1,1]}|\mathrm{e}^{i tx}-1-itx| \nu(dx)                                                   \\
          & \leq \int_{-1}^{1}|\mathrm{e}^{i tx}-1-itx| \nu(dx) + \sup_{x \in [-a,a] \setminus [-1,1]}\left(|\mathrm{e}^{i tx}-1-itx|\right) \int_{[-a,a] \setminus [-1,1]} \nu(dx) \\
          & \leq \int_{-1}^{1}|\mathrm{e}^{i tx}-1-itx| \nu(dx) + I_{2}                                                                                                             \\
-         & \leq \int_{-1}^{1}\left|\sum_{n=2}^{\infty} \frac{(ixt)^{n}}{n!}\right| \nu(dx) + I_{2}                                                                                 \\
+         & \leq \int_{-1}^{1}\left|\sum_{n=2}^{\infty} \frac{(ixt)^{n}}{n!}\right| \nu(dx) + I_{2}    \label{line: expansion in rep}                                               \\
          & \leq \int_{-1}^{1}\sum_{n=2}^{\infty} \frac{|x|^{n}|t|^{n}  }{n!} \nu(dx) + I_{2}                                                                                       \\
          & \leq \int_{-1}^{1}|x|^{2} \sum_{n=2}^{\infty} \frac{|x|^{n-2} |t| ^{n}}{n!} \nu(dx) + I_{2}                                                                             \\
          & \leq \int_{-1}^{1}|x|^{2} \sum_{n=2}^{\infty} \frac{|t|^{n}}{n!} \nu(dx) + I_{2}                                                                                        \\
          & \leq  \sum_{n=2}^{\infty} \frac{|t|^{n}}{n!} \int_{-1}^{1}|x|^{2} \nu(dx) + I_{2}                                                                                       \\
-         & \leq  (e^{|t| }-|t| -1)  \int_{-1}^{1}|x|^{2} \nu(dx) + I_{2}                                                                                                           \\
+         & \leq  (e^{|t| }-|t| -1)  \int_{-1}^{1}|x|^{2} \nu(dx) + I_{2}       \label{line: end expansion in rep}                                                                  \\
          & < \infty
         .
     \end{align}
@@ -413,7 +413,7 @@ We prove Theorem \ref{th:char finite moment} after three lemmas.
     \end{align}
 
     Since $X^{0}_{t}$ is a Lévy process with a Lévy measure supported on a bounded set
-    then $\sum_{j=1}^{d} \alpha_{j} X^{0}_{j}(t)$ is also a Lévy process on $\mathbb{R}$ with a Lévy measure supported on a bounded set by \cite{sato_levy_2013} page 65 PROPOSITION 11.10
+    therefore $\sum_{j=1}^{d} \alpha_{j} X^{0}_{j}(t)$ is also a Lévy process on $\mathbb{R}$ with a Lévy measure supported on a bounded set by \cite{sato_levy_2013} page 65 PROPOSITION 11.10
     therefore it has finite (exponential) moments by corollary \ref{cor:finite_moments}. I.e. $E\left[e^{c\left|X_{t}^{0}\right|}\right] \le \sum_{\alpha_{j} \in \{-1,1\}} E \left[e^{c \sum_{ j=1} ^{d} \alpha_{j} X^{0}_{j}(t)} \right] <  \infty$.
 \end{proof}
 
@@ -430,242 +430,91 @@ We prove Theorem \ref{th:char finite moment} after three lemmas.
 \end{proof}
 
 
-EXAMPLE 25.12. Let $\left\{X_{t}\right\}$ be a Lévy process on $\mathbb{R}^{d}$ generated
-by $(A, \nu, \gamma )$. In components, $X_{t}=\left(X_{j}(t)\right), \gamma=\left(\gamma_{j}\right)$,
-and $A=\left(A_{j k}\right)$. Then $X_{t}$ has finite mean for $t>0$
-if and only if $\int_{\{|x| >1\}} |x| \nu(\mathrm{d} x)<\infty$.
-When this condition is met, we can find $m_{j}(t)=E\left[X_{j}(t)\right]$ expressed as
+\begin{lemma}[formulas for the first $2$ moments of a Lévy process]
+    Let $\left\{X_{t}\right\}$ be a Lévy process on $\mathbb{R}^{d}$ generated
+    by $(A, \nu, \gamma )$. In components, $X_{t}=\left(X_{j}(t)\right), \gamma=\left(\gamma_{j}\right)$,
+    and $A=\left(A_{j k}\right)$.
+    Then $\int_{\{|x_{j}| >1\}} |x_{j}| \nu(\mathrm{d} x)<\infty \implies m_{j}(t)=E\left[X_{j}(t)\right]< \infty$ and can be expressed as
+
+    \begin{equation}
+        m_{j}(t)=t\left(\int_{|x|>1} x_{j} \nu(\mathrm{d} x)+\gamma_{j}\right).
+    \end{equation}
+
+    Similarly $\int_{\{|x_{j}|,|x_{k}|  >1\}} |x_{j}||x_{k}| \nu(\mathrm{d} x),\int_{\{|x_{j}| >1\}} |x_{j}|^{2} \nu(\mathrm{d} x),\int_{\{|x_{k}| >1\}} |x_{k}|^{2} \nu(\mathrm{d} x)<\infty  \implies v_{jk}=E\left[\left(X_{j}(t)-m_{j}(t)\right)\left(X_{k}(t)-m_{k}(t)\right)\right], v_{j j}, v_{k k}< \infty $
+    and can be expressed as
+
+    \begin{equation}
+        v_{j k}(t)=t\left(A_{j k}+\int_{\mathbb{R}^{d}} x_{j} x_{k} \nu(\mathrm{d} x)\right).
+    \end{equation}
 
 
-\begin{equation*}
-    m_{j}(t)=t\left(\int_{|x|>1} x_{j} \nu(\mathrm{d} x)+\gamma_{j}\right)=t \gamma_{1, j}, \quad j=1, \ldots, d \tag{25.7}
-\end{equation*}
 
-differentiating $\widehat{\mu}(z)$ (Proposition 2.5(ix) , \textcolor{blue}{$m_{j}(t) = \frac{1}{i} \partial z_{j}|_{z=0} \widehat{\mu_{t}}(z)$}).
+\end{lemma}
 
-\textcolor{blue}{
-\small
-\begin{align*}
-    \widehat{\mu}_{t}(z)                                                      =
-    \operatorname{e x p} \biggl[-t                                           & \left(\frac{1} {2} \langle z, A z \rangle +i \langle\gamma, z \rangle+\int_{\mathbb{R}^{d}} \bigl( \operatorname{e x p} ( i \langle z, x \rangle)-1-i \langle z, x \rangle I_{D} ( x ) \bigr) \, \nu( d x )\right) \biggr], \\
-    \partial z_{j}|_{z=0}\left( -\frac{1} {2} \langle z, A z \rangle \right) & =
-    -\frac{1} {2} \langle \partial z_{j}(z), A z|_{z=0} \rangle
-    -\frac{1} {2} \langle z|_{z=0}, A \partial z_{j}(z) \rangle=0,                                                                                                                                                                                                                                         \\
-    \partial z_{j}|_{z=0}\left( i \langle \gamma, z \rangle \right)          & = i \langle\gamma, \partial z_{j}|_{z=0}(z) \rangle =
-    i \langle\gamma, e_{j}  \rangle = i \gamma_{j}                           ,                                                                                                                                                                                                                             \\
-    \partial z_{j}|_{z=0}                                                    & \left( \int_{\mathbb{R}^{d}}                         \bigl( \operatorname{e x p} ( i \langle z, x \rangle)-1-i \langle z, x \rangle I_{D} ( x ) \bigr) \nu(dx) \right)                                                      \\
-                                                                             & = \int_{\mathbb{R}^{d}}                         \bigl( ix_{j}-i x_{j}I_{D} ( x ) \bigr) \nu(dx)                                                                                                                             \\
-                                                                             & = i\int_{D^{c}} x_{j} \nu(dx)
-\end{align*}
-The differentiation of the integral is calculated by using the definition of the partial derivative, L'H\^{o}pital's rule, the dominated convergence theorem and $\int(|x|^{2} \wedge 1 ) \nu(dx) < \infty $.
-}
+\begin{proof}
+    The finiteness conditions follow from using the fact that projections of Lévy processes are again Lévy processes \cite{sato_levy_2013} page 65 PROPOSITION 11.10 and Theorem \ref{th:char finite moment}. The formulas are derived
+    from the derivatives of the characteristic function or cumulant function. I.e.
+        { \small
+            \begin{align}
+                m_{j}(t)   & = -i \partial z_{j}|_{z=0} \widehat{\mu_{t}}(z)                                                                                                                                                                                                                                                                       \\
+                           & = -i \partial z_{j}|_{z=0} e^{\ln \left(\widehat{\mu_{t}}(z)\right)}                                                                                                                                                                                                                                                  \\
+                           & = -i \partial z_{j}|_{z=0}\ln \left(\widehat{\mu_{t}}(z)\right) \cancelto{1}{\widehat{\mu_{t}}(0)}                                                                                                                                                                                                                    \\
+                           & = -i \partial z_{j}|_{z=0}\ln \left(\widehat{\mu_{t}}(z)\right),                                                                                                                                                                                                                                                      \\
+                v_{j k}(t) & =E\left[\left(X_{j}(t)-m_{j}(t)\right)\left(X_{k}(t)-m_{k}(t)\right)\right]                                                                                                                                                                                                                                           \\
+                           & = E[X_{j}(t)X_{k}(t)] - m_{j}(t)m_{k}(t)                                                                                                                                                                                                                                                                              \\
+                           & = -\partial z_{j} \partial z_{k} \widehat{\mu_{t}}(z)|_{z=0} - m_{j}(t)m_{k}(t)                                                                                                                                                                                                                                       \\
+                           & = -\partial z_{j} \left( \partial z_{k} (\ln \widehat{\mu_{t}}(z)) \widehat{\mu_{t}}(z) \right) |_{z=0} - m_{j}(t)m_{k}(t)                                                                                                                                                                                            \\
+                           & = -\partial z_{j} \partial z_{k}|_{z=0} (\ln \widehat{\mu_{t}}(z)) \widehat{\mu_{t}}(z)   -\partial z_{j}( \ln\widehat{\mu_{t}}(z) )\partial z_{k}( \ln\widehat{\mu_{t}}(z) )\widehat{\mu_{t}}(z)|_{z=0} - m_{j}(t)m_{k}(t)                                                                                           \\
+                           & = -\partial z_{j} \partial z_{k}|_{z=0} (\ln \widehat{\mu_{t}}(z)) \cancelto{1}{\widehat{\mu_{t}}(z)}   -\cancelto{i m_{j}(t)}{\partial z_{j}( \ln\widehat{\mu_{t}}(z) )}\cancelto{im_{k}(t)}{\partial z_{k}( \ln\widehat{\mu_{t}}(z) )} \hspace{0.3cm}\cancelto{1}{\widehat{\mu_{t}}(z)}\,|_{z=0} - m_{j}(t)m_{k}(t) \\
+                           & = -\partial z_{j} \partial z_{k}|_{z=0} (\ln \widehat{\mu_{t}}(z))
+            \end{align}
+        }
 
-Here $\gamma_{1, j}$ is the $j$ th
-component of the center $\gamma_{1}$ in (8.8). Similarly, $E\left[\left|X_{t}\right|^{2}\right]<\infty$
-for all $t>0$ if and only if $\int_{|x|>1}|x|^{2} \nu(\mathrm{d} x)<\infty$. In this case,
+    The cumulant function of a Lévy process is given by the Lévy-Khintchine formula:
+    \begin{equation}
+        \frac{\ln \widehat{\mu_{t}}(z)}{t} = -\frac{1} {2} \langle z, A z \rangle +i \langle\gamma, z \rangle+\int_{\mathbb{R}^{d}} \left( \mathrm{e}^{i \langle z, x \rangle}-1-i \langle z, x \rangle I_{D} ( x ) \right) \nu(\mathrm{d} x)
+        .
+    \end{equation}
+    The first $2$ terms are easily differentiated:
+    \begin{center}
+        \renewcommand{\arraystretch}{1.5} % Increase vertical spacing
+        \begin{tabular}{|c|c|c|}
+            \hline
+            Operator                               & $-\frac{1}{2} \langle z, A z \rangle$ & $i \langle\gamma, z \rangle$ \\ \hline
+            $\partial z_{j}|_{z=0}$                & $0$                                   & $\gamma_{j}$                 \\ \hline
+            $\partial z_{j} \partial z_{k}|_{z=0}$ & $-A_{jk}$                             & $0$                          \\ \hline
+        \end{tabular}
+    \end{center}
+    Let $I(z)=\int_{\mathbb{R}^{d}} \left( \mathrm{e}^{i \langle z, x \rangle}-1-i \langle z, x \rangle I_{D} ( x ) \right) \nu(\mathrm{d} x)$ then
 
-{ \small
-        \begin{align*}
-            v_{j k}(t) & =E\left[\left(X_{j}(t)-m_{j}(t)\right)\left(X_{k}(t)-m_{k}(t)\right)\right], \quad j, k=1, \ldots, d                                                                                                                                                                                                                                      \\
-                       & = \textcolor{blue}{ E[X_{j}(t)X_{k}(t)] - m_{j}(t)m_{k}(t)}                                                                                                                                                                                                                                                                               \\
-                       & = \textcolor{blue}{  -\partial z_{j} \partial z_{k} \widehat{\mu_{t}}(z)|_{z=0} - m_{j}(t)m_{k}(t)}                                                                                                                                                                                                                                       \\
-                       & = \textcolor{blue}{  -\partial z_{j} \left( \partial z_{k} (\ln \widehat{\mu_{t}}(z)) \widehat{\mu_{t}}(z) \right) |_{z=0} - m_{j}(t)m_{k}(t)}                                                                                                                                                                                            \\
-                       & = \textcolor{blue}{  -\partial z_{j} \partial z_{k}|_{z=0} (\ln \widehat{\mu_{t}}(z)) \widehat{\mu_{t}}(z)   -\partial z_{j}( \ln\widehat{\mu_{t}}(z) )\partial z_{k}( \ln\widehat{\mu_{t}}(z) )\widehat{\mu_{t}}(z)|_{z=0} - m_{j}(t)m_{k}(t)}                                                                                           \\
-                       & = \textcolor{blue}{  -\partial z_{j} \partial z_{k}|_{z=0} (\ln \widehat{\mu_{t}}(z)) \cancelto{1}{\widehat{\mu_{t}}(z)}   -\cancelto{i m_{j}(t)}{\partial z_{j}( \ln\widehat{\mu_{t}}(z) )}\cancelto{im_{k}(t)}{\partial z_{k}( \ln\widehat{\mu_{t}}(z) )} \hspace{0.3cm}\cancelto{1}{\widehat{\mu_{t}}(z)}\,|_{z=0} - m_{j}(t)m_{k}(t)} \\
-                       & = \textcolor{blue}{  -\partial z_{j} \partial z_{k}|_{z=0} (\ln \widehat{\mu_{t}}(z)) }
-        \end{align*}
-        We didn't check that integration and differentiation can be exchanged.
+    \begin{align}
+        \partial z_{j}|_{z=0} I(z) & = \lim_{h \to 0} \frac{1}{h} \int_{\mathbb{R}^d} e^{ihx_{j}}-ihx_{j} I_{D}(x)-1 \nu(dx)                                                                                                                     \\
+                                   & = \lim_{h \to 0} \frac{1}{h} \int_{D} e^{ihx_{j}}-ihx_{j}-1  \nu(dx) + \frac{1}{h} \int_{D^{c}} e^{ihx_{j}}-1  \nu(dx)                                                                                      \\
+                                   & = \cancelto{0}{\lim_{h \to 0} \int_{D} \sum_{n=2}^{\infty} \frac{(ihx_{j})^{n}}{n!h}  \nu(dx)} + \lim_{h \to 0} \frac{1}{h}\int_{D^{c}} ihx_{j}+ e^{ihx_{j}}-ihx_{j}-1  \nu(dx) \label{line:canceled limit} \\
+                                   & =  \lim_{h \to 0} \int_{D^{c}}ix_{j} + \frac{e^{ihx_{j}}-ihx_{j}-1}{h} \nu(dx)                                                                                                                              \\
+                                   & =  \int_{D^{c}}ix_{j}\nu(dx) + \cancelto{0}{\lim_{h \to 0} \int_{D^{c}}\frac{e^{ihx_{j}}-ihx_{j}-1}{h} \nu(dx)} \label{line:canceled limit2}                                                                \\
+                                   & = \int_{D^{c}}ix_{j}\nu(dx)
+    \end{align}
+
+    In line (\ref{line:canceled limit}) the canceling follows from $|x_{j}|<|x|$ and doing similar calculations as
+    line (\ref{line: expansion in rep}) to line (\ref{line: end expansion in rep}) in proof of Lemma \ref{lem:supp entire} then taking the limit. We still have to elaborate the cancellation on line (\ref{line:canceled limit2}):
+
+    {
+    \small
+    \begin{align}
+         & \left| \lim_{h \to 0} \int_{D^{c}}\frac{e^{ihx_{j}}-ihx_{j}-1}{h} \nu(dx)	 \right|                                                                                                                                                                              \\
+         & \le \lim_{h \to 0} \int_{D^{c}} \left| \frac{e^{ihx_{j}}-ihx_{j}-1}{h} \right|  \nu(dx)                                                                                                                                                                         \\
+         & = \lim_{h \to 0} \int_{D^{c}} \left| \frac{ix_{j}\int_{0}^{h}e^{isx_{j}}-1ds }{h} \right|  \nu(dx)                                                                                                                                                              \\
+         & \le  \lim_{h \to 0} \int_{D^{c}} \frac{h |x_{j}| \sup_{s \in [0,h]}\left|e^{isx_{j}}-1\right| }{h}   \nu(dx)                                                                                                                                                    \\
+         & \le  \lim_{h \to 0} \int_{D^{c}}  |x_{j}| \sup_{s \in [0,h]}\left|e^{isx_{j}}-1\right|   \nu(dx)                                                                                                                                                                \\
+         & \le  \lim_{h \to 0} \int_{D^{c} \cap \{|x_{j}|\le 1 \}}  |x_{j}| \sup_{s \in [0,h]}\left|e^{isx_{j}}-1\right|   \nu(dx) + \lim_{h \to 0}\int_{D^{c} \cap \{|x_{j}|>1 \}}  |x_{j}| \sup_{s \in [0,h]}\left|e^{isx_{j}}-1\right|   \nu(dx)                        \\
+         & \le  \lim_{h \to 0}\int_{D^{c} \cap \{|x_{j}|\le 1 \}}  \sup_{s \in [0,h]}\left|e^{isx_{j}}-1\right|   \nu(dx) + \lim_{h \to 0}\int_{D^{c} \cap \{|x_{j}|>1 \}}  |x_{j}| \sup_{s \in [0,h]}\left|e^{isx_{j}}-1\right|   \nu(dx)         \label{line:2lim 2 int} \\
+         & \le 0
+    \end{align}
     }
-
-the $(j, k)$ elements of the covariance matrix of $X(t)$ \textcolor{blue}{calculated with the cumulant generating function}, are expressed as
-
-
-\begin{equation*}
-    v_{j k}(t)=t\left(A_{j k}+\int_{\mathbb{R}^{d}} x_{j} x_{k} \nu(\mathrm{d} x)\right) \tag{25.8}
-\end{equation*}
-
-\textcolor{blue}{
-    \begin{align*}
-        -\partial z_{j} \partial z_{k} \left( -\frac{t}{2} \left< z,Az \right> \right) & =
-        \frac{t}{2}\partial z_{j} \left( \left<e_{k}, Az \right> + \left<z , Ae_{k} \right>  \right)                                                                                                                                            \\
-                                                                                       & = \frac{t}{2} \left( \left<e_{k}, Ae_{j} \right> + \left<e_{j} , Ae_{k} \right>  \right)                                                               \\
-                                                                                       & = tA_{jk}                                                                                                                                              \\
-        -\partial z_{j} \partial z_{k} \left(  i\left< \gamma,z \right> \right)        & = -i \partial z_{j} \left< \gamma, e_{k} \right>                                                                                                       \\
-                                                                                       & = 0                                                                                                                                                    \\
-        -\partial z_{j} \partial z_{k}|_{z=0}                                          & \left(t \int_{\mathbb{R}^{d}} \bigl( \operatorname{e x p} ( i \langle z, x \rangle)-1-i \langle z, x \rangle I_{D} ( x ) \bigr) \, \nu( d x )  \right) \\
-                                                                                       & = -t\int_{\mathbb{R}^{d}}  \partial z_{j} \partial z_{k} |_{z=0}\operatorname{e x p} ( i \langle z, x \rangle) \nu( d x )                              \\
-                                                                                       & = t\int_{\mathbb{R}^{d}} x_{j} x_{k} \nu( d x )
-    \end{align*}
-}
-
-
-Theorem 25.3 shows that, for a Lévy process $\left\{X_{t}\right\}$ with Lévy measure $\nu$,
-the tails of $P_{X_{t}}$ and $\nu$ have a kind of similarity. Are they actually equivalent
-in some class of Lévy processes? This question was answered by Embrecht, Goldie, and Veraverbeke [109]
-for subordinators. We state their result without proof in two remarks below. \\
-
-
-THEOREM 25.17 (Exponential moment). Let $\left\{X_{t}\right\}$ be a Lévy process on $\mathbb{R}^{d}$
-generated by $(A, \nu, \gamma)$. Let
-
-$$
-    C=\left\{c \in \mathbb{R}^{d}: \int_{|x|>1} \mathrm{e}^{\langle c, x\rangle} \nu(\mathrm{d} x)<\infty\right\}
-$$
-
-(i) The set $C$ is convex and contains the origin. \\
-
-(ii) $c \in C$ if and only if $E \mathrm{e}^{\left\langle c, X_{t}\right\rangle}<\infty$ for some $t>0$ or,
-equivalently, for every $t>0$.\\
-
-(iii) If $w \in \mathbb{C}^{d}$ is such that $\operatorname{Re} w \in C$, then
-
-
-\begin{equation*}
-    \Psi(w)=\frac{1}{2}\langle w, A w\rangle+\int_{\mathbb{R}^{d}}\left(\mathrm{e}^{\langle w, x\rangle}-1-\langle w, x\rangle 1_{D}(x)\right) \nu(\mathrm{d} x)+\langle\gamma, w\rangle \tag{25.11}
-\end{equation*}
-
-
-is definable, $E\left|\mathrm{e}^{\left(w, X_{t}\right)}\right|<\infty$, and
-
-
-\begin{equation*}
-    E\left[\mathrm{e}^{\left\langle\boldsymbol{w}, X_{t}\right\rangle}\right]=\mathrm{e}^{t \Psi(w)} \tag{25.12}
-\end{equation*}
-
-\begin{proof}
-    (i) Obviously $C$ contains the origin. If $c_{1}$ and $c_{2}$ are in $C$, then, for any $0<r<1$ and $s=1-r$,
-
-    $$
-        \int_{|x|>1} e^{\left\langle r c_{1}+s c_{2}, x\right\rangle} \nu(\mathrm{d} x) \leq\left(\int_{|x|>1} e^{\left\langle c_{1}, x\right\rangle } \nu(\mathrm{d} x)\right)^{\tau}\left(\int_{|x|>1} e^{\left\langle c_{2}, x\right\rangle} \nu(\mathrm{d} x)\right)^{s}<\infty
-    $$
-
-    by Hölder's inequality. Hence $C$ is convex.\\
-
-    (ii) The function $g(x)=\mathrm{e}^{(c, x)}$ is clearly submultiplicative. Hence Theorem 25.3 gives the assertion. \\
-
-    (iii). Any linear transformation $U$ of $\mathbb{R}^{d}$ to $\mathbb{R}^{d}$ can be uniquely extended to a linear transformation of $\mathbb{C}^{d}$ to $\mathbb{C}^{d}$. Regarding $U$ as a $d \times d$ matrix, it is easy to see that $\langle w, U v\rangle=\left\langle U^{\prime} w, v\right\rangle$ for $w, v \in \mathbb{C}^{d}$, where $U^{\prime}$ is the transpose of $U$. Now let $\operatorname{Re} w \in C$. Then $\int_{|x|>1}\left|\mathrm{e}^{\langle\boldsymbol{w}, x\rangle}\right| \nu(\mathrm{d} x)=\int_{|x|>1} \mathrm{e}^{\langle\operatorname{Re} w, x\rangle} \nu(\mathrm{d} x)<\infty$, which shows that $\Psi(w)$ of (25.11) is definable and finite. Also, $E\left|\mathrm{e}^{\left\langle w, X_{t}\right\rangle}\right|=$ $E e^{\left(R e v, X_{t}\right\rangle}<\infty$ by (ii). Let us show (25.12) in three steps.
-
-    Step 1. Let $e_{1}$ be the unit vector with first component 1. Assume that $e_{1} \in C$. Let us prove (25.12) for all $w=\left(w_{j}\right)_{1 \leq j \leq d}$ with $\operatorname{Re} w_{1} \in[0,1]$ and\\
-    $\operatorname{Re} w_{j}=0,2 \leq j \leq d$. Fix $t>0$ and $w_{2}, \ldots, w_{d} \in \mathbb{C}$ with $\operatorname{Re} w_{j}=0$, $2 \leq j \leq d$, and regard $w_{1}$ as variable in $F=\left\{w_{1} \in \mathbb{C}: \operatorname{Re} w_{1} \in[0,1]\right\}$. Consider $f\left(w_{1}\right)=E \mathrm{e}^{\left\langle\boldsymbol{w}, X_{t}\right\rangle}$.
-    Then $f\left(w_{1}\right)$ is continuous on $F$, since
-
-    $$
-        \left|e^{\langle\boldsymbol{w}, X(t)\rangle}\right|=e^{\left(\operatorname{Re} w_{1}\right) X_{1}(t)} \leq\left(\operatorname{Re} w_{1}\right) e^{X_{1}(t)}+\left(1-\operatorname{Re} w_{1}\right) \leq e^{X_{1}(t)}+1
-    $$
-
-    by the convexity of $\mathrm{e}^{u X_{1}(t)}$ in $u$, where $X_{1}(t)$ is the first component of $X(t)$.
-    Moreover, $f\left(w_{1}\right)$ is analytic in the interior of $F$, since it is the limit of the analytic
-    functions $E\left[e^{\left\langle\boldsymbol{v}, X_{t}\right\rangle} ;\left|X_{t}\right| \leq n\right]$ as $n \rightarrow \infty$.
-    Similarly, $h\left(w_{1}\right)=$ $\mathrm{e}^{\mathrm{tw}(w)}$ is continuous on $F$ and analytic in the interior of $F$.
-    If $\operatorname{Re} w_{1}=0$, then $f\left(w_{1}\right)=h\left(w_{1}\right)$, which is the Lévy-Khintchine representation
-    of $P_{X_{i}}$. Therefore, as in the proof of Theorem 24.11, the principle of reflection and the uniqueness theorem yield (25.12)
-    when $\operatorname{Re} w_{1} \in[0,1]$.
-
-    Step 2. Let $U$ be a linear transformation from $\mathbb{R}^{d}$ onto $\mathbb{R}^{d}$. Let $Y_{t}=$ $U X_{t}$.
-    Then $\left\{Y_{t}\right\}$ is a Lévy process with generating triplet $\left(A_{U}, \nu_{U}, \gamma_{U}\right)$
-    by Proposition 11.10. Write
-
-    $$
-        C_{U}=\left\{c \in \mathbb{R}^{d}: \int_{|x|>1} e^{\langle c, x\rangle} \nu_{U}(\mathrm{~d} x)<\infty\right\}
-    $$
-
-    Since $\nu_{U}=\nu U^{-1}$, we have $C_{U}=\left(U^{\prime}\right)^{-1} C$. Given $w \in \mathbb{C}^{d}$
-    satisfying Re $w \in$ $C$, let $v=\left(U^{\prime}\right)^{-1} w$. Then $\operatorname{Re} v \in C_{U}$. Define
-
-    $$
-        \Psi_{U}(v)=\frac{1}{2}\left\langle v, A_{U} v\right\rangle+\int_{\mathbb{R}^{d}}\left(\mathrm{e}^{\langle v, x\rangle}-1-\langle v, x\rangle 1_{D}(x)\right) \nu_{U}(\mathrm{~d} x)+\left\langle\gamma_{U}, v\right\rangle
-    $$
-
-    We claim that if
-
-    \begin{equation*}
-        E\left[e^{\left\langle v_{i} Y_{t}\right\rangle}\right]=\mathrm{e}^{t \Psi_{U}(v)} \tag{25.13}
-    \end{equation*}
-
-    then $w$ satisfies (25.12). In fact, $\left\langle v, Y_{t}\right\rangle=\left\langle\left\langle U^{-1}\right\rangle^{\prime} w, Y_{t}\right\rangle=\left\langle w, X_{t}\right\rangle$
-    and
-
-    $$
-        \begin{aligned}
-            \Psi_{U}(v) & =\frac{1}{2}\left\langle U^{\prime} v, A U^{\prime} v\right\rangle+\int\left(\mathrm{e}^{\langle v, U x\rangle}-1-\langle v, U x\rangle 1_{D}(x)\right) v(\mathrm{~d} x)+\langle U \gamma, v\rangle \\
-                        & =\Psi(w)
-        \end{aligned}
-    $$
-
-    by (11.8)-(11.10). That is, (25.13) is identical with (25.12). \\
-
-    Step 3. Given $w \in \mathbb{C}^{d}$ satisfying $\operatorname{Re} w \in C$, we shall
-    show (25.12). If Re $w=0$, there is nothing to prove. Assume Re $w \neq 0$. Choose a
-    linear transformation $U$ from $\mathbb{R}^{d}$ onto $\mathbb{R}^{d}$ such that $\operatorname{Re} w=U^{\prime} e_{1}$.
-    Consider the Lévy process $Y_{t}=U X_{t}$. Since $C_{U}=\left(U^{\prime}\right)^{-1} C$, we have $e_{1} \in C_{U}$.
-    We know, by Step 1, that, if $v \in \mathbb{C}^{d}$ satisfies $\operatorname{Re} v=e_{1}$, then (25.13) holds.
-    Hence, by the result of Step 2, $w$ satisfies (25.12).
-
-\end{proof}
-
-
-We close this section with a discussion of the $g$-moments of $\sup _{s \in[0, t]}\left|X_{s}\right|$ \\
-
-
-THEOREM 25.18. Let $\left\{X_{t}\right\}$ be a Lévy process on $\mathbb{R}^{d}$. Define
-
-\begin{equation*}
-    X_{t}^{*}=\sup _{s \in[0, t]}\left|X_{s}\right| \tag{25.14}
-\end{equation*}
-
-Let $g(r)$ be a nonnegative continuous submultiplicative function on $[0, \infty)$, increasing to $\infty$ as $r \rightarrow \infty$.
-Then the following four statements are equivalent.
-
-(1) $E\left[g\left(X_{t}^{*}\right)\right]<\infty$ for some $t>0$. \\
-
-(2) $E\left[g\left(X_{t}^{*}\right)\right]<\infty$ for every $t>0$. \\
-
-(3) $E\left[g\left(\left|X_{t}\right|\right)\right]<\infty$ for some $t>0$. \\
-
-(4) $E\left[g\left(\left|X_{t}\right|\right)\right]<\infty$ for every $t>0$. \\
-
-\begin{proof}
-    Since $g(|x|)$ is submultiplicative on $\mathbb{R}^{d}$, (3) and (4) are equivalent by
-    Theorem 25.3. As $\left|X_{t}\right| \leq X_{t}^{*}$ \textcolor{blue}{$ \implies g(\left|X_{t}\right|) \leq g(X_{t}^{*})$}, all we have to show is that, for
-    any fixed $t>0$, $E\left[g\left(\left|X_{t}\right|\right)\right]<\infty$ implies
-    $E\left[g\left(X_{t}^{*}\right)\right]<\infty$. We claim that, for any $a>0$ and $b>0$,
-
-    \begin{equation*}
-        P\left[X_{t}^{*}>a+b\right] \leq P\left[\left|X_{t}\right|>a\right] / P\left[X_{t}^{*} \leq b / 2\right] \tag{25.15}
-    \end{equation*}
-
-    Fix $t$ and let $t_{n, j}=j t / 2^{n}$ for $j=1, \ldots, 2^{n}$ and $X_{(n)}^{*}=\max _{1 \leq j \leq 2^{n}}\left|X_{t_{n, j}}\right|$. Choosing $Z_{j}(s)=Z_{j}=X_{t_{n, j}}-X_{t_{n, j-1}}$ in Lemma 20.2 and using Remark 20.3, we have
-
-    $$
-        P\left[X_{(n)}^{*}>a+b\right] \leq P\left[\left|X_{t}\right|>a\right] / P\left[X_{(n)}^{*} \leq b / 2\right]
-    $$
-
-    in (20.2). Hence, letting $n \rightarrow \infty$, we get (25.15).
-    Choose $b>0$ such that $P\left[X_{t}^{*} \leq b / 2\right]>0$.
-    Let $\tilde{g}(r)$ be a continuous increasing function on $[0, \infty)$
-                    such that $\bar{g}(0)=0$ and $\tilde{g}(r)=g(r)$ for $r \geq 1$.
-                    Apply Lemma 17.6 to $\left.k(r)=1-P|| X_{t} \mid \leq r\right]$ and $l(r)=\tilde{g}(r)$. Then
-
-    $$
-        \int_{0+}^{\infty} P\left[\left|X_{t}\right|>r\right] \mathrm{d} \tilde{g}(r)=\int_{(0, \infty)} \tilde{g}(r) P\left[\left|X_{t}\right| \in \mathrm{d} r\right]=E\left[\widetilde{g}\left(\left|X_{t}\right|\right)\right]
-    $$
-
-    14 follows from (25.15) that
-
-    $$
-        \int_{0+}^{\infty} P\left[X_{t}^{*}>r+b\right] \mathrm{d} \widetilde{g}(r) \leq E\left[\widetilde{g}\left(\left|X_{t}\right|\right)\right] / P\left[X_{t}^{*} \leq b / 2\right]
-    $$
-
-    The integral in the left-hand side equals
-
-    $$
-        \int_{(0, \infty)} \tilde{g}(r) P\left[X_{t}^{*}-b \in \mathrm{d} r\right]=E\left[\tilde{g}\left(X_{t}^{*}-b\right) ; X_{t}^{*}>b\right]
-    $$
-
-    similarly. Hence, if $E\left[g\left(\left|X_{t}\right|\right)\right]<\infty$,
-    then $E\left[g\left(X_{t}^{*}-b\right) ; X_{t}^{*}>b\right]<\infty$ and,
-    by the submultiplicativity of $g, E\left[g\left(X_{t}^{*}\right)\right]<\infty$. \\
-
+    On line (\ref{line:2lim 2 int}) the integrals are dominated by $\int_{D^{c}} 2 \nu(dx), \int_{|x_{j}|>1 }2 |x_{j}| \nu(dx)  < \infty $ and the dominated convergence theorem can be applied. After exchanging both limits are $0$. \\
+    $\partial z_{j} \partial z_{k}|_{z=0}I(z) = \int_{\mathbb{R}^{d}}  \partial z_{j} \partial z_{k} |_{z=0}\operatorname{e x p} ( i \langle z, x \rangle) \nu( d x )
+        = -\int_{\mathbb{R}^{d}} x_{j} x_{k} \nu( d x )$ where exchanging the integral and the derivative isn't  elaborated.
 \end{proof}
 
 \printbibliography
